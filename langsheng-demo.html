@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>朗圣药业 - 交互演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#f43f5e22,#f43f5e44);border-bottom:1px solid #f43f5e44;padding:40px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#f43f5e,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
+.card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f43f5e,#06b6d4)}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #f43f5e20}.card h3{font-size:16px;margin-bottom:8px;color:#f43f5e}
+.card p{font-size:13px;color:#94a3b8;line-height:1.6}
+.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #f43f5e}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0}
+.metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
+.metric .v{font-size:32px;font-weight:700;color:#f43f5e;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#f43f5e,#06b6d4,#8b5cf6)}
+.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #f43f5e;background:#0a0e1a}
+.titem:nth-child(2)::before{border-color:#06b6d4}.titem:nth-child(3)::before{border-color:#8b5cf6}
+.titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
+.info-bar{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;font-size:14px}
+.info-tag span{color:#f43f5e;font-weight:700}
+.nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
+.nav a:hover{border-color:#f43f5e;color:#f43f5e}
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
+.anim-num{display:inline-block;transition:all 1s ease}
+</style></head><body>
+<div class="header"><h1>🎮 朗圣药业 · 交互演示</h1><div class="sub">广州朗圣药业有限公司 · 生殖健康药物 · 数字化与AI升级解决方案可视化</div></div>
+<div class="container">
+<div class="nav"><a href="../index.html">🏠 总导航</a><a href="langsheng-report.html">📈 行业分析报告</a><a href="langsheng-solution.html">💡 升级解决方案</a></div>
+<div class="info-bar">
+<div class="info-tag">行业：<span>生殖健康药物</span></div>
+<div class="info-tag">数字化水平：<span>★★★☆☆</span></div>
+<div class="info-tag">AI前景评级：<span>★★★★☆</span></div>
+<div class="info-tag">企业规模：<span>中型(~400人)</span></div>
+</div>
+<div class="stitle">🚀 AI升级核心方案</div>
+<div class="grid" id="solGrid"></div>
+<div class="stitle">📅 实施路径时间线</div>
+<div class="timeline" id="timeline"></div>
+<div class="stitle">📈 预期效果指标</div>
+<div class="metrics" id="metricsGrid"></div>
+<div class="nav"><a href="langsheng-report.html">👉 查看行业分析报告</a><a href="langsheng-solution.html">👉 查看升级解决方案</a></div>
+</div>
+<div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
+<script>
+const solutions=[{"title": "AI药物发现平台", "desc": "靶点预测+分子生成+ADMET评估，加速先导化合物筛选"}, {"title": "临床试验优化", "desc": "AI患者招募+自适应试验设计，缩短临床周期"}, {"title": "精准营销平台", "desc": "用户画像+渠道效果归因，提升OTC/电商渠道ROI"}];
+const phases=["数据治理与合规", "AI研发辅助平台", "精准营销体系"];
+const metrics=[{"value": "35%", "label": "研发周期缩短"}, {"value": "25%", "label": "临床成本降低"}, {"value": "40%", "label": "营销ROI提升"}];
+const labels=["第一阶段：筑基期","第二阶段：成长期","第三阶段：成熟期"];
+const sg=document.getElementById("solGrid");
+solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;sg.appendChild(d)});
+const tl=document.getElementById("timeline");
+phases.forEach((p,i)=>{const d=document.createElement("div");d.className="titem";d.innerHTML=`<h4>${labels[i]}</h4><p>${p}</p>`;tl.appendChild(d)});
+const mg=document.getElementById("metricsGrid");
+metrics.forEach(m=>{const d=document.createElement("div");d.className="metric";d.innerHTML=`<div class="v anim-num">${m.value}</div><div class="l">${m.label}</div>`;mg.appendChild(d)});
+const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.transform="scale(1.1)";setTimeout(()=>en.target.style.transform="scale(1)",300)}})},{threshold:0.5});
+document.querySelectorAll(".anim-num").forEach(el=>obs.observe(el));
+</script></body></html>

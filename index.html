@@ -1,67 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI科技园区 - 企业分析与数字化升级解决方案</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI科技园区 - 11家企业独立分析报告与解决方案</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px}
-.container{max-width:900px;width:100%;text-align:center}
-h1{font-size:36px;font-weight:700;margin-bottom:12px;background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.subtitle{font-size:18px;color:#94a3b8;margin-bottom:50px;line-height:1.6}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:30px}
-.card{background:#131829;border:1px solid #1e293b;border-radius:16px;padding:32px 24px;text-decoration:none;color:#e2e8f0;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);transition:height .3s}
-.card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(59,130,246,.2);border-color:var(--accent)}
-.card:hover::before{height:6px}
-.card-icon{font-size:48px;margin-bottom:16px;display:block}
-.card h2{font-size:20px;margin-bottom:10px;font-weight:600}
-.card p{font-size:14px;color:#94a3b8;line-height:1.6}
-.card:nth-child(1){--accent:#3b82f6}
-.card:nth-child(2){--accent:#10b981}
-.card:nth-child(3){--accent:#8b5cf6}
-.footer{margin-top:60px;font-size:13px;color:#475569}
-.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;margin-bottom:12px}
-.badge-report{background:rgba(59,130,246,.15);color:#3b82f6}
-.badge-solution{background:rgba(16,185,129,.15);color:#10b981}
-.badge-demo{background:rgba(139,92,246,.15);color:#8b5cf6}
-.stats{display:flex;justify-content:center;gap:40px;margin:30px 0;flex-wrap:wrap}
-.stat{text-align:center}
-.stat-value{font-size:36px;font-weight:700;background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-label{font-size:13px;color:#64748b;margin-top:4px}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh;padding:40px 20px}
+.container{max-width:1200px;margin:0 auto}
+h1{font-size:36px;font-weight:700;text-align:center;margin-bottom:8px;background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;font-size:16px;margin-bottom:40px;line-height:1.6}
+.stats{display:flex;justify-content:center;gap:40px;margin-bottom:40px;flex-wrap:wrap}
+.stat{text-align:center}.stat-v{font-size:36px;font-weight:700;background:linear-gradient(135deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.stat-l{font-size:13px;color:#64748b;margin-top:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.card{background:#131829;border:1px solid #1e293b;border-radius:16px;padding:24px;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(59,130,246,.15);border-color:var(--c)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--c)}
+.card-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.card-dot{width:12px;height:12px;border-radius:50%;background:var(--c);flex-shrink:0}
+.card-name{font-size:20px;font-weight:700}
+.card-industry{font-size:12px;color:#94a3b8;margin-bottom:16px}
+.card-links{display:flex;gap:8px;flex-wrap:wrap}
+.card-links a{padding:8px 14px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:12px;transition:all .3s;flex:1;text-align:center;white-space:nowrap}
+.card-links a:hover{border-color:var(--c);color:var(--c);background:rgba(255,255,255,.08)}
+.card-links a.report:hover{border-color:#3b82f6;color:#3b82f6}
+.card-links a.solution:hover{border-color:#10b981;color:#10b981}
+.card-links a.demo:hover{border-color:#8b5cf6;color:#8b5cf6}
+.level-bar{height:6px;background:rgba(255,255,255,.05);border-radius:3px;margin:12px 0;overflow:hidden}
+.level-fill{height:100%;border-radius:3px;background:var(--c);transition:width 1s ease}
+.level-label{font-size:11px;color:#64748b;display:flex;justify-content:space-between}
+.footer{text-align:center;padding:40px 0 20px;color:#475569;font-size:12px}
+@media(max-width:768px){.grid{grid-template-columns:1fr}h1{font-size:28px}}
 </style>
 </head>
 <body>
 <div class="container">
 <h1>🏢 AI科技园区</h1>
-<p class="subtitle">11家企业深度分析 · 全球行业洞察 · 数字化与AI升级解决方案<br>纳金控股 / 蓝链集团 / 康储科技 / 粤芯半导体 / 伟顺钢铁 / 飞特建设 / 中恩工程 / 大湾冷链 / 华德工业 / 朗圣药业 / 银迅信息</p>
+<p class="subtitle">11家企业 × 3份独立内容 = 33份专属报告与演示<br>每家企业均拥有独立的行业分析报告、数字化AI升级方案和交互演示Demo</p>
 <div class="stats">
-<div class="stat"><div class="stat-value">11</div><div class="stat-label">覆盖企业</div></div>
-<div class="stat"><div class="stat-value">9</div><div class="stat-label">行业领域</div></div>
-<div class="stat"><div class="stat-value">33</div><div class="stat-label">AI升级方案</div></div>
+<div class="stat"><div class="stat-v">11</div><div class="stat-l">覆盖企业</div></div>
+<div class="stat"><div class="stat-v">9</div><div class="stat-l">行业领域</div></div>
+<div class="stat"><div class="stat-v">33</div><div class="stat-l">独立文件</div></div>
+<div class="stat"><div class="stat-v">33</div><div class="stat-l">AI升级方案</div></div>
 </div>
-<div class="cards">
-<a href="industry-report.html" class="card">
-<span class="badge badge-report">行业分析报告</span>
-<span class="card-icon">📈</span>
-<h2>全球行业趋势与AI应用洞察</h2>
-<p>覆盖供应链管理、冷链物流、生物医药、半导体制造、钢铁贸易、工程服务、制冷设备、金融科技等9大行业的全球市场规模、发展趋势与AI应用前景分析。</p>
-</a>
-<a href="solution.html" class="card">
-<span class="badge badge-solution">升级解决方案</span>
-<span class="card-icon">💡</span>
-<h2>数字化与AI升级定制方案</h2>
-<p>基于每家企业的业务属性、管理风格和数字化现状，提供包含现状诊断、升级目标、具体方案、实施路径和预期效果的定制化解决方案。</p>
-</a>
-<a href="demo.html" class="card">
-<span class="badge badge-demo">交互演示</span>
-<span class="card-icon">🎮</span>
-<h2>可交互解决方案演示</h2>
-<p>交互式仪表盘展示11家企业的数字化成熟度对比、AI升级方案详情、实施路径时间线和预期效果指标，支持桌面和移动端浏览。</p>
-</a>
-</div>
+<div class="grid" id="grid"></div>
 <div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
 </div>
+<script>
+const data=[
+{id:"najin",name:"纳金控股",industry:"供应链管理",level:3,color:"#3b82f6"},
+{id:"lanlian",name:"蓝链集团",industry:"冷链供应链",level:3,color:"#06b6d4"},
+{id:"kangchu",name:"康储科技",industry:"细胞培养基",level:2,color:"#8b5cf6"},
+{id:"yuexin",name:"粤芯半导体",industry:"晶圆代工",level:5,color:"#ef4444"},
+{id:"weishun",name:"伟顺钢铁",industry:"钢铁贸易",level:1,color:"#f59e0b"},
+{id:"feite",name:"飞特建设",industry:"工厂维保",level:2,color:"#10b981"},
+{id:"zhongen",name:"中恩工程",industry:"市政设计",level:3,color:"#ec4899"},
+{id:"dawan",name:"大湾冷链",industry:"冷链仓储",level:2,color:"#14b8a6"},
+{id:"huade",name:"华德工业",industry:"蒸发冷却空调",level:4,color:"#6366f1"},
+{id:"langsheng",name:"朗圣药业",industry:"生殖健康药物",level:3,color:"#f43f5e"},
+{id:"yinxun",name:"银迅信息",industry:"金融科技",level:4,color:"#0ea5e9"}
+];
+const g=document.getElementById("grid");
+data.forEach(e=>{
+const pct=e.level/5*100;
+const d=document.createElement("div");
+d.className="card";
+d.style.setProperty("--c",e.color);
+d.innerHTML=`
+<div class="card-header"><div class="card-dot"></div><div class="card-name">${e.name}</div></div>
+<div class="card-industry">${e.industry}</div>
+<div class="level-label"><span>数字化水平</span><span>${e.level}/5</span></div>
+<div class="level-bar"><div class="level-fill" style="width:${pct}%"></div></div>
+<div class="card-links">
+<a class="report" href="${e.id}-report.html">📈 行业报告</a>
+<a class="solution" href="${e.id}-solution.html">💡 升级方案</a>
+<a class="demo" href="${e.id}-demo.html">🎮 交互演示</a>
+</div>`;
+g.appendChild(d);
+});
+</script>
 </body>
 </html>

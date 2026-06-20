@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>康储科技 - 交互演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#8b5cf622,#8b5cf644);border-bottom:1px solid #8b5cf644;padding:40px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#8b5cf6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
+.card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#06b6d4)}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #8b5cf620}.card h3{font-size:16px;margin-bottom:8px;color:#8b5cf6}
+.card p{font-size:13px;color:#94a3b8;line-height:1.6}
+.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #8b5cf6}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0}
+.metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
+.metric .v{font-size:32px;font-weight:700;color:#8b5cf6;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#8b5cf6,#06b6d4,#8b5cf6)}
+.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #8b5cf6;background:#0a0e1a}
+.titem:nth-child(2)::before{border-color:#06b6d4}.titem:nth-child(3)::before{border-color:#8b5cf6}
+.titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
+.info-bar{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;font-size:14px}
+.info-tag span{color:#8b5cf6;font-weight:700}
+.nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
+.nav a:hover{border-color:#8b5cf6;color:#8b5cf6}
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
+.anim-num{display:inline-block;transition:all 1s ease}
+</style></head><body>
+<div class="header"><h1>🎮 康储科技 · 交互演示</h1><div class="sub">康储科技(广东)有限公司 · ��胞培养基 · 数字化与AI升级解决方案可视化</div></div>
+<div class="container">
+<div class="nav"><a href="../index.html">🏠 总导航</a><a href="kangchu-report.html">📈 行业分析报告</a><a href="kangchu-solution.html">💡 升级解决方案</a></div>
+<div class="info-bar">
+<div class="info-tag">行业：<span>��胞培养基</span></div>
+<div class="info-tag">数字化水平：<span>★★☆☆☆</span></div>
+<div class="info-tag">AI前景评级：<span>★★★★☆</span></div>
+<div class="info-tag">企业规模：<span>小微(初创期)</span></div>
+</div>
+<div class="stitle">🚀 AI升级核心方案</div>
+<div class="grid" id="solGrid"></div>
+<div class="stitle">📅 实施路径时间线</div>
+<div class="timeline" id="timeline"></div>
+<div class="stitle">📈 预期效果指标</div>
+<div class="metrics" id="metricsGrid"></div>
+<div class="nav"><a href="kangchu-report.html">👉 查看行业分析报告</a><a href="kangchu-solution.html">👉 查看升级解决方案</a></div>
+</div>
+<div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
+<script>
+const solutions=[{"title": "AI配方优化平台", "desc": "机器学习辅助培养基配方筛选，高通量实验数据建模加速研发"}, {"title": "智能制造质控系统", "desc": "AI视觉检测+过程参数实时监控，确保批次一致性"}, {"title": "研发数据管理平台", "desc": "结构化研发数据资产管理，支撑知识复用与合规审计"}];
+const phases=["数据标准化与采集", "AI辅助研发平台", "智能化产线建设"];
+const metrics=[{"value": "40%", "label": "研发周期缩短"}, {"value": "99.5%", "label": "批次合格率"}, {"value": "3x", "label": "配方筛选效率"}];
+const labels=["第一阶段：筑基期","第二阶段：成长期","第三阶段：成熟期"];
+const sg=document.getElementById("solGrid");
+solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;sg.appendChild(d)});
+const tl=document.getElementById("timeline");
+phases.forEach((p,i)=>{const d=document.createElement("div");d.className="titem";d.innerHTML=`<h4>${labels[i]}</h4><p>${p}</p>`;tl.appendChild(d)});
+const mg=document.getElementById("metricsGrid");
+metrics.forEach(m=>{const d=document.createElement("div");d.className="metric";d.innerHTML=`<div class="v anim-num">${m.value}</div><div class="l">${m.label}</div>`;mg.appendChild(d)});
+const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.transform="scale(1.1)";setTimeout(()=>en.target.style.transform="scale(1)",300)}})},{threshold:0.5});
+document.querySelectorAll(".anim-num").forEach(el=>obs.observe(el));
+</script></body></html>
