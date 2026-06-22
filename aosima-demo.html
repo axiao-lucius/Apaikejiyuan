@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>奥斯玛智能装备 - 钉钉数字化升级交互演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#f59e0b22,#f59e0b44);border-bottom:1px solid #f59e0b44;padding:40px;text-align:center}
+.header h1{font-size:26px;margin-bottom:8px;background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
+.card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #f59e0b20}.card h3{font-size:16px;margin-bottom:8px;color:#f59e0b}
+.card p{font-size:13px;color:#94a3b8;line-height:1.6}
+.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #f59e0b}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:20px 0}
+.metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
+.metric .v{font-size:30px;font-weight:700;color:#f59e0b;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#f59e0b,#fbbf24,#ef4444)}
+.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #f59e0b;background:#0a0e1a}
+.titem:nth-child(2)::before{border-color:#fbbf24}.titem:nth-child(3)::before{border-color:#ef4444}
+.titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
+.info-bar{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
+.info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:10px 16px;font-size:13px}
+.info-tag span{color:#f59e0b;font-weight:700}
+.nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
+.nav a:hover{border-color:#f59e0b;color:#f59e0b}
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
+.anim-num{display:inline-block;transition:all 1s ease}
+/* Tabs */
+.tabs{display:flex;gap:8px;margin:20px 0 16px;flex-wrap:wrap}
+.tab-btn{padding:8px 20px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;cursor:pointer;font-size:13px;transition:all .3s}
+.tab-btn.active,.tab-btn:hover{background:#f59e0b22;border-color:#f59e0b;color:#f59e0b}
+.tab-panel{display:none}.tab-panel.active{display:block}
+/* Dashboard模拟 */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.dash-card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center;transition:all .3s}
+.dash-card:hover{border-color:#f59e0b;transform:translateY(-2px)}
+.dash-label{font-size:12px;color:#94a3b8;margin-bottom:6px}
+.dash-value{font-size:24px;font-weight:700;color:#f1f5f9;margin-bottom:4px}
+.dash-trend{font-size:12px;font-weight:600}.dash-trend.up{color:#22c55e}.dash-trend.down{color:#ef4444}
+.arch-box{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;margin:16px 0}
+.arch-row{display:flex;gap:8px;margin:6px 0;flex-wrap:wrap;justify-content:center}
+.arch-node{background:#1e1028;border:1px solid #2d1b4e;border-radius:8px;padding:8px 12px;font-size:11px;color:#c4b5fd;text-align:center;min-width:90px}
+.arch-node.primary{background:#f59e0b22;border-color:#f59e0b;color:#f59e0b;font-weight:600}
+.arch-label{text-align:center;font-size:10px;color:#64748b;margin:4px 0}
+</style></head><body>
+<div class="header"><h1>🎮 奥斯玛智能装备 · 钉钉数字化升级交互演示</h1><div class="sub">奥斯玛智能装备（广东）有限公司 · 钣金成形智能装备制造 · 钉钉底座+AI表格+宜搭 全流程可视化</div></div>
+<div class="container">
+<div class="nav"><a href="../index.html">🏠 总导航</a><a href="aosima-solution.html">💡 解决方案</a></div>
+<div class="info-bar">
+<div class="info-tag">行业：<span>钣金成形智能装备制造</span></div>
+<div class="info-tag">规模：<span>300人</span></div>
+<div class="info-tag">年产值：<span>3亿元</span></div>
+<div class="info-tag">现有系统：<span>哲霖ERP+金蝶云星辰</span></div>
+</div>
+
+<div class="tabs">
+<div class="tab-btn active" data-tab="tab-dash">📊 经营驾驶舱模拟</div>
+<div class="tab-btn" data-tab="tab-sol">🚀 六大解决方案</div>
+<div class="tab-btn" data-tab="tab-arch">🏛️ 三层技术架构</div>
+</div>
+
+<div id="tab-dash" class="tab-panel active">
+<div class="stitle">📊 高层经营驾驶舱（AI表格驱动·模拟数据）</div>
+<div class="dash-grid" id="dashGrid"></div>
+<div style="text-align:center;color:#64748b;font-size:12px;margin-top:8px">* 以上为模拟演示数据，实际接入后实时同步ERP/财务系统</div>
+</div>
+
+<div id="tab-sol" class="tab-panel">
+<div class="stitle">🚀 六大核心解决方案</div>
+<div class="grid" id="solGrid"></div>
+</div>
+
+<div id="tab-arch" class="tab-panel">
+<div class="stitle">🏛️ 三层技术架构</div>
+<div class="arch-box">
+<div class="arch-label">【第一层：钉钉数字化底座】</div>
+<div class="arch-row">
+<div class="arch-node primary">钉钉统一入口</div>
+<div class="arch-node primary">300人组织架构</div>
+<div class="arch-node primary">统一待办</div>
+<div class="arch-node primary">消息/审批/日历</div>
+</div>
+<div class="arch-label">↕ API/连接器 ↕</div>
+<div class="arch-row">
+<div class="arch-node">哲霖ERP</div>
+<div class="arch-node">金蝶云星辰</div>
+<div class="arch-node">IoT设备</div>
+<div class="arch-node">TK海外渠道</div>
+</div>
+<div class="arch-label">【第二层：AI表格】</div>
+<div class="arch-row">
+<div class="arch-node primary">经营驾驶舱</div>
+<div class="arch-node primary">销售管理</div>
+<div class="arch-node primary">采购联动</div>
+<div class="arch-node primary">售后工单</div>
+</div>
+<div class="arch-label">【第三层：宜搭低代码】</div>
+<div class="arch-row">
+<div class="arch-node">生产管理</div>
+<div class="arch-node">售后管理</div>
+<div class="arch-node">人事管理</div>
+<div class="arch-node">费控管理</div>
+</div>
+</div>
+</div>
+
+<div class="stitle">📅 实施路径时间线</div>
+<div class="timeline" id="timeline"></div>
+<div class="stitle">📈 预期效果指标</div>
+<div class="metrics" id="metricsGrid"></div>
+<div class="nav"><a href="aosima-solution.html">👉 查看完整解决方案</a></div>
+</div>
+<div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
+<script>
+const solutions=[{"title": "🏗️ 钉钉数字化底座：统一入口+系统集成", "desc": "以钉钉作为全员统一工作入口，替代缺失的OA系统。通过钉钉连接器/API对接哲霖ERP和金蝶云星辰，实现库存、生产进度、发货状态、财务数据在钉钉内实时查看。统一待办中心汇聚ERP审批、财务审批、业务审批，告别多系统切换。钉钉组织架构同步300人团队，按部门（人事/财务/生产/采购/研发/物流/销售/售后）配置差异化工作台和应用权限。为后续AI表格和宜搭应用提供统一身份认证和数据底座。"}, {"title": "📊 AI表格快捷全员使用：经营驾驶舱+业务数据在线化", "desc": "利用钉钉AI表格零门槛搭建各部门核心数据看板：①高层经营驾驶舱——销售/订单/生产/质量/库存/回款/售后7大维度实时汇总，AI自动生成趋势分析和异常预警；②销售管理表——50人销售团队的客户跟进/商机/报价/签约/回款全流程在线化，AI辅助分析区域业绩和内销vs外销对比；③采购联动表——采购需求→订单→到货→入库→发票→付款全链路状态自动流转，超期自动提醒；④售后工单表——客诉/退换货/维修配件/处理时效结构化记录，AI分析高频问题和响应瓶颈。AI表格支持自然语言查询，管理层直接问'上月华东区销售额多少'即可获取答案。"}, {"title": "⚙️ 宜搭低代码敏捷搭建：生产+售后+人事+费控四大业务系统", "desc": "用宜搭低代码平台快速构建四大核心业务应用（无需开发，1-2周上线）：\n\n【生产管理】设备巡检扫码填报+异常拍照上传，IoT设备状态接入钉钉看板；工单在线提报→派工→完工→验收全流程数字化；工时+计件在线填报自动汇总，对接薪酬计算。\n\n【售后管理】售后工单从接单→派工→维修→配件领用→完工→回访全生命周期管理；客诉分级处理SLA超时自动升级；维修配件库存与采购联动。\n\n【人事管理】智能考勤+高级排班（支持生产倒班/弹性班次）；薪酬自动计算（基本工资+计件+工时+绩效），人效统计和用工成本分析报表一键生成。\n\n【费控管理】差旅/招待/采购等费用在线申请→审批→报销→对账全流程，预算管控自动校验，对接金蝶云星辰凭证自动生成。"}, {"title": "💼 销售管理专项：50人团队+内外销一体化CRM", "desc": "基于钉钉+AI表格+宜搭构建轻量级CRM：①客户档案统一管理（内销直销客户+北京代理商+海外TK线索）；②商机漏斗可视化（线索→意向→报价→谈判→签约各阶段转化率）；③拜访签到+会议纪要自动关联客户；④外销线索从TK等渠道自动导入，AI辅助线索评分和跟进优先级排序；⑤销售日报/周报AI自动生成，管理者一屏掌握团队动态；⑥合同/报价/回款与AI表格联动，财务数据实时同步。目标：销售管理效率提升50%，海外线索转化率提升30%。"}, {"title": "🔗 系统对接集成：ERP+财务+钉钉三网融合", "desc": "通过钉钉开放平台API/连接器实现三大系统数据打通：①哲霖ERP→钉钉：库存实时查询、生产进度推送、BOM变更通知、排产计划同步到钉钉工作台；②金蝶云星辰→钉钉：应收应付/回款状态/发票信息推送到对应负责人钉钉消息；③钉钉→ERP/财务：宜搭审批结果自动回写ERP/财务系统，避免二次录入。统一待办中心汇聚所有系统待办事项，一个入口处理全部审批。数据驾驶舱跨系统聚合展示，高层不再需要登录多个系统查数据。"}, {"title": "📅 会议与协作闭环：从开会到执行的全链路管理", "desc": "钉钉会议+待办+日志三位一体实现协作闭环：①客户会议/内部例会钉钉日历统一预约，参会人自动收到提醒；②会议纪要AI自动生成（钉钉闪记），关键决议自动提取为待办任务；③待办任务指定责任人+截止时间，到期前自动提醒，逾期自动升级通知上级；④每周行动项完成率自动统计，纳入部门绩效考核；⑤跨部门协作群按项目/客户自动创建，沟通记录和文件沉淀可追溯。将会议从'开完就忘'升级为'件件有落实、事事有回响'。"}];
+const phases=["钉钉全员激活+组织架构配置+哲霖ERP/金蝶云星辰对接+AI表格经营驾驶舱搭建+人事考勤/排班上线。2周内完成基础设施搭建，解决'无OA、数据分散'两大核心痛点。高层首次获得统一经营数据视图。", "宜搭生产管理系统+售后管理系统+费控系统上线+AI表格销售管理/采购联动表部署+会议协作闭环机制建立。4周内覆盖生产/售后/销售/采购/人事/费控六大业务域，300人团队全面在线化办公。", "销售CRM深化（外销线索AI评分+海外渠道管理）+数字孪生生产看板+AI智能分析增强+二期新厂区数字化规划预研。持续优化各模块使用体验，积累数据后AI预测能力逐步增强，支撑二期6亿元投资的数字化管理体系建设。"];
+const metrics=[{"value": "2周", "label": "基础系统上线周期"}, {"value": "↑50%", "label": "销售管理效率"}, {"value": "↓80%", "label": "数据统计人工耗时"}, {"value": "100%", "label": "审批流程线上化"}, {"value": "秒级", "label": "跨系统数据查询"}, {"value": "300人", "label": "全员钉钉覆盖"}];
+const labels=["第一阶段：筑基期（第1-2周）","第二阶段：深化期（第3-6周）","第三阶段：增强期（第7-12周）"];
+
+// Tab切换
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+  });
+});
+
+// 渲染方案卡片
+const sg=document.getElementById("solGrid");
+solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc.replace(/\n/g,"<br>")}</p>`;sg.appendChild(d)});
+
+// 渲染时间线
+const tl=document.getElementById("timeline");
+phases.forEach((p,i)=>{const d=document.createElement("div");d.className="titem";d.innerHTML=`<h4>${labels[i]}</h4><p>${p}</p>`;tl.appendChild(d)});
+
+// 渲染指标
+const mg=document.getElementById("metricsGrid");
+metrics.forEach(m=>{const d=document.createElement("div");d.className="metric";d.innerHTML=`<div class="v anim-num">${m.value}</div><div class="l">${m.label}</div>`;mg.appendChild(d)});
+
+// 模拟驾驶舱数据
+const dashData=[
+  {label:"本月销售额",value:"2,847万",trend:"+12.3%",up:true},
+  {label:"在手订单",value:"186单",trend:"+8.7%",up:true},
+  {label:"生产完工率",value:"94.2%",trend:"+2.1%",up:true},
+  {label:"库存周转天数",value:"28天",trend:"-3天",up:true},
+  {label:"售后工单",value:"23单",trend:"-15%",up:true},
+  {label:"回款率",value:"87.6%",trend:"+5.2%",up:true}
+];
+const dg=document.getElementById("dashGrid");
+dashData.forEach(d=>{
+  const el=document.createElement("div");el.className="dash-card";
+  el.innerHTML=`<div class="dash-label">${d.label}</div><div class="dash-value">${d.value}</div><div class="dash-trend ${d.up?"up":"down"}">${d.trend}</div>`;
+  dg.appendChild(el);
+});
+
+// 数字动画
+const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.transform="scale(1.1)";setTimeout(()=>en.target.style.transform="scale(1)",300)}})},{threshold:0.5});
+document.querySelectorAll(".anim-num").forEach(el=>obs.observe(el));
+</script></body></html>
