@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>蓝链集团 - 交互演示</title>
+<title>蓝链集团 - 仓储配送货物流转交互演示</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
 .header{background:linear-gradient(135deg,#06b6d422,#06b6d444);border-bottom:1px solid #06b6d444;padding:40px;text-align:center}
-.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#06b6d4,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#06b6d4,#3b82f6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
 .card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#06b6d4,#06b6d4)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#06b6d4,#3b82f6)}
 .card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #06b6d420}.card h3{font-size:16px;margin-bottom:8px;color:#06b6d4}
 .card p{font-size:13px;color:#94a3b8;line-height:1.6}
 .stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #06b6d4}
 .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0}
 .metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
 .metric .v{font-size:32px;font-weight:700;color:#06b6d4;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
-.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#06b6d4,#06b6d4,#8b5cf6)}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#06b6d4,#3b82f6,#8b5cf6)}
 .titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #06b6d4;background:#0a0e1a}
-.titem:nth-child(2)::before{border-color:#06b6d4}.titem:nth-child(3)::before{border-color:#8b5cf6}
+.titem:nth-child(2)::before{border-color:#3b82f6}.titem:nth-child(3)::before{border-color:#8b5cf6}
 .titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
 .info-bar{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
 .info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;font-size:14px}
@@ -28,16 +28,16 @@
 .footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
 .anim-num{display:inline-block;transition:all 1s ease}
 </style></head><body>
-<div class="header"><h1>🎮 蓝链集团 · 交互演示</h1><div class="sub">广州蓝链集团有限公司 · 冷链供应链 · 数字化与AI升级解决方案可视化</div></div>
+<div class="header"><h1>🎮 蓝链集团 · 仓储配送货物流转交互演示</h1><div class="sub">广州蓝链集团有限公司 · 冷链供应链 · 仓储/配送/进出分拣货物流转数字化+AI升级可视化</div></div>
 <div class="container">
 <div class="nav"><a href="../index.html">🏠 总导航</a><a href="lanlian-report.html">📈 行业分析报告</a><a href="lanlian-solution.html">💡 升级解决方案</a></div>
 <div class="info-bar">
 <div class="info-tag">行业：<span>冷链供应链</span></div>
 <div class="info-tag">数字化水平：<span>★★★☆☆</span></div>
-<div class="info-tag">AI前景评级：<span>★★★★★</span></div>
-<div class="info-tag">企业规模：<span>中型(100-499人)</span></div>
+<div class="info-tag">AI前景评级：<span>★★★★☆</span></div>
+<div class="info-tag">核心场景：<span>仓储·分拣·配送</span></div>
 </div>
-<div class="stitle">🚀 AI升级核心方案</div>
+<div class="stitle">🚀 仓储配送货物流转AI升级方案</div>
 <div class="grid" id="solGrid"></div>
 <div class="stitle">📅 实施路径时间线</div>
 <div class="timeline" id="timeline"></div>
@@ -47,10 +47,10 @@
 </div>
 <div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
 <script>
-const solutions=[{"title": "AI动态温控优化", "desc": "根据货物热特性、车厢保温性能实时计算制冷功率，预计降低10%-15%能耗"}, {"title": "区块链溯源体系", "desc": "车载AI摄像头+自动化扫码，关键节点自动数据采集与上链存证"}, {"title": "冷链大数据平台", "desc": "全生命周期追溯视图，温度曲线、地理位置、操作记录透明化展示"}];
-const phases=["温控AI试点验证", "溯源体系上链", "全链路智能管控"];
-const metrics=[{"value": "15%", "label": "制冷能耗降低"}, {"value": "99.9%", "label": "温控合规率"}, {"value": "100%", "label": "溯源覆盖率"}];
-const labels=["第一阶段：筑基期","第二阶段：成长期","第三阶段：成熟期"];
+const solutions=[{"title": "🏭 AI智能仓储管理系统（WMS+）", "desc": "基于AI的库位动态分配与库存优化引擎，根据货物周转率、温控要求、出库频次自动规划最优存储位置。集成RFID/条码自动识别，实现入库上架、拣选出库全流程无纸化操作。AI预测补货需求，自动生成采购建议，降低库存积压20-30%，提升仓库空间利用率25%以上。"}, {"title": "📦 AI分拣与出入库自动化", "desc": "视觉识别+称重校验的智能分拣系统，自动识别货物品类、规格、批次信息，匹配订单进行高速分拣。出入库环节AI自动核验货物数量与质量，异常实时预警。支持多订单并行分拣、波次合并优化，分拣效率提升40%以上，差错率降至0.1%以下。"}, {"title": "🚛 AI配送路径优化与调度", "desc": "基于实时路况、订单时效、车辆载重、温区要求的多约束AI路径规划引擎。动态调整配送顺序和路线，支持多点拼车、回程配载优化。AI预估到达时间并主动通知客户，配送准时率提升至98%+，单车配送效率提升30%，空驶率降低20%。"}, {"title": "🌡️ 全链路温控IoT+AI监控", "desc": "仓储、装卸、运输全环节温湿度IoT实时采集，AI模型预判温度异常趋势并提前干预。装卸货月台AI摄像头自动记录作业时长和温控断链风险，生成合规报告。温度偏差自动关联责任环节，实现货损精准追溯，温控合规率达99.9%。"}, {"title": "📊 货物流转数字孪生看板", "desc": "构建仓储-分拣-配送全链路数字孪生可视化平台，实时展示库存热力图、分拣进度、车辆轨迹、温控状态。AI自动识别流转瓶颈（如月台拥堵、拣选延迟、运力不足），推送优化建议。管理层通过一块大屏掌握全局运营态势，决策响应时间从小时级缩短至分钟级。"}, {"title": "🤖 AI客服与订单智能处理", "desc": "大模型驱动的智能客服系统，7×24h处理客户下单、查询、投诉、改约等请求。AI自动解析非结构化订单（微信/电话/邮件），转化为标准WMS指令。异常订单自动标记并升级人工处理，订单处理效率提升50%，客户满意度显著提升。"}];
+const phases=["AI智能WMS上线 + RFID/条码自动化部署 + IoT温控传感器全覆盖。解决仓储管理和温控数据采集的基础问题，实现入库、存储、出库全流程数字化，为后续AI优化积累数据基础。", "AI分拣系统上线 + 配送路径优化引擎 + 数字孪生看板 + AI客服。深化货物流转各环节的智能化，实现分拣自动化、配送最优化、运营可视化、客户服务智能化。打通仓储-分拣-配送全链路数据闭环。", "AI预测补货 + 全链路数字孪生升级 + AI决策大脑。从'流程数字化'升级为'决策智能化'，AI自主预判需求、调配资源、识别风险、优化策略。实现冷链货物流转的全局最优运营，打造行业标杆级智慧冷链服务平台。"];
+const metrics=[{"value": "↑25%", "label": "仓库空间利用率"}, {"value": "↑40%", "label": "分拣效率提升"}, {"value": "↓30%", "label": "配送空驶率"}, {"value": "99.9%", "label": "温控合规率"}, {"value": "↓25%", "label": "库存积压降低"}, {"value": "↑50%", "label": "订单处理效率"}];
+const labels=["第一阶段：筑基期（0-6个月）","第二阶段：成长期（6-18个月）","第三阶段：成熟期（18-24个月）"];
 const sg=document.getElementById("solGrid");
 solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;sg.appendChild(d)});
 const tl=document.getElementById("timeline");
