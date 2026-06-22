@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>华德工业 - 交互演示</title>
+<title>广州华德工业 - 交互演示</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
-.header{background:linear-gradient(135deg,#6366f122,#6366f144);border-bottom:1px solid #6366f144;padding:40px;text-align:center}
-.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#6366f1,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header{background:linear-gradient(135deg,#0ea5e922,#0ea5e944);border-bottom:1px solid #0ea5e944;padding:40px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#0ea5e9,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
 .card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6366f1,#06b6d4)}
-.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #6366f120}.card h3{font-size:16px;margin-bottom:8px;color:#6366f1}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0ea5e9,#06b6d4)}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #0ea5e920}.card h3{font-size:16px;margin-bottom:8px;color:#0ea5e9}
 .card p{font-size:13px;color:#94a3b8;line-height:1.6}
-.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #6366f1}
+.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #0ea5e9}
 .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0}
 .metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
-.metric .v{font-size:32px;font-weight:700;color:#6366f1;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
-.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#6366f1,#06b6d4,#8b5cf6)}
-.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #6366f1;background:#0a0e1a}
+.metric .v{font-size:32px;font-weight:700;color:#0ea5e9;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#0ea5e9,#06b6d4,#8b5cf6)}
+.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #0ea5e9;background:#0a0e1a}
 .titem:nth-child(2)::before{border-color:#06b6d4}.titem:nth-child(3)::before{border-color:#8b5cf6}
 .titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
 .info-bar{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
 .info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;font-size:14px}
-.info-tag span{color:#6366f1;font-weight:700}
+.info-tag span{color:#0ea5e9;font-weight:700}
 .nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 .nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
-.nav a:hover{border-color:#6366f1;color:#6366f1}
+.nav a:hover{border-color:#0ea5e9;color:#0ea5e9}
 .footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
 .anim-num{display:inline-block;transition:all 1s ease}
 </style></head><body>
-<div class="header"><h1>🎮 华德工业 · 交互演示</h1><div class="sub">广州市华德工业有限公司 · 蒸发冷却空调 · 数字化与AI升级解决方案可视化</div></div>
+<div class="header"><h1>🎮 广州华德工业 · 交互演示</h1><div class="sub">广州市华德工业有限公司（华德羿歌） · 空调制冷设备 · 数字化与AI升级解决方案可视化</div></div>
 <div class="container">
 <div class="nav"><a href="../index.html">🏠 总导航</a><a href="huade-report.html">📈 行业分析报告</a><a href="huade-solution.html">💡 升级解决方案</a></div>
 <div class="info-bar">
-<div class="info-tag">行业：<span>蒸发冷却空调</span></div>
-<div class="info-tag">数字化水平：<span>★★★★☆</span></div>
-<div class="info-tag">AI前景评级：<span>★★★★★</span></div>
-<div class="info-tag">企业规模：<span>中型(150-500人)</span></div>
+<div class="info-tag">行业：<span>空调制冷设备</span></div>
+<div class="info-tag">数字化水平：<span>★★★☆☆</span></div>
+<div class="info-tag">AI前景评级：<span>★★★★☆</span></div>
+<div class="info-tag">企业资质：<span>国家高新</span></div>
 </div>
 <div class="stitle">🚀 AI升级核心方案</div>
 <div class="grid" id="solGrid"></div>
@@ -47,10 +47,10 @@
 </div>
 <div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
 <script>
-const solutions=[{"title": "AI-Cooling云平台升级", "desc": "多能源耦合智能控制，太阳能+市电动态切换优化"}, {"title": "数字孪生系统", "desc": "设备全生命周期数字镜像，支撑远程调试与售后"}, {"title": "预测性维护服务", "desc": "基于运行数据的故障预警，变被动维修为主动保养"}];
-const phases=["平台功能迭代", "多能源联控上线", "数字孪生全面部署"];
-const metrics=[{"value": "20%", "label": "综合能效提升"}, {"value": "30%", "label": "售后成本降低"}, {"value": "95%", "label": "设备可用率"}];
-const labels=["第一阶段：筑基期","第二阶段：成长期","第三阶段：成熟期"];
+const solutions=[{"title": "🏭 AI智能选型与方案设计平台", "desc": "基于建筑类型、面积、冷热负荷、气候条件等参数，AI自动推荐最优机型组合和系统配置方案。集成历史项目数据库和能效模拟引擎，10分钟输出定制化方案书+投资回报分析。替代人工经验估算，提升方案设计效率和精准度，缩短销售周期40%。"}, {"title": "🔧 IoT+AI预测性维护平台", "desc": "通过IoT传感器实时采集设备运行数据（温度、压力、振动、电流等），AI模型预判故障风险并提前预警。支持远程诊断、维保工单自动派发、备件库存智能管理。将售后从'被动维修'升级为'主动预防'，降低非计划停机率60%，提升客户满意度和续约率。"}, {"title": "⚡ AI能效优化控制系统", "desc": "基于实时气象数据、建筑负荷变化、电价峰谷时段，AI动态调节机组运行参数（压缩机频率、风机转速、水流量等），实现全天候最优能效运行。相比固定工况运行再节能10-15%，帮助客户进一步降低电费支出，强化'节能省钱'品牌价值主张。"}, {"title": "📋 项目全生命周期管理平台", "desc": "覆盖商机跟踪→方案设计→合同签订→生产排期→安装交付→售后维保的全流程数字化管理。打通销售、生产、工程、售后各部门数据壁垒，实现项目进度实时可视、资源调配智能化。配合AI排产优化8条产线产能利用率，缩短交付周期20%。"}, {"title": "🌐 数字化营销与品牌建设", "desc": "构建官网+小程序+视频号+行业平台的数字化营销矩阵。AI生成案例视频、技术方案图文、客户见证等内容，精准触达设计院、甲方、总包方等目标客群。搭建线上选型工具和能效计算器，降低获客成本，提升品牌在暖通行业的数字化影响力。"}, {"title": "📊 数据中台与经营决策AI", "desc": "汇聚销售、生产、售后、财务等多源数据，构建华德专属数据资产。AI辅助市场趋势预判、产品线规划、区域资源投放、定价策略优化。从经验驱动升级为数据驱动的科学决策，支撑企业在快速增长的节能空调市场中持续领先。"}];
+const phases=["AI智能选型平台上线 + IoT数据采集基础部署 + CRM系统建设。解决最紧迫的销售效率提升和客户数据沉淀问题，让销售团队能快速输出专业方案，同时开始积累设备运行数据为后续AI运维打基础。", "AI预测性维护平台上线 + AI能效优化控制系统 + 项目全生命周期管理平台。深化产品智能化和服务数字化，实现从'卖设备'到'卖节能服务'的模式升级。同步推进MES系统和AI排产，提升制造端效率。", "数字化营销矩阵建设 + 数据中台 + AI决策大脑。完成全链条数字化闭环，实现市场洞察→产品研发→智能制造→精准营销→智能运维的全面AI赋能。巩固华德羿歌在蒸发式冷凝空调领域的技术领先和品牌领先地位。"];
+const metrics=[{"value": "↓40%", "label": "方案设计周期"}, {"value": "↓60%", "label": "非计划停机率"}, {"value": "↑15%", "label": "额外节能效果"}, {"value": "↑20%", "label": "交付效率提升"}, {"value": "↓30%", "label": "获客成本降低"}, {"value": "↑25%", "label": "客户续约率"}];
+const labels=["第一阶段：筑基期（0-6个月）","第二阶段：成长期（6-18个月）","第三阶段：成熟期（18-24个月）"];
 const sg=document.getElementById("solGrid");
 solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;sg.appendChild(d)});
 const tl=document.getElementById("timeline");
