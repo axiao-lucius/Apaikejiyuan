@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>澳通电线电缆 - 出海业务交互演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#ef444422,#ef444444);border-bottom:1px solid #ef444444;padding:40px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#ef4444,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
+.card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ef4444,#f97316)}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #ef444420}.card h3{font-size:16px;margin-bottom:8px;color:#ef4444}
+.card p{font-size:13px;color:#94a3b8;line-height:1.6}
+.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #ef4444}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0}
+.metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
+.metric .v{font-size:32px;font-weight:700;color:#ef4444;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#ef4444,#f97316,#8b5cf6)}
+.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #ef4444;background:#0a0e1a}
+.titem:nth-child(2)::before{border-color:#f97316}.titem:nth-child(3)::before{border-color:#8b5cf6}
+.titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
+.info-bar{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;font-size:14px}
+.info-tag span{color:#ef4444;font-weight:700}
+.nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
+.nav a:hover{border-color:#ef4444;color:#ef4444}
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
+.anim-num{display:inline-block;transition:all 1s ease}
+</style></head><body>
+<div class="header"><h1>🎮 澳通电线电缆 · 出海业务交互演示</h1><div class="sub">广州澳通电线电缆有限公司 · 电线电缆制造 · 产线/业务/销售/渠道出海AI升级可视化</div></div>
+<div class="container">
+<div class="nav"><a href="../index.html">🏠 总导航</a><a href="aotong-report.html">📈 全球行业报告</a><a href="aotong-solution.html">💡 出海解决方案</a></div>
+<div class="info-bar">
+<div class="info-tag">行业：<span>电线电缆制造</span></div>
+<div class="info-tag">数字化水平：<span>★★★☆☆</span></div>
+<div class="info-tag">出海AI前景：<span>★★★★☆</span></div>
+<div class="info-tag">年产能：<span>年产能25亿</span></div>
+</div>
+<div class="stitle">🚀 出海AI升级核心方案</div>
+<div class="grid" id="solGrid"></div>
+<div class="stitle">📅 实施路径时间线</div>
+<div class="timeline" id="timeline"></div>
+<div class="stitle">📈 预期效果指标</div>
+<div class="metrics" id="metricsGrid"></div>
+<div class="nav"><a href="aotong-report.html">👉 查看全球行业报告</a><a href="aotong-solution.html">👉 查看出海解决方案</a></div>
+</div>
+<div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
+<script>
+const solutions=[{"title": "🌍 产线出海：海外建厂可行性AI评估平台", "desc": "基于目标市场的劳动力成本、关税政策、原材料供应、物流条件、营商环境等多维数据，AI自动评估越南/印尼/泰国/沙特等候选地的建厂可行性。输出包含投资预算、回报周期、风险矩阵的完整可行性报告。辅助管理层科学决策产线出海选址，避免盲目投资风险。优先推荐越南（RCEP关税优惠+劳动力成本优势）和印尼（本地化采购要求+庞大内需市场）。"}, {"title": "🏗️ 业务出海：EPC工程配套+OEM→自主品牌三步走", "desc": "第一阶段：借船出海，通过中国EPC总包商（中建/中铁/中电建）的海外工程项目配套供货，积累海外项目经验和业绩背书。第二阶段：OEM/ODM代工，为Prysmian/Nexans等国际品牌或当地知名品牌代工，学习国际标准和质量体系。第三阶段：自主品牌出海，以矿物电缆差异化优势切入细分市场，建立'AOTONG'品牌认知。AI辅助匹配全球工程项目招标信息和OEM合作商机。"}, {"title": "💻 销售出海：全渠道数字化获客引擎", "desc": "构建'阿里国际站+独立站+LinkedIn+线上展会'四位一体的数字化获客矩阵。AI自动生成多语言产品页、技术规格书、应用案例视频。独立站集成在线选型工具和即时报价系统，AI客服7×24h响应询盘并自动分级跟进。LinkedIn AI自动化运营，精准触达海外采购决策者。线上展会（Canton Fair Online/Wire & Cable Expo）AI虚拟展厅展示。目标：首年实现500+有效海外询盘，3年内海外销售额突破1亿元。"}, {"title": "🤝 渠道出海：全球经销商网络AI管理平台", "desc": "搭建海外经销商/代理商全生命周期管理平台：AI筛选匹配目标市场的优质合作伙伴（基于资质/渠道覆盖/行业经验/财务状况多维评估），在线签约与授权管理，订单/库存/对账全流程数字化，经销商绩效AI评分与分级激励。配套AI培训助手（多语言产品知识/安装指导/技术支持），赋能海外渠道专业服务能力。5年目标：建设覆盖东南亚/中东/非洲/拉美的20+家核心代理商网络。"}, {"title": "📋 跨境合规AI审查系统", "desc": "内置全球50+主要市场的电缆技术标准数据库（IEC/BS/AS/NZS/UL/VDE等），AI自动比对产品规格与目标市场准入要求，生成合规差距分析报告。实时监控各国法规更新（欧盟CPR/REACH/RoHS、美国NEC、澳洲AS/NZS等），提前预警合规风险。将认证准备周期从6-12个月缩短至2-3个月，大幅降低出海合规成本和风险。"}, {"title": "📊 全球市场AI情报中心", "desc": "AI 7×24h监控全球电缆行业动态：竞品新品发布/价格调整/并购重组、目标市场基建规划/招标公告/政策变化、原材料（铜/铝/绝缘材料）价格走势、汇率波动风险。自动生成周报/月报推送管理层，AI辅助制定定价策略和市场进入时机。让出海决策从'拍脑袋'升级为'数据驱动'的科学决策。"}];
+const phases=["英文官网上线 + 阿里国际站开店 + LinkedIn企业页搭建 + 跨境合规AI系统部署。解决出海'从无到有'的基础设施问题，建立海外客户触达通道和合规能力基线。同步启动首批3-5个EPC工程配套项目，积累海外业绩。", "独立站+AI客服上线 + 海外经销商管理平台部署 + 全球市场情报中心运行 + OEM合作拓展。深化数字化获客和渠道管理能力，实现询盘自动化处理和经销商数字化管控。完成2-3家OEM合作签约，启动越南/印尼建厂可行性研究。", "海外建厂落地 + 自主品牌推广 + 全球供应链AI协同 + AI决策大脑。完成从'中国制造出口'到'全球化运营'的战略升级。AOTONG品牌在东南亚/中东细分市场建立知名度，海外营收占比提升至20%以上，成为全球矿物电缆细分领域的领导品牌。"];
+const metrics=[{"value": "500+", "label": "首年海外有效询盘"}, {"value": "1亿", "label": "3年海外销售目标"}, {"value": "↓70%", "label": "合规准备周期缩短"}, {"value": "20+", "label": "5年海外代理商数量"}, {"value": "↑40%", "label": "询盘转化效率"}, {"value": "20%+", "label": "海外营收占比目标"}];
+const labels=["第一阶段：筑基期（0-6个月）","第二阶段：成长期（6-18个月）","第三阶段：成熟期（18-36个月）"];
+const sg=document.getElementById("solGrid");
+solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;sg.appendChild(d)});
+const tl=document.getElementById("timeline");
+phases.forEach((p,i)=>{const d=document.createElement("div");d.className="titem";d.innerHTML=`<h4>${labels[i]}</h4><p>${p}</p>`;tl.appendChild(d)});
+const mg=document.getElementById("metricsGrid");
+metrics.forEach(m=>{const d=document.createElement("div");d.className="metric";d.innerHTML=`<div class="v anim-num">${m.value}</div><div class="l">${m.label}</div>`;mg.appendChild(d)});
+const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.transform="scale(1.1)";setTimeout(()=>en.target.style.transform="scale(1)",300)}})},{threshold:0.5});
+document.querySelectorAll(".anim-num").forEach(el=>obs.observe(el));
+</script></body></html>
