@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>黄达集团 - 投研AI智能体交互演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#8b5cf622,#8b5cf644);border-bottom:1px solid #8b5cf644;padding:40px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#8b5cf6,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
+.card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #8b5cf620}.card h3{font-size:16px;margin-bottom:8px;color:#8b5cf6}
+.card p{font-size:13px;color:#94a3b8;line-height:1.6}
+.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #8b5cf6}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0}
+.metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
+.metric .v{font-size:32px;font-weight:700;color:#8b5cf6;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#8b5cf6,#a78bfa,#ec4899)}
+.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #8b5cf6;background:#0a0e1a}
+.titem:nth-child(2)::before{border-color:#a78bfa}.titem:nth-child(3)::before{border-color:#ec4899}
+.titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
+.info-bar{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;font-size:14px}
+.info-tag span{color:#8b5cf6;font-weight:700}
+.nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
+.nav a:hover{border-color:#8b5cf6;color:#8b5cf6}
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
+.anim-num{display:inline-block;transition:all 1s ease}
+.pp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:16px 0}
+.pp-item{background:#1e1028;border:1px solid #2d1b4e;border-radius:8px;padding:16px;font-size:13px;color:#c4b5fd}
+/* 投研流程可视化 */
+.flow-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:20px 0}
+.flow-step{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px 12px;text-align:center;transition:all .3s;animation:fadeInUp .5s ease both}
+.flow-step:hover{transform:translateY(-4px);border-color:#8b5cf6;box-shadow:0 4px 16px #8b5cf620}
+.flow-icon{font-size:32px;margin-bottom:8px}.flow-title{font-size:13px;font-weight:600;color:#f1f5f9;margin-bottom:4px}
+.flow-desc{font-size:11px;color:#94a3b8;line-height:1.4}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+/* Tabs */
+.tabs{display:flex;gap:8px;margin:20px 0 16px;flex-wrap:wrap}
+.tab-btn{padding:8px 20px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;cursor:pointer;font-size:13px;transition:all .3s}
+.tab-btn.active,.tab-btn:hover{background:#8b5cf622;border-color:#8b5cf6;color:#8b5cf6}
+.tab-panel{display:none}.tab-panel.active{display:block}
+.arch-box{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;margin:16px 0}
+.arch-row{display:flex;gap:12px;margin:8px 0;flex-wrap:wrap;justify-content:center}
+.arch-node{background:#1e1028;border:1px solid #2d1b4e;border-radius:8px;padding:12px 16px;font-size:12px;color:#c4b5fd;text-align:center;min-width:120px}
+.arch-node.primary{background:#8b5cf622;border-color:#8b5cf6;color:#8b5cf6;font-weight:600}
+.arch-label{text-align:center;font-size:11px;color:#64748b;margin:4px 0}
+</style></head><body>
+<div class="header"><h1>🎮 黄达集团 · 投研AI智能体交互演示</h1><div class="sub">黄达集团 · 房地产投资研究 · 土地获取AI研判全流程可视化</div></div>
+<div class="container">
+<div class="nav"><a href="../index.html">🏠 总导航</a><a href="huangda-solution.html">💡 解决方案</a></div>
+<div class="info-bar">
+<div class="info-tag">行业：<span>房地产投资研究</span></div>
+<div class="info-tag">算力：<span>华为升腾910B ×4</span></div>
+<div class="info-tag">模型：<span>Deepseek V4 + 通义千问</span></div>
+<div class="info-tag">部署：<span>纯本地/混合云</span></div>
+</div>
+
+<div class="stitle">🔄 投研AI研判全流程</div>
+<div class="flow-container" id="flowSteps"></div>
+
+<div class="tabs">
+<div class="tab-btn active" data-tab="tab-sol">🚀 核心方案</div>
+<div class="tab-btn" data-tab="tab-arch">🔒 安全架构</div>
+<div class="tab-btn" data-tab="tab-pain">⚠️ 痛点分析</div>
+</div>
+
+<div id="tab-sol" class="tab-panel active">
+<div class="stitle">🚀 投研AI落地核心方案</div>
+<div class="grid" id="solGrid"></div>
+</div>
+
+<div id="tab-arch" class="tab-panel">
+<div class="stitle">🔒 企业级安全架构示意</div>
+<div class="arch-box">
+<div class="arch-label">【外网层】</div>
+<div class="arch-row">
+<div class="arch-node">互联网数据源</div>
+<div class="arch-node">第三方API</div>
+<div class="arch-node">官方公开数据</div>
+</div>
+<div class="arch-label">↕ DMZ区双向代理 ↕</div>
+<div class="arch-row">
+<div class="arch-node primary">安全网关</div>
+<div class="arch-node primary">可信设备管控</div>
+<div class="arch-node primary">IP网段策略</div>
+</div>
+<div class="arch-label">↕ 内网隔离边界 ↕</div>
+<div class="arch-row">
+<div class="arch-node">悟空平台</div>
+<div class="arch-node">Deepseek V4 Flash</div>
+<div class="arch-node">通义千问3.5/3.7</div>
+<div class="arch-node">Times FM</div>
+</div>
+<div class="arch-row">
+<div class="arch-node">本地文件系统</div>
+<div class="arch-node">知识库</div>
+<div class="arch-node">安全沙箱</div>
+<div class="arch-node">权限管理</div>
+</div>
+<div class="arch-label">【纯内网闭环 · 数据不出域】</div>
+</div>
+</div>
+
+<div id="tab-pain" class="tab-panel">
+<div class="stitle">⚠️ 核心痛点</div>
+<div class="pp-grid" id="ppGrid"></div>
+</div>
+
+<div class="stitle">📅 实施路径时间线</div>
+<div class="timeline" id="timeline"></div>
+<div class="stitle">📈 预期效果指标</div>
+<div class="metrics" id="metricsGrid"></div>
+<div class="nav"><a href="huangda-solution.html">👉 查看解决方案</a></div>
+</div>
+<div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
+<script>
+const solutions=[{"title": "🏗️ 投研AI数字人：土地获取全链路智能研判", "desc": "构建投研AI智能体作为'数字投研分析师'，在土地获取阶段自动整合四大维度数据：①宏观市场分析（城市GDP/产业结构/高新技术企业入驻/人口流动趋势）；②板块市场研判（一手/二手成交数据/面积段分布/价格走势/去化周期）；③地块竞品分析（周边项目类型/户型配比/定价策略/去化表现）；④客户深访洞察（目标客群画像/购买动机/价格敏感度）。AI综合输出拿地建议、产品面积段、户型设计、定价策略、容积率应用及目标客群定位，为领导决策提供数据驱动的参考意见。"}, {"title": "🔒 企业级安全架构：纯本地+混合云双模部署", "desc": "支持两种部署模式满足不同安全等级需求：①纯本地部署——全部数据和模型运行于内网环境，不依赖互联网访问，适配华为升腾910B算力；②混合云架构——文件与聊天消息在内网闭环处理，通过DMZ区双向代理实现内外网安全交互。悟空平台可定向调用本地Deepseek V4模型及本地文件系统，确保全流程内网可控。配套可信设备管控（仅授权终端可登录）、可信网络控制（按IP网段配置访问策略）、安全沙箱机制（高危命令逐次授权），构建纵深防御体系。"}, {"title": "📊 总部-一线协同：AI交叉验证决策引擎", "desc": "建立'一线编制报告→AI独立研判→总部比对决策'三层协同机制。一线公司使用AI智能体生成标准化投研报告，总部同步让AI基于相同数据进行独立分析，两份结论自动比对并标注差异点。领导可快速识别一线判断与AI建议的分歧，聚焦关键争议点进行深度讨论。将数十亿级拿地决策从'经验驱动'升级为'数据+AI双轮驱动'，降低主观偏差风险。后续逐步推广至一线公司日常投研报告编制，形成集团统一的投研方法论资产。"}, {"title": "🧩 技能构建平台：IT团队自主可控的AI能力工厂", "desc": "提供低门槛技能构建工具，首个投研技能模板由供应商协助搭建，IT团队学习后自行复制扩展至其他业务场景。技能本质为Markdown格式的可导出包，支持下载迁移至其他系统复用，避免平台锁定。用户端操作极简：选择对应技能→上传文件或输入提示词→系统自动完成全流程分析并生成结果。7月份完成整体框架整理后，IT团队可自主迭代优化，将企业多年积累的投研方法论沉淀为可复用的AI数字资产。"}, {"title": "📈 多维数据接入：打通内外部数据孤岛", "desc": "对接多源数据构建统一投研数据底座：①官方公开数据（统计局/自然资源局/住建局发布的GDP/土地/成交数据）自动采集更新；②第三方付费数据（克而瑞/中指院/贝壳等市场研究报告）API接入；③内部历史数据（过往拿地案例/项目复盘/销售回款）知识库沉淀；④客户调研数据（深访记录/问卷结果）结构化入库。AI智能体按需调取各维度数据，告别手动搜集整理的低效模式，将投研准备周期从2-3周缩短至2-3天。"}, {"title": "🤖 私有化大模型矩阵：多模型协同+自研增强", "desc": "充分利用现有算力资源构建多模型协同体系：Deepseek V4 Flash承担日常问答和文档生成主力；通义千问3.5/3.7处理复杂推理和多步分析任务；自研Times FM模型专注时序预测（房价走势/成交量预测/市场周期判断）。悟空平台统一调度，根据任务复杂度自动路由最优模型。本地部署确保敏感数据不出内网，同时保留未来接入云端更强模型的弹性空间。"}];
+const phases=["完成投研AI技能模板搭建 + 安全架构部署（纯本地/混合云） + 首批数据源接入（官方公开数据+内部历史数据）。IT团队掌握技能构建方法，产出首个可用的投研AI原型。总部投资部门开始试用，验证AI研判结论与实际决策的一致性。", "扩展数据源接入（第三方付费数据+客户调研数据） + AI交叉验证机制上线 + 权限与安全策略精细化配置。一线公司开始使用AI编制投研报告，总部建立AI vs 人工比对评估机制。持续优化模型效果，积累投研方法论数字资产。", "全集团推广 + 技能自主扩展至其他业务场景（营销策划/产品设计/成本管控） + 多模型协同优化。投研AI成为集团标配工具，覆盖所有拿地决策流程。IT团队完全自主运维和迭代，形成企业级AI能力中心。"];
+const metrics=[{"value": "↓80%", "label": "投研准备周期缩短"}, {"value": "100%", "label": "拿地决策AI参与率"}, {"value": "↑60%", "label": "报告编制效率提升"}, {"value": "0", "label": "敏感数据外泄风险"}, {"value": "4+", "label": "自研模型协同数量"}, {"value": "自主", "label": "IT团队技能构建能力"}];
+const painPoints=["土地研判依赖人工经验，多维度数据（宏观/板块/竞品/客户）分散难以系统化整合", "一线公司投研报告质量参差不齐，总部缺乏标准化比对工具", "涉及数十亿至百亿级决策，缺少AI辅助交叉验证机制", "现有宜搭智能体功能简陋，仅支持基础问答和附件上传", "数据安全要求极高，必须纯本地/混合云部署，不允许外网访问核心数据", "IT团队需要自主维护能力，避免长期依赖外部供应商"];
+const labels=["第一阶段：筑基期（0-3个月）","第二阶段：成长期（3-6个月）","第三阶段：成熟期（6-12个月）"];
+
+// 渲染痛点
+const ppGrid=document.getElementById("ppGrid");
+painPoints.forEach(p=>{const d=document.createElement("div");d.className="pp-item";d.textContent="⚠️ "+p;ppGrid.appendChild(d)});
+
+// 渲染方案卡片
+const sg=document.getElementById("solGrid");
+solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;sg.appendChild(d)});
+
+// 渲染时间线
+const tl=document.getElementById("timeline");
+phases.forEach((p,i)=>{const d=document.createElement("div");d.className="titem";d.innerHTML=`<h4>${labels[i]}</h4><p>${p}</p>`;tl.appendChild(d)});
+
+// 渲染指标
+const mg=document.getElementById("metricsGrid");
+metrics.forEach(m=>{const d=document.createElement("div");d.className="metric";d.innerHTML=`<div class="v anim-num">${m.value}</div><div class="l">${m.label}</div>`;mg.appendChild(d)});
+
+// 模拟投研AI研判流程
+const steps=[
+  {icon:"🌍",title:"宏观市场分析",desc:"GDP增速、高新技术企业入驻、人口流动、产业政策"},
+  {icon:"🏘️",title:"板块市场研判",desc:"一手/二手成交数据、面积段分布、价格走势、去化周期"},
+  {icon:"🏗️",title:"地块竞品分析",desc:"周边项目类型、户型配比、定价策略、去化表现"},
+  {icon:"👥",title:"客户深访洞察",desc:"目标客群画像、购买动机、价格敏感度、置业偏好"},
+  {icon:"🤖",title:"AI综合研判",desc:"拿地建议、产品面积段、户型设计、定价策略、客群定位"},
+  {icon:"✅",title:"总部交叉验证",desc:"AI结论 vs 一线报告自动比对，标注差异辅助决策"}
+];
+const flowEl=document.getElementById("flowSteps");
+steps.forEach((s,i)=>{
+  const d=document.createElement("div");d.className="flow-step";
+  d.innerHTML=`<div class="flow-icon">${s.icon}</div><div class="flow-title">${s.title}</div><div class="flow-desc">${s.desc}</div>`;
+  d.style.animationDelay=i*0.15+"s";
+  flowEl.appendChild(d);
+});
+
+// 数字动画
+const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.transform="scale(1.1)";setTimeout(()=>en.target.style.transform="scale(1)",300)}})},{threshold:0.5});
+document.querySelectorAll(".anim-num").forEach(el=>obs.observe(el));
+
+// Tab切换
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+  });
+});
+</script></body></html>
