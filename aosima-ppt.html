@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>奥斯玛智能装备 - 钉钉数字化底座+AI表格+宜搭 整体解决方案</title>
+<style data-inlined-from="base.css">
+/* html-ppt :: base.css — reset + shared tokens + layout primitives */
+/* Default tokens. Themes in assets/themes/*.css override the :root block. */
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f7f7f8;
+  --surface: #ffffff;
+  --surface-2: #f2f2f4;
+  --border: rgba(0,0,0,.08);
+  --border-strong: rgba(0,0,0,.16);
+  --text-1: #111216;
+  --text-2: #55596a;
+  --text-3: #8a8f9e;
+  --accent: #3b6cff;
+  --accent-2: #7a5cff;
+  --accent-3: #ff5c8a;
+  --good: #1aaf6c;
+  --warn: #f5a524;
+  --bad:  #e0445a;
+  --grad: linear-gradient(135deg,#3b6cff,#7a5cff 55%,#ff5c8a);
+  --grad-soft: linear-gradient(135deg,#eef2ff,#f5ecff 55%,#ffeef5);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-lg: 26px;
+  --shadow: 0 10px 30px rgba(18,24,40,.08), 0 2px 6px rgba(18,24,40,.04);
+  --shadow-lg: 0 24px 60px rgba(18,24,40,.14), 0 6px 16px rgba(18,24,40,.06);
+  --font-sans: 'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+  --font-serif: 'Playfair Display','Noto Serif SC',Georgia,serif;
+  --font-mono: 'JetBrains Mono','IBM Plex Mono',SFMono-Regular,Menlo,monospace;
+  --font-display: var(--font-sans);
+  --letter-tight: -.03em;
+  --letter-normal: -.01em;
+  --ease: cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text-1);
+  font-family:var(--font-sans);font-weight:400;line-height:1.6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  letter-spacing:var(--letter-normal)}
+img,svg,video{max-width:100%;display:block}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code,kbd,pre,samp{font-family:var(--font-mono)}
+
+/* ================= SLIDE SYSTEM ================= */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg)}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:72px 96px;
+  box-sizing:border-box;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s var(--ease), transform .5s var(--ease);
+  transform:translateX(30px);
+  overflow:hidden;
+}
+.slide.is-active{opacity:1;pointer-events:auto;transform:translateX(0);z-index:2}
+.slide.is-prev{transform:translateX(-30px)}
+
+/* single-page standalone (used when a layout file is opened directly) */
+body.single .slide{position:relative;width:100vw;height:100vh;opacity:1;transform:none;pointer-events:auto}
+
+/* ================= TYPOGRAPHY ================= */
+.eyebrow{font-size:13px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3)}
+.kicker{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+h1.title,.h1{font-family:var(--font-display);font-size:72px;line-height:1.05;font-weight:800;letter-spacing:var(--letter-tight);margin:0 0 18px;color:var(--text-1)}
+h2.title,.h2{font-family:var(--font-display);font-size:54px;line-height:1.1;font-weight:700;letter-spacing:var(--letter-tight);margin:0 0 14px}
+h3,.h3{font-size:32px;line-height:1.2;font-weight:600;letter-spacing:var(--letter-normal);margin:0 0 10px}
+h4,.h4{font-size:22px;line-height:1.3;font-weight:600;margin:0 0 8px}
+.lede{font-size:22px;line-height:1.55;color:var(--text-2);font-weight:300;max-width:62ch}
+.dim{color:var(--text-2)}
+.dim2{color:var(--text-3)}
+.mono{font-family:var(--font-mono)}
+.serif{font-family:var(--font-serif)}
+.gradient-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* ================= LAYOUT PRIMITIVES ================= */
+.stack>*+*{margin-top:14px}
+.row{display:flex;gap:24px;align-items:center}
+.row.wrap{flex-wrap:wrap}
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.center{display:flex;align-items:center;justify-content:center;text-align:center}
+.fill{flex:1}
+.sp-t{padding-top:24px}.sp-b{padding-bottom:24px}
+.mt-s{margin-top:8px}.mt-m{margin-top:18px}.mt-l{margin-top:32px}
+.mb-s{margin-bottom:8px}.mb-m{margin-bottom:18px}.mb-l{margin-bottom:32px}
+
+/* ================= CARDS ================= */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:26px 28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card-soft{background:var(--surface-2);border:1px solid var(--border)}
+.card-outline{background:transparent;border:1.5px solid var(--border-strong);box-shadow:none}
+.card-accent{background:var(--surface);border-top:3px solid var(--accent)}
+.card-hover{transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.card-hover:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+
+.pill{display:inline-block;padding:4px 12px;border-radius:999px;font-size:12px;font-weight:500;
+  background:var(--surface-2);color:var(--text-2);border:1px solid var(--border)}
+.pill-accent{background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 28%,transparent)}
+
+/* ================= BARS / DIVIDERS ================= */
+.divider{height:1px;background:var(--border);width:100%}
+.divider-accent{height:3px;width:72px;background:var(--accent);border-radius:2px}
+
+/* ================= CHROME (header/footer/progress) ================= */
+.deck-header{position:absolute;top:24px;left:40px;right:40px;display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;color:var(--text-3);letter-spacing:.12em;text-transform:uppercase;z-index:10;pointer-events:none}
+.deck-footer{position:absolute;bottom:24px;left:40px;right:40px;display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;color:var(--text-3);z-index:10;pointer-events:none}
+.slide-number::before{content:attr(data-current)}
+.slide-number::after{content:" / " attr(data-total)}
+.progress-bar{position:fixed;left:0;right:0;bottom:0;height:3px;background:transparent;z-index:20}
+.progress-bar > span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s var(--ease)}
+.deck-controls{
+  position:fixed;inset:0;z-index:80;pointer-events:none;
+  font-family:var(--font-sans)
+}
+.deck-controls button{
+  position:absolute;top:50%;transform:translateY(-50%);
+  height:54px;min-width:54px;padding:0 16px;border:0;border-radius:999px;
+  color:#fff;background:rgba(12,14,24,.72);font-size:14px;font-weight:850;
+  pointer-events:auto;border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 18px 48px rgba(0,0,0,.26);backdrop-filter:blur(18px);
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  cursor:pointer;transition:background .2s var(--ease),transform .2s var(--ease),opacity .2s var(--ease)
+}
+.deck-controls .deck-arrow{font-size:30px;line-height:1;font-weight:600;margin-top:-2px}
+.deck-controls .deck-label{font-size:13px;letter-spacing:.02em;white-space:nowrap}
+.deck-controls .deck-prev{left:18px}
+.deck-controls .deck-next{right:18px}
+.deck-controls button:hover{background:var(--grad);transform:translateY(-50%) translateY(-1px)}
+.deck-controls button:disabled{opacity:.32;cursor:not-allowed;transform:translateY(-50%);background:rgba(12,14,24,.26)}
+.deck-controls .deck-count{
+  position:absolute;right:22px;top:18px;min-width:76px;padding:8px 12px;
+  border-radius:999px;background:rgba(12,14,24,.62);
+  border:1px solid rgba(255,255,255,.16);box-shadow:0 12px 34px rgba(0,0,0,.18);
+  text-align:center;color:rgba(255,255,255,.9);pointer-events:none;
+  font-size:13px;font-weight:800;font-variant-numeric:tabular-nums
+}
+@media(max-width:720px){
+  .deck-controls button{height:46px;min-width:46px;padding:0 12px}
+  .deck-controls .deck-label{display:none}
+  .deck-controls .deck-prev{left:10px}.deck-controls .deck-next{right:10px}
+  .deck-controls .deck-count{right:12px;top:12px}
+}
+
+.html-ppt-nav-controls{
+  position:fixed;inset:0;z-index:1200;pointer-events:none;
+  font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif)
+}
+.html-ppt-nav-controls button{
+  position:absolute;top:50%;transform:translateY(-50%);
+  height:54px;min-width:54px;padding:0 16px;border:0;border-radius:999px;
+  color:#fff;background:rgba(12,14,24,.72);border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 18px 48px rgba(0,0,0,.3);backdrop-filter:blur(18px);
+  pointer-events:auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-size:14px;font-weight:850;cursor:pointer;transition:background .2s var(--ease),transform .2s var(--ease),opacity .2s var(--ease)
+}
+.html-ppt-nav-controls button:hover{background:var(--grad,var(--accent,#3b6cff));transform:translateY(-50%) translateY(-1px)}
+.html-ppt-nav-controls button:disabled{opacity:.32;cursor:not-allowed;background:rgba(12,14,24,.26);transform:translateY(-50%)}
+.html-ppt-nav-controls .section-prev{left:18px}
+.html-ppt-nav-controls .section-next{right:18px}
+.html-ppt-nav-controls .nav-arrow{font-size:30px;line-height:1;font-weight:600;margin-top:-2px}
+.html-ppt-nav-controls .nav-label{font-size:13px;letter-spacing:.02em;white-space:nowrap}
+@media(max-width:720px){
+  .html-ppt-nav-controls button{height:46px;min-width:46px;padding:0 12px}
+  .html-ppt-nav-controls .nav-label{display:none}
+  .html-ppt-nav-controls .section-prev{left:10px}.html-ppt-nav-controls .section-next{right:10px}
+}
+
+/* ================= PRESENTER / OVERVIEW ================= */
+.notes{display:none!important}
+.notes-overlay{position:fixed;inset:auto 0 0 0;max-height:42vh;background:rgba(20,22,30,.95);color:#e8ebf4;
+  padding:20px 32px;font-size:16px;line-height:1.6;border-top:1px solid rgba(255,255,255,.1);transform:translateY(100%);
+  transition:transform .3s var(--ease);z-index:40;overflow:auto;font-family:var(--font-sans)}
+.notes-overlay.open{transform:translateY(0)}
+.overview{position:fixed;inset:0;background:rgba(10,12,18,.92);backdrop-filter:blur(12px);z-index:50;
+  display:none;padding:40px;overflow:auto}
+.overview.open{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;align-content:start}
+.overview .thumb{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  aspect-ratio:16/9;overflow:hidden;cursor:pointer;position:relative;color:var(--text-1);padding:16px;
+  font-size:11px;transition:transform .2s var(--ease)}
+.overview .thumb:hover{transform:scale(1.04)}
+.overview .thumb .n{position:absolute;top:8px;left:10px;font-weight:700;font-size:14px;color:var(--text-3)}
+.overview .thumb .t{position:absolute;bottom:10px;left:14px;right:14px;font-weight:600;color:var(--text-1)}
+
+/* ================= PRESENTER VIEW ================= */
+/* Presenter view opens in a separate popup window (S key).
+ * All presenter styles are self-contained in the popup HTML generated by runtime.js.
+ * The audience window (this file) is NOT affected — it stays as normal deck view.
+ * Only the .notes class below is needed to hide speaker notes from audience. */
+
+/* ================= UTILITY ================= */
+.hidden{display:none!important}
+.nowrap{white-space:nowrap}
+.tr{text-align:right}.tc{text-align:center}.tl{text-align:left}
+.uppercase{text-transform:uppercase;letter-spacing:.12em}
+
+/* ================= PRINT ================= */
+@media print{
+  .slide{position:relative;opacity:1!important;transform:none!important;page-break-after:always;height:100vh}
+  .deck-header,.deck-footer,.progress-bar,.deck-controls,.html-ppt-nav-controls,.notes-overlay,.overview{display:none!important}
+}
+
+</style>
+<style data-inlined-from="dingtalk-purple-pitch.css">
+/* aligned with template: pitch-deck / 方案路演 */
+:root{
+  --bg:#f8f9ff;--bg-soft:#f0f2ff;--surface:#ffffff;--surface-2:rgba(255,255,255,.74);
+  --border:rgba(101,76,255,.13);--border-strong:rgba(101,76,255,.26);
+  --text-1:#181818;--text-2:#53585f;--text-3:#8a8f9e;
+  --accent:#654cff;--accent-2:#4e3cc6;--accent-3:#c676ff;
+  --blue:#405eff;--cyan:#00b7ff;--pink:#ffd7f2;--lavender:#d0cbff;
+  --good:#16a34a;--warn:#f59e0b;--bad:#e11d48;
+  --grad:linear-gradient(135deg,#405eff 0%,#654cff 48%,#c676ff 100%);
+  --grad-deep:linear-gradient(135deg,#2d2272 0%,#4e3cc6 50%,#654cff 100%);
+  --grad-soft:linear-gradient(135deg,#f7f8ff 0%,#eef0ff 42%,#fff4fb 100%);
+  --radius:16px;--radius-sm:10px;--radius-lg:28px;
+  --shadow:0 22px 62px rgba(80,70,170,.13),0 8px 24px rgba(84,92,180,.08);
+  --letter-tight:0;--letter-normal:0;
+}
+
+</style>
+<style>
+.tpl-pitch-deck{
+  --official-bg:url("https://down-cdn.dingtalk.com/ddmedia/iwElAqNwbmcDBgTRCjwF0QW8BrDFIHkKnOavKAn8WH-QTqgAB9IABsALCAAJqm9wZW4udG9vbHMKAAvSADnTNQ.png");
+  --mist-bg:url("https://down-cdn.dingtalk.com/ddmedia/iwElAqNwbmcDBgTRDR4F0QdoBrBqclMg-I12Cwn8WH9DAHAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvSAAbqow.png");
+  --logo:url("https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png");
+  --diamond:url("https://down-cdn.dingtalk.com/ddmedia/iwElAqNwbmcDBgTRAeAF0QHgBrBBm1tWTGU9OQn8WH8oDPwAB9IABsALCAAJqm9wZW4udG9vbHMKAAvSAADvYA.png");
+  --bg:#f8f9ff;--bg-soft:#f0f2ff;--surface:#ffffff;--surface-soft:rgba(255,255,255,.74);
+  --surface-tint:rgba(101,76,255,.07);--border:rgba(101,76,255,.13);--border-strong:rgba(101,76,255,.26);
+  --text-1:#181818;--text-2:#53585f;--text-3:#8a8f9e;
+  --primary:#654cff;--primary-2:#4e3cc6;--primary-3:#7f4cff;
+  --blue:#405eff;--cyan:#00b7ff;--pink:#ffd7f2;--lavender:#d0cbff;
+  --grad:linear-gradient(135deg,#405eff 0%,#654cff 48%,#c676ff 100%);
+  --grad-deep:linear-gradient(135deg,#2d2272 0%,#4e3cc6 50%,#654cff 100%);
+  --grad-soft:linear-gradient(135deg,#f7f8ff 0%,#eef0ff 42%,#fff4fb 100%);
+  --radius:16px;--radius-lg:28px;
+  --shadow:0 22px 62px rgba(80,70,170,.13),0 8px 24px rgba(84,92,180,.08);
+  --shadow-soft:0 16px 46px rgba(96,86,180,.1);
+  font-family:"Alibaba PuHuiTi 2","Inter","Noto Sans SC",sans-serif;letter-spacing:0;
+}
+.tpl-pitch-deck .slide{padding:54px 76px;color:var(--text-1);overflow:hidden;
+  background:radial-gradient(680px 420px at 12% 78%,rgba(101,76,255,.16),transparent 65%),
+  radial-gradient(720px 420px at 94% 8%,rgba(255,210,244,.5),transparent 64%),
+  linear-gradient(135deg,#fbfcff 0%,#f7f8ff 44%,#fff8fb 100%);}
+.tpl-pitch-deck .slide::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:var(--mist-bg) center/cover no-repeat;opacity:.42;}
+.tpl-pitch-deck .slide>*{position:relative;z-index:1}
+.tpl-pitch-deck .slide.cover,.tpl-pitch-deck .slide.closing{color:#fff;
+  background:var(--official-bg) center/cover no-repeat;}
+.tpl-pitch-deck .slide.cover::before,.tpl-pitch-deck .slide.closing::before{content:"";
+  position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,48,188,.18),rgba(43,48,188,0) 58%);opacity:1;}
+.tpl-pitch-deck .topbar{position:absolute;top:34px;left:64px;right:64px;display:flex;
+  align-items:center;justify-content:space-between;z-index:4;font-size:13px;color:rgba(24,24,24,.72);}
+.tpl-pitch-deck .cover .topbar,.tpl-pitch-deck .closing .topbar{color:#fff}
+.tpl-pitch-deck .brandline{display:flex;align-items:center;gap:18px;font-weight:800;}
+.tpl-pitch-deck .brandline img.logo{width:92px;height:auto;object-fit:contain;}
+.tpl-pitch-deck .cover .brandline img.logo,.tpl-pitch-deck .closing .brandline img.logo{filter:brightness(0) invert(1)}
+.tpl-pitch-deck .brandline .divider{width:1px;height:28px;background:currentColor;opacity:.65;}
+.tpl-pitch-deck .brandline img.diamond{width:38px;height:38px;object-fit:contain;}
+.tpl-pitch-deck .brand-title{font-size:19px;letter-spacing:0;}
+.tpl-pitch-deck .kicker,.tpl-pitch-deck .num-tag{color:var(--primary);font-size:14px;font-weight:850;letter-spacing:0;}
+.tpl-pitch-deck .cover .kicker,.tpl-pitch-deck .closing .kicker{color:rgba(255,255,255,.88)}
+.tpl-pitch-deck .h1{max-width:820px;margin:0;color:#fff;font-size:70px;line-height:1.12;font-weight:900;letter-spacing:0;}
+.tpl-pitch-deck .h2{max-width:920px;margin:0 auto;color:var(--text-1);font-size:42px;line-height:1.18;font-weight:860;text-align:center;letter-spacing:0;}
+.tpl-pitch-deck .subtitle{max-width:800px;margin:10px auto 0;color:var(--text-2);font-size:16px;line-height:1.6;text-align:center;}
+.tpl-pitch-deck .cover .subtitle{margin:22px 0 0;max-width:760px;color:rgba(255,255,255,.86);text-align:left;font-size:25px;line-height:1.48;}
+.tpl-pitch-deck .cover-copy{position:absolute;left:76px;top:250px;width:860px;}
+.tpl-pitch-deck .cover-meta{display:flex;gap:12px;margin-top:34px;}
+.tpl-pitch-deck .meta-pill{padding:10px 16px;border-radius:999px;color:#fff;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);font-weight:700;}
+.tpl-pitch-deck .deck-footer{position:absolute;left:64px;right:64px;bottom:30px;display:flex;
+  justify-content:space-between;color:rgba(24,24,24,.46);font-size:12px;z-index:4;}
+.tpl-pitch-deck .cover .deck-footer,.tpl-pitch-deck .closing .deck-footer{color:rgba(255,255,255,.72)}
+.tpl-pitch-deck .gradient-text{color:var(--primary);}
+.tpl-pitch-deck .cover .gradient-text,.tpl-pitch-deck .closing .gradient-text{color:#fff}
+.tpl-pitch-deck .grid{display:grid;gap:22px}
+.tpl-pitch-deck .g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tpl-pitch-deck .g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.tpl-pitch-deck .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tpl-pitch-deck .mt-s{margin-top:16px}.tpl-pitch-deck .mt-m{margin-top:26px}.tpl-pitch-deck .mt-l{margin-top:42px}
+.tpl-pitch-deck .card,.tpl-pitch-deck .metric,.tpl-pitch-deck .flow-card{
+  border:1px solid var(--border);border-radius:var(--radius);background:rgba(255,255,255,.86);
+  box-shadow:var(--shadow-soft);backdrop-filter:blur(12px);}
+.tpl-pitch-deck .card{min-height:150px;padding:28px 30px;}
+.tpl-pitch-deck .card h4{margin:0 0 12px;color:var(--text-1);font-size:25px;font-weight:850;letter-spacing:0;}
+.tpl-pitch-deck .card p,.tpl-pitch-deck .dim{margin:0;color:var(--text-2);font-size:15px;line-height:1.65;}
+.tpl-pitch-deck .icon-badge{width:42px;height:42px;display:grid;place-items:center;margin-bottom:16px;
+  border-radius:50%;color:#fff;background:var(--grad);box-shadow:0 14px 28px rgba(101,76,255,.24);font-size:19px;font-weight:900;}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px}
+.pain-card{padding:22px 24px;border-radius:var(--radius);background:rgba(255,255,255,.88);border:1px solid var(--border);box-shadow:var(--shadow-soft)}
+.pain-card h5{margin:0 0 8px;font-size:18px;color:var(--primary);font-weight:800}
+.pain-card p{margin:0;font-size:14px;color:var(--text-2);line-height:1.6}
+.arch-layer{margin:18px 0;padding:20px 24px;border-radius:var(--radius);background:rgba(255,255,255,.86);border:1px solid var(--border)}
+.arch-layer.l1{border-left:4px solid #654cff}.arch-layer.l2{border-left:4px solid #405eff}.arch-layer.l3{border-left:4px solid #c676ff}
+.arch-layer h5{margin:0 0 12px;font-size:18px;font-weight:800;color:var(--text-1)}
+.arch-nodes{display:flex;gap:12px;flex-wrap:wrap}
+.arch-node{padding:10px 16px;border-radius:10px;background:var(--surface-tint);border:1px solid var(--border);font-size:13px;color:var(--primary-2);font-weight:700}
+.arch-node.primary{background:var(--grad);color:#fff;border:none}
+.solution-card{padding:26px 28px;border-radius:var(--radius);background:rgba(255,255,255,.88);border:1px solid var(--border);box-shadow:var(--shadow-soft);margin-bottom:18px}
+.solution-card h4{margin:0 0 10px;font-size:22px;color:var(--text-1);font-weight:850;display:flex;align-items:center;gap:12px}
+.solution-card h4 .icon{width:36px;height:36px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:16px;font-weight:900;flex-shrink:0}
+.solution-card p{margin:0;font-size:14px;color:var(--text-2);line-height:1.7}
+.timeline{position:relative;padding-left:36px;margin-top:32px}
+.timeline::before{content:"";position:absolute;left:14px;top:0;bottom:0;width:3px;background:var(--grad);border-radius:2px}
+.tl-item{position:relative;margin-bottom:32px}.tl-item:last-child{margin-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-28px;top:6px;width:16px;height:16px;border-radius:50%;background:var(--grad);border:3px solid #fff;box-shadow:0 4px 12px rgba(101,76,255,.3)}
+.tl-item h4{margin:0 0 8px;font-size:20px;color:var(--text-1);font-weight:850}
+.tl-item .phase-tag{display:inline-block;padding:4px 12px;border-radius:20px;background:var(--grad);color:#fff;font-size:12px;font-weight:700;margin-bottom:8px}
+.tl-item p{margin:0;font-size:14px;color:var(--text-2);line-height:1.7}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.kpi-card{padding:28px 24px;border-radius:var(--radius);background:rgba(255,255,255,.88);border:1px solid var(--border);box-shadow:var(--shadow-soft);text-align:center}
+.kpi-value{font-size:42px;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.kpi-label{margin-top:10px;font-size:14px;color:var(--text-2);font-weight:600}
+.chapter-divider{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;height:100%}
+.chapter-divider .ch-icon{width:80px;height:80px;border-radius:50%;background:var(--grad);display:grid;place-items:center;color:#fff;font-size:36px;font-weight:900;margin-bottom:24px;box-shadow:0 20px 40px rgba(101,76,255,.3)}
+.chapter-divider h2{margin:0;font-size:48px;color:var(--text-1);font-weight:900}
+.chapter-divider p{margin:16px 0 0;font-size:18px;color:var(--text-2)}
+</style>
+</head>
+<body class="tpl-pitch-deck">
+<div class="deck">
+
+<!-- Slide 1: Cover -->
+<section class="slide cover">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span>
+      <img class="diamond" src="https://down-cdn.dingtalk.com/ddmedia/iwElAqNwbmcDBgTRAeAF0QHgBrBBm1tWTGU9OQn8WH8oDPwAB9IABsALCAAJqm9wZW4udG9vbHMKAAvSAADvYA.png" alt="方案">
+      <span class="brand-title">数字化解决方案</span>
+    </div>
+    <span>2026 · 奥斯玛智能装备</span>
+  </div>
+  <div class="cover-copy">
+    <div class="kicker">钉钉数字化底座 × AI表格 × 宜搭低代码</div>
+    <h1 class="h1">奥斯玛智能装备<br>整体解决方案</h1>
+    <p class="subtitle">针对"钉钉未用、无OA、数据分散"现状，以三层架构支撑300人团队年产值3亿→5亿的数字化管理体系升级</p>
+    <div class="cover-meta">
+      <span class="meta-pill">钣金成形智能装备</span>
+      <span class="meta-pill">国家高新技术企业</span>
+      <span class="meta-pill">佛山高明</span>
+    </div>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备（广东）有限公司</span><span>1 / 10</span></div>
+</section>
+
+<!-- Slide 2: 企业现状与痛点 -->
+<section class="slide">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span><span class="brand-title">企业现状</span>
+    </div><span>现状与痛点</span>
+  </div>
+  <div class="kicker">CURRENT STATUS</div>
+  <h2 class="h2" style="text-align:left;margin:0 0 8px">企业现状与数字化痛点</h2>
+  <p class="subtitle" style="text-align:left;margin:0 0 24px">300人 · 年产值3亿 · 哲霖ERP + 金蝶云星辰 · 钉钉未使用 · 无OA系统</p>
+  <div class="pain-grid">
+    <div class="pain-card"><h5>① 经营数据分散</h5><p>数据散落在ERP/财务/Excel中，高层缺乏统一经营驾驶舱，决策依赖人工汇总</p></div>
+    <div class="pain-card"><h5>② 生产过程纸质化</h5><p>设备巡检/工单/工时计件依赖纸质和人工统计，效率低、易出错</p></div>
+    <div class="pain-card"><h5>③ 售后无系统跟踪</h5><p>售后工单/客诉/维修配件无系统化跟踪，响应时效难保障</p></div>
+    <div class="pain-card"><h5>④ 采购流程断点</h5><p>需求→订单→到货→发票→付款缺乏联动，超期风险难预警</p></div>
+    <div class="pain-card"><h5>⑤ 销售管理粗放</h5><p>50人销售团队缺乏统一CRM，内外销线索跟进无标准化流程</p></div>
+    <div class="pain-card"><h5>⑥ 人事手工处理</h5><p>考勤/排班/薪酬（含计件）手工处理效率低，人效分析缺失</p></div>
+    <div class="pain-card"><h5>⑦ 费控报销不规范</h5><p>费用申请→审批→报销流程不规范，预算管控缺位</p></div>
+    <div class="pain-card"><h5>⑧ 会议决议无闭环</h5><p>会议决议和行动项缺乏跟踪，"开完就忘"现象普遍</p></div>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>2 / 10</span></div>
+</section>
+
+<!-- Slide 3: 三层技术架构 -->
+<section class="slide">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span><span class="brand-title">技术架构</span>
+    </div><span>三层架构</span>
+  </div>
+  <div class="kicker">ARCHITECTURE</div>
+  <h2 class="h2" style="text-align:left;margin:0 0 24px">三层技术架构：钉钉底座 × AI表格 × 宜搭</h2>
+  <div class="arch-layer l1">
+    <h5>🏛️ 第一层：钉钉数字化底座</h5>
+    <div class="arch-nodes">
+      <span class="arch-node primary">钉钉统一入口</span><span class="arch-node primary">组织架构300人</span>
+      <span class="arch-node primary">统一待办中心</span><span class="arch-node primary">消息/审批/日历</span>
+      <span class="arch-node">哲霖ERP集成</span><span class="arch-node">金蝶云星辰集成</span>
+      <span class="arch-node">IoT设备接入</span><span class="arch-node">海外TK渠道</span>
+    </div>
+  </div>
+  <div class="arch-layer l2">
+    <h5>📊 第二层：AI表格快捷全员使用</h5>
+    <div class="arch-nodes">
+      <span class="arch-node primary">经营驾驶舱</span><span class="arch-node primary">销售管理表</span>
+      <span class="arch-node primary">采购联动表</span><span class="arch-node primary">售后工单表</span>
+      <span class="arch-node">自然语言查询</span><span class="arch-node">AI趋势分析</span><span class="arch-node">异常预警</span>
+    </div>
+  </div>
+  <div class="arch-layer l3">
+    <h5>⚙️ 第三层：宜搭低代码敏捷搭建</h5>
+    <div class="arch-nodes">
+      <span class="arch-node">生产管理系统</span><span class="arch-node">售后管理系统</span>
+      <span class="arch-node">人事管理系统</span><span class="arch-node">费控管理系统</span>
+      <span class="arch-node">1-2周快速上线</span><span class="arch-node">零代码开发</span>
+    </div>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>3 / 10</span></div>
+</section>
+
+<!-- Slide 4: 章节分隔 -->
+<section class="slide">
+  <div class="chapter-divider">
+    <div class="ch-icon">6</div>
+    <h2>六大核心解决方案</h2>
+    <p>钉钉底座 · AI表格 · 宜搭低代码 · 销售CRM · 系统集成 · 协作闭环</p>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>4 / 10</span></div>
+</section>
+
+<!-- Slide 5: 核心方案1-2 -->
+<section class="slide">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span><span class="brand-title">核心方案</span>
+    </div><span>方案 1-2</span>
+  </div>
+  <div class="kicker">SOLUTIONS</div>
+  <h2 class="h2" style="text-align:left;margin:0 0 24px">钉钉底座 + AI表格</h2>
+  <div class="solution-card">
+    <h4><span class="icon">1</span>钉钉数字化底座：统一入口+系统集成</h4>
+    <p>以钉钉作为全员统一工作入口，替代缺失的OA系统。通过钉钉连接器/API对接哲霖ERP和金蝶云星辰，实现库存、生产进度、发货状态、财务数据在钉钉内实时查看。统一待办中心汇聚ERP审批、财务审批、业务审批，告别多系统切换。钉钉组织架构同步300人团队，按部门配置差异化工作台和应用权限。</p>
+  </div>
+  <div class="solution-card">
+    <h4><span class="icon">2</span>AI表格：经营驾驶舱+业务数据在线化</h4>
+    <p>利用钉钉AI表格零门槛搭建各部门核心数据看板：①高层经营驾驶舱——销售/订单/生产/质量/库存/回款/售后7大维度实时汇总，AI自动生成趋势分析和异常预警；②销售管理表——50人销售团队的客户跟进/商机/报价/签约/回款全流程在线化；③采购联动表——全链路状态自动流转，超期自动提醒；④售后工单表——结构化记录，AI分析高频问题。支持自然语言查询，管理层直接问"上月华东区销售额多少"即可获取答案。</p>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>5 / 10</span></div>
+</section>
+
+<!-- Slide 6: 核心方案3-4 -->
+<section class="slide">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span><span class="brand-title">核心方案</span>
+    </div><span>方案 3-4</span>
+  </div>
+  <div class="kicker">SOLUTIONS</div>
+  <h2 class="h2" style="text-align:left;margin:0 0 24px">宜搭四大系统 + 销售CRM</h2>
+  <div class="solution-card">
+    <h4><span class="icon">3</span>宜搭低代码：生产+售后+人事+费控四大系统</h4>
+    <p><strong>【生产管理】</strong>设备巡检扫码填报+异常拍照上传，IoT设备状态接入钉钉看板；工单在线提报→派工→完工→验收全流程数字化；工时+计件在线填报自动汇总。<br>
+    <strong>【售后管理】</strong>售后工单从接单→派工→维修→配件领用→完工→回访全生命周期管理；客诉分级处理SLA超时自动升级；维修配件库存与采购联动。<br>
+    <strong>【人事管理】</strong>智能考勤+高级排班（支持生产倒班/弹性班次）；薪酬自动计算（基本工资+计件+工时+绩效），人效统计和用工成本分析报表一键生成。<br>
+    <strong>【费控管理】</strong>差旅/招待/采购等费用在线申请→审批→报销→对账全流程，预算管控自动校验，对接金蝶云星辰凭证自动生成。</p>
+  </div>
+  <div class="solution-card">
+    <h4><span class="icon">4</span>销售管理专项：50人团队+内外销一体化CRM</h4>
+    <p>基于钉钉+AI表格+宜搭构建轻量级CRM：①客户档案统一管理（内销直销客户+北京代理商+海外TK线索）；②商机漏斗可视化（线索→意向→报价→谈判→签约各阶段转化率）；③拜访签到+会议纪要自动关联客户；④外销线索从TK等渠道自动导入，AI辅助线索评分和跟进优先级排序；⑤销售日报/周报AI自动生成；⑥合同/报价/回款与AI表格联动。目标：销售管理效率提升50%，海外线索转化率提升30%。</p>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>6 / 10</span></div>
+</section>
+
+<!-- Slide 7: 核心方案5-6 -->
+<section class="slide">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span><span class="brand-title">核心方案</span>
+    </div><span>方案 5-6</span>
+  </div>
+  <div class="kicker">SOLUTIONS</div>
+  <h2 class="h2" style="text-align:left;margin:0 0 24px">系统集成 + 协作闭环</h2>
+  <div class="solution-card">
+    <h4><span class="icon">5</span>系统对接集成：ERP+财务+钉钉三网融合</h4>
+    <p>通过钉钉开放平台API/连接器实现三大系统数据打通：①哲霖ERP→钉钉：库存实时查询、生产进度推送、BOM变更通知、排产计划同步到钉钉工作台；②金蝶云星辰→钉钉：应收应付/回款状态/发票信息推送到对应负责人钉钉消息；③钉钉→ERP/财务：宜搭审批结果自动回写ERP/财务系统，避免二次录入。统一待办中心汇聚所有系统待办事项，一个入口处理全部审批。数据驾驶舱跨系统聚合展示，高层不再需要登录多个系统查数据。</p>
+  </div>
+  <div class="solution-card">
+    <h4><span class="icon">6</span>会议与协作闭环：从开会到执行的全链路管理</h4>
+    <p>钉钉会议+待办+日志三位一体实现协作闭环：①客户会议/内部例会钉钉日历统一预约，参会人自动收到提醒；②会议纪要AI自动生成（钉钉闪记），关键决议自动提取为待办任务；③待办任务指定责任人+截止时间，到期前自动提醒，逾期自动升级通知上级；④每周行动项完成率自动统计，纳入部门绩效考核；⑤跨部门协作群按项目/客户自动创建，沟通记录和文件沉淀可追溯。将会议从"开完就忘"升级为"件件有落实、事事有回响"。</p>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>7 / 10</span></div>
+</section>
+
+<!-- Slide 8: 实施路径 -->
+<section class="slide">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span><span class="brand-title">实施路径</span>
+    </div><span>三阶段推进</span>
+  </div>
+  <div class="kicker">IMPLEMENTATION</div>
+  <h2 class="h2" style="text-align:left;margin:0 0 8px">实施路径：三周见效、六周全覆盖</h2>
+  <p class="subtitle" style="text-align:left;margin:0">12周完成从筑基到增强的全周期数字化升级</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <span class="phase-tag">第一阶段 · 第1-2周</span>
+      <h4>筑基期：基础设施搭建</h4>
+      <p>钉钉全员激活+组织架构配置+哲霖ERP/金蝶云星辰对接+AI表格经营驾驶舱搭建+人事考勤/排班上线。2周内完成基础设施搭建，解决"无OA、数据分散"两大核心痛点。高层首次获得统一经营数据视图。</p>
+    </div>
+    <div class="tl-item">
+      <span class="phase-tag">第二阶段 · 第3-6周</span>
+      <h4>深化期：六大业务域覆盖</h4>
+      <p>宜搭生产管理系统+售后管理系统+费控系统上线+AI表格销售管理/采购联动表部署+会议协作闭环机制建立。4周内覆盖生产/售后/销售/采购/人事/费控六大业务域，300人团队全面在线化办公。</p>
+    </div>
+    <div class="tl-item">
+      <span class="phase-tag">第三阶段 · 第7-12周</span>
+      <h4>增强期：AI赋能与二期预研</h4>
+      <p>销售CRM深化（外销线索AI评分+海外渠道管理）+数字孪生生产看板+AI智能分析增强+二期新厂区数字化规划预研。持续优化各模块使用体验，积累数据后AI预测能力逐步增强，支撑二期6亿元投资的数字化管理体系建设。</p>
+    </div>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>8 / 10</span></div>
+</section>
+
+<!-- Slide 9: 预期效果指标 -->
+<section class="slide">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span><span class="brand-title">预期效果</span>
+    </div><span>KPI指标</span>
+  </div>
+  <div class="kicker">EXPECTED OUTCOMES</div>
+  <h2 class="h2" style="text-align:left;margin:0 0 8px">预期效果指标</h2>
+  <p class="subtitle" style="text-align:left;margin:0">量化可衡量的数字化转型成果</p>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-value">2周</div>
+      <div class="kpi-label">基础系统上线周期</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">↑50%</div>
+      <div class="kpi-label">销售管理效率提升</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">↓80%</div>
+      <div class="kpi-label">数据统计人工耗时降低</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">100%</div>
+      <div class="kpi-label">审批流程线上化</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">秒级</div>
+      <div class="kpi-label">跨系统数据查询响应</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-value">300人</div>
+      <div class="kpi-label">全员钉钉覆盖</div>
+    </div>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备 · 数字化解决方案</span><span>9 / 10</span></div>
+</section>
+
+<!-- Slide 10: Closing -->
+<section class="slide closing">
+  <div class="topbar">
+    <div class="brandline">
+      <img class="logo" src="https://down-cdn.dingtalk.com/ddmedia/iwELAqNwbmcDBgTRAscF0QE0BrDMfkmBr7q4sAn8WH8wPeAAB9IABsALCAAJqm9wZW4udG9vbHMKAAvRKWM.png" alt="钉钉">
+      <span class="divider"></span>
+      <img class="diamond" src="https://down-cdn.dingtalk.com/ddmedia/iwElAqNwbmcDBgTRAeAF0QHgBrBBm1tWTGU9OQn8WH8oDPwAB9IABsALCAAJqm9wZW4udG9vbHMKAAvSAADvYA.png" alt="方案">
+      <span class="brand-title">数字化解决方案</span>
+    </div>
+    <span>2026 · 奥斯玛智能装备</span>
+  </div>
+  <div class="cover-copy">
+    <div class="kicker">THANK YOU</div>
+    <h1 class="h1">携手共建<br>数字化管理体系</h1>
+    <p class="subtitle">三周见效 · 六周全覆盖 · 支撑年产值3亿→5亿升级</p>
+    <div class="cover-meta">
+      <span class="meta-pill">钉钉数字化底座</span>
+      <span class="meta-pill">AI表格</span>
+      <span class="meta-pill">宜搭低代码</span>
+    </div>
+  </div>
+  <div class="deck-footer"><span>奥斯玛智能装备（广东）有限公司</span><span>10 / 10</span></div>
+</section>
+
+</div>
+<script data-inlined-from="runtime.js">
+/* html-ppt :: runtime.js
+ * Keyboard-driven deck runtime. Zero dependencies.
+ *
+ * Features:
+ *   ← → / space / PgUp PgDn / Home End  navigation
+ *   F  fullscreen
+ *   S  presenter mode (opens a NEW WINDOW with current/next slide preview + notes + timer)
+ *       The original window stays as audience view, synced via BroadcastChannel.
+ *       Slide previews use CSS transform:scale() at design resolution for pixel-perfect layout.
+ *   N  quick notes overlay (bottom drawer)
+ *   O  slide overview grid
+ *   T  cycle themes (reads data-themes on <html> or <body>)
+ *   A  cycle demo animation on current slide
+ *   URL hash #/N  deep-link to slide N (1-based)
+ *   Progress bar auto-managed
+ *   Visible previous/next buttons auto-managed
+ */
+(function () {
+  'use strict';
+
+  const ANIMS = ['fade-up','fade-down','fade-left','fade-right','rise-in','drop-in',
+    'zoom-pop','blur-in','glitch-in','typewriter','neon-glow','shimmer-sweep',
+    'gradient-flow','stagger-list','counter-up','path-draw','parallax-tilt',
+    'card-flip-3d','cube-rotate-3d','page-turn-3d','perspective-zoom',
+    'marquee-scroll','kenburns','confetti-burst','spotlight','morph-shape','ripple-reveal'];
+
+  function ready(fn){ if(document.readyState!='loading')fn(); else document.addEventListener('DOMContentLoaded',fn);}
+
+  /* ========== Parse URL for preview-only mode ==========
+   * When loaded in an iframe with query "?preview=3", runtime enters a
+   * locked single-slide mode: only slide N is visible, no chrome, no keys,
+   * no hash updates. This is how the presenter window shows pixel-perfect
+   * previews — by loading the actual deck file in an iframe and telling it
+   * to display only a specific slide.
+   */
+  function getPreviewIdx() {
+    const m = /[?&]preview=(\d+)/.exec(location.search || '');
+    return m ? parseInt(m[1], 10) - 1 : -1;
+  }
+
+  ready(function () {
+    const deck = document.querySelector('.deck');
+    if (!deck) return;
+    const slides = Array.from(deck.querySelectorAll('.slide'));
+    if (!slides.length) return;
+
+    const previewOnlyIdx = getPreviewIdx();
+    const isPreviewMode = previewOnlyIdx >= 0 && previewOnlyIdx < slides.length;
+
+    /* ===== Preview-only mode: show one slide, hide everything else ===== */
+    if (isPreviewMode) {
+      function showSlide(i) {
+        slides.forEach((s, j) => {
+          const active = (j === i);
+          s.classList.toggle('is-active', active);
+          s.style.display = active ? '' : 'none';
+          if (active) {
+            s.style.opacity = '1';
+            s.style.transform = 'none';
+            s.style.pointerEvents = 'auto';
+          }
+        });
+      }
+      showSlide(previewOnlyIdx);
+      /* Hide chrome that the presenter shouldn't see in preview */
+      const hideSel = '.progress-bar, .deck-controls, .notes-overlay, .overview, .notes, aside.notes, .speaker-notes';
+      document.querySelectorAll(hideSel).forEach(el => { el.style.display = 'none'; });
+      document.documentElement.setAttribute('data-preview', '1');
+      document.body.setAttribute('data-preview', '1');
+      /* Auto-detect theme base path for theme switching in preview mode */
+      function getPreviewThemeBase() {
+        const base = document.documentElement.getAttribute('data-theme-base');
+        if (base) return base;
+        const tl = document.getElementById('theme-link');
+        if (tl) {
+          const raw = tl.getAttribute('href') || '';
+          const ls = raw.lastIndexOf('/');
+          if (ls >= 0) return raw.substring(0, ls + 1);
+        }
+        return 'assets/themes/';
+      }
+      const previewThemeBase = getPreviewThemeBase();
+
+      /* Listen for postMessage from parent presenter window:
+       *  - preview-goto: switch visible slide WITHOUT reloading
+       *  - preview-theme: switch theme CSS link to match audience window */
+      window.addEventListener('message', function(e) {
+        if (!e.data) return;
+        if (e.data.type === 'preview-goto') {
+          const n = parseInt(e.data.idx, 10);
+          if (n >= 0 && n < slides.length) showSlide(n);
+        } else if (e.data.type === 'preview-theme' && e.data.name) {
+          let link = document.getElementById('theme-link');
+          if (!link) {
+            link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.id = 'theme-link';
+            document.head.appendChild(link);
+          }
+          link.href = previewThemeBase + e.data.name + '.css';
+          document.documentElement.setAttribute('data-theme', e.data.name);
+        }
+      });
+      /* Signal to parent that preview iframe is ready */
+      try { window.parent && window.parent.postMessage({ type: 'preview-ready' }, '*'); } catch(e) {}
+      return;
+    }
+
+    let idx = 0;
+    const total = slides.length;
+
+    /* ===== BroadcastChannel for presenter sync ===== */
+    const CHANNEL_NAME = 'html-ppt-presenter-' + location.pathname;
+    let bc;
+    try { bc = new BroadcastChannel(CHANNEL_NAME); } catch(e) { bc = null; }
+
+    // Are we running inside the presenter popup? (legacy flag, now unused)
+    const isPresenterWindow = false;
+
+    /* ===== progress bar ===== */
+    let bar = document.querySelector('.progress-bar');
+    if (!bar) {
+      bar = document.createElement('div');
+      bar.className = 'progress-bar';
+      bar.innerHTML = '<span></span>';
+      document.body.appendChild(bar);
+    }
+    const barFill = bar.querySelector('span');
+
+    /* ===== notes overlay (N key) ===== */
+    let notes = document.querySelector('.notes-overlay');
+    if (!notes) {
+      notes = document.createElement('div');
+      notes.className = 'notes-overlay';
+      document.body.appendChild(notes);
+    }
+
+    /* ===== visible navigation controls ===== */
+    const controlsStyleId = 'html-ppt-deck-controls-style';
+    if (total > 1 && !document.getElementById(controlsStyleId)) {
+      const style = document.createElement('style');
+      style.id = controlsStyleId;
+      style.textContent = [
+        '.deck-controls{position:fixed;inset:0;z-index:80;pointer-events:none;font-family:var(--font-sans,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif)}',
+        '.deck-controls button{position:absolute;top:50%;transform:translateY(-50%);height:54px;min-width:54px;padding:0 16px;border:0;border-radius:999px;color:#fff;background:rgba(12,14,24,.72);font-size:14px;font-weight:850;pointer-events:auto;border:1px solid rgba(255,255,255,.22);box-shadow:0 18px 48px rgba(0,0,0,.3);backdrop-filter:blur(18px);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background .2s var(--ease,ease),transform .2s var(--ease,ease),opacity .2s var(--ease,ease)}',
+        '.deck-controls .deck-arrow{font-size:30px;line-height:1;font-weight:600;margin-top:-2px}',
+        '.deck-controls .deck-label{font-size:13px;letter-spacing:.02em;white-space:nowrap}',
+        '.deck-controls .deck-prev{left:18px}.deck-controls .deck-next{right:18px}',
+        '.deck-controls button:hover{background:var(--grad,var(--accent,#3b6cff));transform:translateY(-50%) translateY(-1px)}',
+        '.deck-controls button:disabled{opacity:.32;cursor:not-allowed;transform:translateY(-50%);background:rgba(12,14,24,.26)}',
+        '.deck-controls .deck-count{position:absolute;right:22px;top:18px;min-width:76px;padding:8px 12px;border-radius:999px;background:rgba(12,14,24,.62);border:1px solid rgba(255,255,255,.16);box-shadow:0 12px 34px rgba(0,0,0,.18);text-align:center;color:rgba(255,255,255,.9);pointer-events:none;font-size:13px;font-weight:800;font-variant-numeric:tabular-nums}',
+        '@media(max-width:720px){.deck-controls button{height:46px;min-width:46px;padding:0 12px}.deck-controls .deck-label{display:none}.deck-controls .deck-prev{left:10px}.deck-controls .deck-next{right:10px}.deck-controls .deck-count{right:12px;top:12px}}'
+      ].join('');
+      document.head.appendChild(style);
+    }
+    let controls = document.querySelector('.deck-controls');
+    if (!controls && total > 1) {
+      controls = document.createElement('div');
+      controls.className = 'deck-controls';
+      controls.setAttribute('aria-label', '幻灯片翻页控制');
+      controls.innerHTML = '<button type="button" class="deck-prev" aria-label="上一页"><span class="deck-arrow" aria-hidden="true">‹</span><span class="deck-label">上一页</span></button><span class="deck-count" aria-live="polite">1 / ' + total + '</span><button type="button" class="deck-next" aria-label="下一页"><span class="deck-label">下一页</span><span class="deck-arrow" aria-hidden="true">›</span></button>';
+      document.body.appendChild(controls);
+    }
+    const prevBtn = controls ? controls.querySelector('.deck-prev') : null;
+    const nextBtn = controls ? controls.querySelector('.deck-next') : null;
+    const countEl = controls ? controls.querySelector('.deck-count') : null;
+
+    /* ===== overview grid (O key) ===== */
+    let overview = document.querySelector('.overview');
+    if (!overview) {
+      overview = document.createElement('div');
+      overview.className = 'overview';
+      slides.forEach((s, i) => {
+        const t = document.createElement('div');
+        t.className = 'thumb';
+        // Force 16:9 aspect ratio robustly
+        t.style.padding = '0 0 56.25% 0';
+        t.style.height = '0';
+        t.style.position = 'relative';
+        t.style.overflow = 'hidden';
+
+        const title = s.getAttribute('data-title') ||
+          (s.querySelector('h1,h2,h3')||{}).textContent || ('Slide '+(i+1));
+        
+        // Create a container for the mini-slide
+        const mini = document.createElement('div');
+        mini.className = 'mini-slide';
+        mini.style.position = 'absolute';
+        mini.style.top = '0';
+        mini.style.left = '0';
+        mini.style.width = '1920px';
+        mini.style.height = '1080px';
+        mini.style.transformOrigin = 'top left';
+        mini.style.pointerEvents = 'none';
+        mini.style.background = 'var(--bg)';
+        
+        // Clone the slide content
+        const clone = s.cloneNode(true);
+        clone.className = 'slide is-active'; // force active styles
+        clone.style.position = 'absolute';
+        clone.style.inset = '0';
+        clone.style.transform = 'none';
+        clone.style.opacity = '1';
+        clone.style.padding = '72px 96px'; // ensure padding is kept
+        
+        mini.appendChild(clone);
+        t.appendChild(mini);
+
+        // Add the number and title overlay
+        const overlay = document.createElement('div');
+        overlay.style.position = 'absolute';
+        overlay.style.inset = '0';
+        overlay.style.background = 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.8) 100%)';
+        overlay.style.color = '#fff';
+        overlay.style.zIndex = '10';
+        overlay.style.pointerEvents = 'none';
+        
+        const n = document.createElement('div');
+        n.className = 'n';
+        n.textContent = i + 1;
+        n.style.position = 'absolute';
+        n.style.top = '12px';
+        n.style.left = '16px';
+        n.style.fontWeight = '700';
+        n.style.fontSize = '16px';
+        n.style.color = '#fff';
+        n.style.textShadow = '0 1px 4px rgba(0,0,0,0.8)';
+        
+        const text = document.createElement('div');
+        text.className = 't';
+        text.textContent = title.trim().slice(0,80);
+        text.style.position = 'absolute';
+        text.style.bottom = '12px';
+        text.style.left = '16px';
+        text.style.right = '16px';
+        text.style.fontWeight = '600';
+        text.style.fontSize = '14px';
+        text.style.color = '#fff';
+        text.style.textShadow = '0 1px 4px rgba(0,0,0,0.8)';
+        
+        overlay.appendChild(n);
+        overlay.appendChild(text);
+        t.appendChild(overlay);
+
+        t.addEventListener('click', () => { go(i); toggleOverview(false); });
+        overview.appendChild(t);
+      });
+      document.body.appendChild(overview);
+    }
+
+    /* ===== navigation ===== */
+    function go(n, fromRemote){
+      n = Math.max(0, Math.min(total-1, n));
+      slides.forEach((s,i) => {
+        s.classList.toggle('is-active', i===n);
+        s.classList.toggle('is-prev', i<n);
+      });
+      idx = n;
+      barFill.style.width = ((n+1)/total*100)+'%';
+      if (prevBtn) prevBtn.disabled = (n === 0);
+      if (nextBtn) nextBtn.disabled = (n === total - 1);
+      if (countEl) countEl.textContent = (n+1) + ' / ' + total;
+      const numEl = document.querySelector('.slide-number');
+      if (numEl) { numEl.setAttribute('data-current', n+1); numEl.setAttribute('data-total', total); }
+
+      // notes (bottom overlay)
+      const note = slides[n].querySelector('.notes, aside.notes, .speaker-notes');
+      notes.innerHTML = note ? note.innerHTML : '';
+
+      // hash
+      const hashTarget = '#/'+(n+1);
+      if (location.hash !== hashTarget && !isPresenterWindow) {
+        history.replaceState(null,'', hashTarget);
+      }
+
+      // re-trigger entry animations
+      slides[n].querySelectorAll('[data-anim]').forEach(el => {
+        const a = el.getAttribute('data-anim');
+        el.classList.remove('anim-'+a);
+        void el.offsetWidth;
+        el.classList.add('anim-'+a);
+      });
+
+      // counter-up
+      slides[n].querySelectorAll('.counter').forEach(el => {
+        const target = parseFloat(el.getAttribute('data-to')||el.textContent);
+        const dur = parseInt(el.getAttribute('data-dur')||'1200',10);
+        const start = performance.now();
+        const from = 0;
+        function tick(now){
+          const t = Math.min(1,(now-start)/dur);
+          const v = from + (target-from)*(1-Math.pow(1-t,3));
+          el.textContent = (target % 1 === 0) ? Math.round(v) : v.toFixed(1);
+          if (t<1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      });
+
+      // Broadcast to other window (audience ↔ presenter)
+      if (!fromRemote && bc) {
+        bc.postMessage({ type: 'go', idx: n });
+      }
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function(){ go(idx - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function(){ go(idx + 1); });
+
+    /* ===== listen for remote navigation / theme changes ===== */
+    if (bc) {
+      bc.onmessage = function(e) {
+        if (!e.data) return;
+        if (e.data.type === 'go' && typeof e.data.idx === 'number') {
+          go(e.data.idx, true);
+        } else if (e.data.type === 'theme' && e.data.name) {
+          /* Sync theme across windows */
+          const i = themes.indexOf(e.data.name);
+          if (i >= 0) themeIdx = i;
+          applyTheme(e.data.name);
+        }
+      };
+    }
+
+    function toggleNotes(force){ notes.classList.toggle('open', force!==undefined?force:!notes.classList.contains('open')); }
+    function toggleOverview(force){
+      const isOpen = force!==undefined ? force : !overview.classList.contains('open');
+      overview.classList.toggle('open', isOpen);
+      if (isOpen) {
+        requestAnimationFrame(() => {
+          const thumbs = overview.querySelectorAll('.thumb');
+          if (thumbs.length) {
+            const scale = thumbs[0].clientWidth / 1920;
+            overview.querySelectorAll('.mini-slide').forEach(m => {
+              m.style.transform = 'scale(' + scale + ')';
+            });
+          }
+        });
+      }
+    }
+
+    /* ========== PRESENTER MODE — Magnetic-card popup window ========== */
+    /* Opens a new window with 4 draggable, resizable cards:
+     *   CURRENT  — iframe(?preview=N)   pixel-perfect preview of current slide
+     *   NEXT     — iframe(?preview=N+1) pixel-perfect preview of next slide
+     *   SCRIPT   — large speaker notes (逐字稿)
+     *   TIMER    — elapsed timer + page counter + controls
+     * Cards remember position/size in localStorage.
+     * Two windows sync via BroadcastChannel.
+     */
+    let presenterWin = null;
+
+    function openPresenterWindow() {
+      if (presenterWin && !presenterWin.closed) {
+        presenterWin.focus();
+        return;
+      }
+
+      // Build absolute URL of THIS deck file (without hash/query)
+      const deckUrl = location.protocol + '//' + location.host + location.pathname;
+
+      // Collect slide titles + notes (HTML strings)
+      const slideMeta = slides.map((s, i) => {
+        const note = s.querySelector('.notes, aside.notes, .speaker-notes');
+        return {
+          title: s.getAttribute('data-title') ||
+            (s.querySelector('h1,h2,h3')||{}).textContent || ('Slide '+(i+1)),
+          notes: note ? note.innerHTML : ''
+        };
+      });
+
+      /* Capture current theme so presenter previews match the audience */
+      const currentTheme = root.getAttribute('data-theme') || (themes[themeIdx] || '');
+      const presenterHTML = buildPresenterHTML(deckUrl, slideMeta, total, idx, CHANNEL_NAME, currentTheme);
+
+      presenterWin = window.open('', 'html-ppt-presenter', 'width=1280,height=820,menubar=no,toolbar=no');
+      if (!presenterWin) {
+        alert('请允许弹出窗口以使用演讲者视图');
+        return;
+      }
+      presenterWin.document.open();
+      presenterWin.document.write(presenterHTML);
+      presenterWin.document.close();
+    }
+
+    function buildPresenterHTML(deckUrl, slideMeta, total, startIdx, channelName, currentTheme) {
+      const metaJSON = JSON.stringify(slideMeta);
+      const deckUrlJSON = JSON.stringify(deckUrl);
+      const channelJSON = JSON.stringify(channelName);
+      const themeJSON = JSON.stringify(currentTheme || '');
+      const storageKey = 'html-ppt-presenter:' + location.pathname;
+
+      // Build the document as a single template string for clarity
+      return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Presenter View</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    background: #1a1d24;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(88,166,255,.04), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(188,140,255,.04), transparent 50%);
+    color: #e6edf3;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
+  }
+  /* Stage: positioned area where cards live */
+  #stage { position: absolute; inset: 0; overflow: hidden; }
+
+  /* Magnetic card */
+  .pcard {
+    position: absolute;
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.02);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    min-width: 180px; min-height: 100px;
+    transition: box-shadow .2s, border-color .2s;
+  }
+  .pcard.dragging { box-shadow: 0 16px 48px rgba(0,0,0,.6), 0 0 0 2px rgba(88,166,255,.5); border-color: #58a6ff; transition: none; z-index: 9999; }
+  .pcard.resizing { box-shadow: 0 16px 48px rgba(0,0,0,.6), 0 0 0 2px rgba(63,185,80,.5); border-color: #3fb950; transition: none; z-index: 9999; }
+  .pcard:hover { border-color: rgba(88,166,255,.3); }
+
+  /* Card header (drag handle) */
+  .pcard-head {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,.04);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    cursor: move;
+    user-select: none;
+    flex-shrink: 0;
+  }
+  .pcard-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dot-color, #58a6ff); flex-shrink: 0; }
+  .pcard-title {
+    font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
+    font-weight: 700; color: #8b949e; flex: 1;
+  }
+  .pcard-meta { font-size: 11px; color: #6e7681; }
+
+  /* Card body */
+  .pcard-body { flex: 1; position: relative; overflow: hidden; min-height: 0; }
+
+  /* Preview cards (CURRENT/NEXT) — iframe-based pixel-perfect render */
+  .pcard-preview .pcard-body { background: #000; }
+  .pcard-preview iframe {
+    position: absolute; top: 0; left: 0;
+    width: 1920px; height: 1080px;
+    border: none;
+    transform-origin: top left;
+    pointer-events: none;
+    background: transparent;
+  }
+  .pcard-preview .preview-end {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    color: #484f58; font-size: 14px; letter-spacing: .12em;
+  }
+
+  /* Notes card */
+  .pcard-notes .pcard-body {
+    padding: 14px 18px;
+    overflow-y: auto;
+    font-size: 18px; line-height: 1.75;
+    color: #d0d7de;
+    font-family: "Noto Sans SC", -apple-system, sans-serif;
+  }
+  .pcard-notes .pcard-body p { margin: 0 0 .7em 0; }
+  .pcard-notes .pcard-body strong { color: #f0883e; }
+  .pcard-notes .pcard-body em { color: #58a6ff; font-style: normal; }
+  .pcard-notes .pcard-body code {
+    font-family: "SF Mono", monospace; font-size: .9em;
+    background: rgba(255,255,255,.08); padding: 1px 6px; border-radius: 4px;
+  }
+  .pcard-notes .empty { color: #484f58; font-style: italic; }
+
+  /* Timer card */
+  .pcard-timer .pcard-body {
+    display: flex; flex-direction: column; gap: 14px;
+    padding: 18px 20px; justify-content: center;
+  }
+  .timer-display {
+    font-family: "SF Mono", "JetBrains Mono", monospace;
+    font-size: 42px; font-weight: 700;
+    color: #3fb950;
+    letter-spacing: .04em;
+    line-height: 1;
+  }
+  .timer-row {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 14px; color: #8b949e;
+  }
+  .timer-row .label { font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: #6e7681; }
+  .timer-row .val { color: #e6edf3; font-weight: 600; font-family: "SF Mono", monospace; }
+  .timer-controls { display: flex; gap: 8px; flex-wrap: wrap; }
+  .timer-btn {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.1);
+    color: #e6edf3;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .timer-btn:hover { background: rgba(88,166,255,.15); border-color: #58a6ff; }
+  .timer-btn:active { transform: translateY(1px); }
+
+  /* Resize handle */
+  .pcard-resize {
+    position: absolute; right: 0; bottom: 0;
+    width: 18px; height: 18px;
+    cursor: nwse-resize;
+    background: linear-gradient(135deg, transparent 50%, rgba(255,255,255,.25) 50%, rgba(255,255,255,.25) 60%, transparent 60%, transparent 70%, rgba(255,255,255,.25) 70%, rgba(255,255,255,.25) 80%, transparent 80%);
+    z-index: 5;
+  }
+  .pcard-resize:hover { background: linear-gradient(135deg, transparent 50%, #58a6ff 50%, #58a6ff 60%, transparent 60%, transparent 70%, #58a6ff 70%, #58a6ff 80%, transparent 80%); }
+
+  /* Bottom hint bar */
+  .hint-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding: 6px 16px;
+    font-size: 11px; color: #8b949e;
+    display: flex; gap: 18px; align-items: center;
+    z-index: 1000;
+  }
+  .hint-bar kbd {
+    background: rgba(255,255,255,.08);
+    padding: 1px 6px; border-radius: 3px;
+    font-family: "SF Mono", monospace;
+    font-size: 10px;
+    border: 1px solid rgba(255,255,255,.1);
+    color: #e6edf3;
+  }
+  .hint-bar .reset-layout {
+    margin-left: auto;
+    background: transparent; border: 1px solid rgba(255,255,255,.15);
+    color: #8b949e; padding: 3px 10px; border-radius: 4px;
+    font-size: 11px; cursor: pointer; font-family: inherit;
+  }
+  .hint-bar .reset-layout:hover { background: rgba(248,81,73,.15); border-color: #f85149; color: #f85149; }
+
+  body.is-dragging-card * { user-select: none !important; }
+  body.is-dragging-card iframe { pointer-events: none !important; }
+</style>
+</head>
+<body>
+
+<div id="stage">
+  <div class="pcard pcard-preview" id="card-cur" style="--dot-color:#58a6ff">
+    <div class="pcard-head" data-drag>
+      <span class="pcard-dot"></span>
+      <span class="pcard-title">CURRENT</span>
+      <span class="pcard-meta" id="cur-meta">—</span>
+    </div>
+    <div class="pcard-body"><iframe id="iframe-cur"></iframe></div>
+    <div class="pcard-resize" data-resize></div>
+  </div>
+
+  <div class="pcard pcard-preview" id="card-nxt" style="--dot-color:#bc8cff">
+    <div class="pcard-head" data-drag>
+      <span class="pcard-dot"></span>
+      <span class="pcard-title">NEXT</span>
+      <span class="pcard-meta" id="nxt-meta">—</span>
+    </div>
+    <div class="pcard-body"><iframe id="iframe-nxt"></iframe></div>
+    <div class="pcard-resize" data-resize></div>
+  </div>
+
+  <div class="pcard pcard-notes" id="card-notes" style="--dot-color:#f0883e">
+    <div class="pcard-head" data-drag>
+      <span class="pcard-dot"></span>
+      <span class="pcard-title">SPEAKER SCRIPT · 逐字稿</span>
+    </div>
+    <div class="pcard-body" id="notes-body"></div>
+    <div class="pcard-resize" data-resize></div>
+  </div>
+
+  <div class="pcard pcard-timer" id="card-timer" style="--dot-color:#3fb950">
+    <div class="pcard-head" data-drag>
+      <span class="pcard-dot"></span>
+      <span class="pcard-title">TIMER</span>
+    </div>
+    <div class="pcard-body">
+      <div class="timer-display" id="timer-display">00:00</div>
+      <div class="timer-row">
+        <span class="label">Slide</span>
+        <span class="val" id="timer-count">1 / ${total}</span>
+      </div>
+      <div class="timer-controls">
+        <button class="timer-btn" id="btn-prev">← Prev</button>
+        <button class="timer-btn" id="btn-next">Next →</button>
+        <button class="timer-btn" id="btn-reset">⏱ Reset</button>
+      </div>
+    </div>
+    <div class="pcard-resize" data-resize></div>
+  </div>
+</div>
+
+<div class="hint-bar">
+  <span><kbd>← →</kbd> 翻页</span>
+  <span><kbd>R</kbd> 重置计时</span>
+  <span><kbd>Esc</kbd> 关闭</span>
+  <span style="color:#6e7681">拖动卡片头部移动 · 拖动右下角调整大小</span>
+  <button class="reset-layout" id="reset-layout">重置布局</button>
+</div>
+
+<script>
+(function(){
+  var slideMeta = ${metaJSON};
+  var total = ${total};
+  var idx = ${startIdx};
+  var deckUrl = ${deckUrlJSON};
+  var STORAGE_KEY = ${JSON.stringify(storageKey)};
+  var bc;
+  try { bc = new BroadcastChannel(${channelJSON}); } catch(e) {}
+
+  var iframeCur = document.getElementById('iframe-cur');
+  var iframeNxt = document.getElementById('iframe-nxt');
+  var notesBody = document.getElementById('notes-body');
+  var curMeta = document.getElementById('cur-meta');
+  var nxtMeta = document.getElementById('nxt-meta');
+  var timerDisplay = document.getElementById('timer-display');
+  var timerCount = document.getElementById('timer-count');
+
+  /* ===== Default card layout ===== */
+  function defaultLayout() {
+    var w = window.innerWidth;
+    var h = window.innerHeight - 36; /* leave room for hint bar */
+    return {
+      'card-cur':   { x: 16,        y: 16,            w: Math.round(w*0.55) - 24, h: Math.round(h*0.62) - 16 },
+      'card-nxt':   { x: Math.round(w*0.55) + 8, y: 16, w: w - Math.round(w*0.55) - 24, h: Math.round(h*0.42) - 16 },
+      'card-notes': { x: Math.round(w*0.55) + 8, y: Math.round(h*0.42) + 8, w: w - Math.round(w*0.55) - 24, h: h - Math.round(h*0.42) - 16 },
+      'card-timer': { x: 16,        y: Math.round(h*0.62) + 8, w: Math.round(w*0.55) - 24, h: h - Math.round(h*0.62) - 16 }
+    };
+  }
+
+  /* ===== Apply / save / restore layout ===== */
+  function applyLayout(layout) {
+    Object.keys(layout).forEach(function(id){
+      var el = document.getElementById(id);
+      var l = layout[id];
+      if (el && l) {
+        el.style.left = l.x + 'px';
+        el.style.top = l.y + 'px';
+        el.style.width = l.w + 'px';
+        el.style.height = l.h + 'px';
+      }
+    });
+    rescaleAll();
+  }
+  function readLayout() {
+    try {
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) return JSON.parse(saved);
+    } catch(e) {}
+    return defaultLayout();
+  }
+  function saveLayout() {
+    var layout = {};
+    ['card-cur','card-nxt','card-notes','card-timer'].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) {
+        layout[id] = {
+          x: parseInt(el.style.left,10) || 0,
+          y: parseInt(el.style.top,10) || 0,
+          w: parseInt(el.style.width,10) || 300,
+          h: parseInt(el.style.height,10) || 200
+        };
+      }
+    });
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(layout)); } catch(e) {}
+  }
+
+  /* ===== iframe rescale to fit card body ===== */
+  function rescaleIframe(iframe) {
+    if (!iframe || iframe.style.display === 'none') return;
+    var body = iframe.parentElement;
+    var cw = body.clientWidth, ch = body.clientHeight;
+    if (!cw || !ch) return;
+    var s = Math.min(cw / 1920, ch / 1080);
+    iframe.style.transform = 'scale(' + s + ')';
+    /* Center the scaled iframe in the body */
+    var sw = 1920 * s, sh = 1080 * s;
+    iframe.style.left = Math.max(0, (cw - sw) / 2) + 'px';
+    iframe.style.top = Math.max(0, (ch - sh) / 2) + 'px';
+  }
+  function rescaleAll() {
+    rescaleIframe(iframeCur);
+    rescaleIframe(iframeNxt);
+  }
+  window.addEventListener('resize', rescaleAll);
+
+  /* ===== Drag (move card by header) ===== */
+  document.querySelectorAll('[data-drag]').forEach(function(handle){
+    handle.addEventListener('mousedown', function(e){
+      if (e.button !== 0) return;
+      var card = handle.closest('.pcard');
+      if (!card) return;
+      e.preventDefault();
+      card.classList.add('dragging');
+      document.body.classList.add('is-dragging-card');
+      var startX = e.clientX, startY = e.clientY;
+      var startL = parseInt(card.style.left,10) || 0;
+      var startT = parseInt(card.style.top,10)  || 0;
+      function onMove(ev){
+        var nx = Math.max(0, Math.min(window.innerWidth - 100, startL + ev.clientX - startX));
+        var ny = Math.max(0, Math.min(window.innerHeight - 50, startT + ev.clientY - startY));
+        card.style.left = nx + 'px';
+        card.style.top = ny + 'px';
+      }
+      function onUp(){
+        card.classList.remove('dragging');
+        document.body.classList.remove('is-dragging-card');
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        saveLayout();
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+  });
+
+  /* ===== Resize (drag bottom-right corner) ===== */
+  document.querySelectorAll('[data-resize]').forEach(function(handle){
+    handle.addEventListener('mousedown', function(e){
+      if (e.button !== 0) return;
+      var card = handle.closest('.pcard');
+      if (!card) return;
+      e.preventDefault(); e.stopPropagation();
+      card.classList.add('resizing');
+      document.body.classList.add('is-dragging-card');
+      var startX = e.clientX, startY = e.clientY;
+      var startW = parseInt(card.style.width,10)  || card.offsetWidth;
+      var startH = parseInt(card.style.height,10) || card.offsetHeight;
+      function onMove(ev){
+        var nw = Math.max(180, startW + ev.clientX - startX);
+        var nh = Math.max(100, startH + ev.clientY - startY);
+        card.style.width = nw + 'px';
+        card.style.height = nh + 'px';
+        if (card.querySelector('iframe')) rescaleIframe(card.querySelector('iframe'));
+      }
+      function onUp(){
+        card.classList.remove('resizing');
+        document.body.classList.remove('is-dragging-card');
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onUp);
+        rescaleAll();
+        saveLayout();
+      }
+      document.addEventListener('mousemove', onMove);
+      document.addEventListener('mouseup', onUp);
+    });
+  });
+
+  /* ===== Preview iframe ready tracking =====
+   * Each iframe loads the deck ONCE with ?preview=1 on init. Subsequent
+   * slide changes are sent via postMessage('preview-goto') so the iframe
+   * just toggles visibility of a different .slide — no reload, no flicker.
+   */
+  var iframeReady = { cur: false, nxt: false };
+  var currentTheme = ${themeJSON};
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.type !== 'preview-ready') return;
+    var iframe = null;
+    if (e.source === iframeCur.contentWindow) {
+      iframeReady.cur = true;
+      iframe = iframeCur;
+      postPreviewGoto(iframeCur, idx);
+    } else if (e.source === iframeNxt.contentWindow) {
+      iframeReady.nxt = true;
+      iframe = iframeNxt;
+      postPreviewGoto(iframeNxt, idx + 1 < total ? idx + 1 : idx);
+    }
+    /* Sync current theme to the iframe */
+    if (iframe && currentTheme) {
+      try { iframe.contentWindow.postMessage({ type: 'preview-theme', name: currentTheme }, '*'); } catch(err) {}
+    }
+    if (iframe) rescaleIframe(iframe);
+  });
+
+  function postPreviewGoto(iframe, n) {
+    try {
+      iframe.contentWindow.postMessage({ type: 'preview-goto', idx: n }, '*');
+    } catch(e) {}
+  }
+
+  /* ===== Update content =====
+   * Smooth (no-reload) navigation: send postMessage to iframes instead of
+   * resetting src. Iframes stay loaded, just switch visible .slide.
+   */
+  function update(n) {
+    n = Math.max(0, Math.min(total - 1, n));
+    idx = n;
+
+    /* Current preview — postMessage (smooth) */
+    if (iframeReady.cur) postPreviewGoto(iframeCur, n);
+    curMeta.textContent = (n + 1) + '/' + total;
+
+    /* Next preview */
+    if (n + 1 < total) {
+      iframeNxt.style.display = '';
+      var endEl = document.querySelector('#card-nxt .preview-end');
+      if (endEl) endEl.remove();
+      if (iframeReady.nxt) postPreviewGoto(iframeNxt, n + 1);
+      nxtMeta.textContent = (n + 2) + '/' + total;
+    } else {
+      iframeNxt.style.display = 'none';
+      var body = document.querySelector('#card-nxt .pcard-body');
+      if (body && !body.querySelector('.preview-end')) {
+        var end = document.createElement('div');
+        end.className = 'preview-end';
+        end.textContent = '— END OF DECK —';
+        body.appendChild(end);
+      }
+      nxtMeta.textContent = 'END';
+    }
+
+    /* Notes */
+    var note = slideMeta[n].notes;
+    notesBody.innerHTML = note || '<span class="empty">（这一页还没有逐字稿）</span>';
+
+    /* Timer count */
+    timerCount.textContent = (n + 1) + ' / ' + total;
+  }
+
+  /* ===== Timer ===== */
+  var tStart = Date.now();
+  setInterval(function(){
+    var s = Math.floor((Date.now() - tStart) / 1000);
+    var mm = String(Math.floor(s/60)).padStart(2,'0');
+    var ss = String(s%60).padStart(2,'0');
+    timerDisplay.textContent = mm + ':' + ss;
+  }, 1000);
+  function resetTimer(){ tStart = Date.now(); timerDisplay.textContent = '00:00'; }
+
+  /* ===== BroadcastChannel sync ===== */
+  if (bc) {
+    bc.onmessage = function(e){
+      if (!e.data) return;
+      if (e.data.type === 'go') update(e.data.idx);
+      else if (e.data.type === 'theme' && e.data.name) {
+        currentTheme = e.data.name;
+        /* Forward theme change to preview iframes */
+        [iframeCur, iframeNxt].forEach(function(iframe){
+          try {
+            iframe.contentWindow.postMessage({ type: 'preview-theme', name: e.data.name }, '*');
+          } catch(err) {}
+        });
+      }
+    };
+  }
+  function go(n) {
+    update(n);
+    if (bc) bc.postMessage({ type: 'go', idx: idx });
+  }
+
+  /* ===== Buttons ===== */
+  document.getElementById('btn-prev').addEventListener('click', function(){ go(idx - 1); });
+  document.getElementById('btn-next').addEventListener('click', function(){ go(idx + 1); });
+  document.getElementById('btn-reset').addEventListener('click', resetTimer);
+  document.getElementById('reset-layout').addEventListener('click', function(){
+    if (confirm('恢复默认卡片布局？')) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+      applyLayout(defaultLayout());
+    }
+  });
+
+  /* ===== Keyboard ===== */
+  document.addEventListener('keydown', function(e){
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    switch(e.key) {
+      case 'ArrowRight': case ' ': case 'PageDown': go(idx + 1); e.preventDefault(); break;
+      case 'ArrowLeft':  case 'PageUp':   go(idx - 1); e.preventDefault(); break;
+      case 'Home': go(0); break;
+      case 'End':  go(total - 1); break;
+      case 'r': case 'R': resetTimer(); break;
+      case 'Escape': window.close(); break;
+    }
+  });
+
+  /* ===== Iframe load → rescale (catches initial size) ===== */
+  iframeCur.addEventListener('load', function(){ rescaleIframe(iframeCur); });
+  iframeNxt.addEventListener('load', function(){ rescaleIframe(iframeNxt); });
+
+  /* ===== Init =====
+   * Load each iframe ONCE with the deck file. After they post
+   * 'preview-ready', all subsequent navigation is via postMessage
+   * (smooth, no reload, no flicker).
+   */
+  applyLayout(readLayout());
+  iframeCur.src = deckUrl + '?preview=' + (idx + 1);
+  if (idx + 1 < total) iframeNxt.src = deckUrl + '?preview=' + (idx + 2);
+  /* Initialize notes/timer/count without touching iframes */
+  notesBody.innerHTML = slideMeta[idx].notes || '<span class="empty">（这一页还没有逐字稿）</span>';
+  curMeta.textContent = (idx + 1) + '/' + total;
+  nxtMeta.textContent = (idx + 2) + '/' + total;
+  timerCount.textContent = (idx + 1) + ' / ' + total;
+})();
+</` + `script>
+</body></html>`;
+    }
+
+    function fullscreen(){ const el=document.documentElement;
+      if (!document.fullscreenElement) el.requestFullscreen&&el.requestFullscreen();
+      else document.exitFullscreen&&document.exitFullscreen();
+    }
+
+    // theme cycling
+    const root = document.documentElement;
+    const themesAttr = root.getAttribute('data-themes') || document.body.getAttribute('data-themes');
+    const themes = themesAttr ? themesAttr.split(',').map(s=>s.trim()).filter(Boolean) : [];
+    let themeIdx = 0;
+
+    // Auto-detect theme base path from existing <link id="theme-link">
+    let themeBase = root.getAttribute('data-theme-base');
+    if (!themeBase) {
+      const existingLink = document.getElementById('theme-link');
+      if (existingLink) {
+        // el.getAttribute('href') gives the raw relative path written in HTML
+        const rawHref = existingLink.getAttribute('href') || '';
+        const lastSlash = rawHref.lastIndexOf('/');
+        themeBase = lastSlash >= 0 ? rawHref.substring(0, lastSlash + 1) : 'assets/themes/';
+      } else {
+        themeBase = 'assets/themes/';
+      }
+    }
+
+    function applyTheme(name) {
+      let link = document.getElementById('theme-link');
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.id = 'theme-link';
+        document.head.appendChild(link);
+      }
+      link.href = themeBase + name + '.css';
+      root.setAttribute('data-theme', name);
+      const ind = document.querySelector('.theme-indicator');
+      if (ind) ind.textContent = name;
+    }
+    function cycleTheme(fromRemote){
+      if (!themes.length) return;
+      themeIdx = (themeIdx+1) % themes.length;
+      const name = themes[themeIdx];
+      applyTheme(name);
+      /* Broadcast to other window (audience ↔ presenter) */
+      if (!fromRemote && bc) bc.postMessage({ type: 'theme', name: name });
+    }
+
+    // animation cycling on current slide
+    let animIdx = 0;
+    function cycleAnim(){
+      animIdx = (animIdx+1) % ANIMS.length;
+      const a = ANIMS[animIdx];
+      const target = slides[idx].querySelector('[data-anim-target]') || slides[idx];
+      ANIMS.forEach(x => target.classList.remove('anim-'+x));
+      void target.offsetWidth;
+      target.classList.add('anim-'+a);
+      target.setAttribute('data-anim', a);
+      const ind = document.querySelector('.anim-indicator');
+      if (ind) ind.textContent = a;
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.metaKey||e.ctrlKey||e.altKey) return;
+      switch (e.key) {
+        case 'ArrowRight': case ' ': case 'PageDown': case 'Enter': go(idx+1); e.preventDefault(); break;
+        case 'ArrowLeft': case 'PageUp': case 'Backspace': go(idx-1); e.preventDefault(); break;
+        case 'Home': go(0); break;
+        case 'End': go(total-1); break;
+        case 'f': case 'F': fullscreen(); break;
+        case 's': case 'S': openPresenterWindow(); break;
+        case 'n': case 'N': toggleNotes(); break;
+        case 'o': case 'O': toggleOverview(); break;
+        case 't': case 'T': cycleTheme(); break;
+        case 'a': case 'A': cycleAnim(); break;
+        case 'Escape': toggleOverview(false); toggleNotes(false); break;
+      }
+    });
+
+    // hash deep-link
+    function fromHash(){
+      const m = /^#\/(\d+)/.exec(location.hash||'');
+      if (m) go(Math.max(0, parseInt(m[1],10)-1));
+    }
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
+    go(idx);
+  });
+})();
+
+</script>
+</body>
+</html>
