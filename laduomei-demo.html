@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>拉多美科技集团 - 交互演示</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+.header{background:linear-gradient(135deg,#f59e0b22,#f59e0b44);border-bottom:1px solid #f59e0b44;padding:40px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px;background:linear-gradient(135deg,#f59e0b,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header .sub{color:#94a3b8;font-size:14px}.container{max-width:1000px;margin:0 auto;padding:30px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:20px 0}
+.card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f59e0b,#06b6d4)}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 20px #f59e0b20}.card h3{font-size:16px;margin-bottom:8px;color:#f59e0b}
+.card p{font-size:13px;color:#94a3b8;line-height:1.6}
+.stitle{font-size:18px;font-weight:600;margin:30px 0 12px;padding-left:12px;border-left:3px solid #f59e0b}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:20px 0}
+.metric{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
+.metric .v{font-size:32px;font-weight:700;color:#f59e0b;margin-bottom:4px}.metric .l{font-size:12px;color:#94a3b8}
+.timeline{position:relative;padding-left:30px;margin:20px 0}.timeline::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#f59e0b,#06b6d4,#8b5cf6)}
+.titem{position:relative;margin-bottom:24px}.titem::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #f59e0b;background:#0a0e1a}
+.titem:nth-child(2)::before{border-color:#06b6d4}.titem:nth-child(3)::before{border-color:#8b5cf6}
+.titem h4{font-size:14px;margin-bottom:4px}.titem p{font-size:13px;color:#94a3b8}
+.info-bar{display:flex;gap:16px;flex-wrap:wrap;margin:20px 0}
+.info-tag{background:#131829;border:1px solid #1e293b;border-radius:8px;padding:12px 20px;font-size:14px}
+.info-tag span{color:#f59e0b;font-weight:700}
+.nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
+.nav a:hover{border-color:#f59e0b;color:#f59e0b}
+.footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
+.anim-num{display:inline-block;transition:all 1s ease}
+</style></head><body>
+<div class="header"><h1>🎮 拉多美科技集团 · 交互演示</h1><div class="sub">拉多美科技集团股份有限公司 · 新型肥料 · 数字化与AI升级解决方案可视化</div></div>
+<div class="container">
+<div class="nav"><a href="../index.html">🏠 总导航</a><a href="laduomei-report.html">📈 行业分析报告</a><a href="laduomei-solution.html">💡 升级解决方案</a></div>
+<div class="info-bar">
+<div class="info-tag">行业：<span>新型肥料</span></div>
+<div class="info-tag">数字化水平：<span>★★☆☆☆</span></div>
+<div class="info-tag">AI前景评级：<span>★★★★☆</span></div>
+<div class="info-tag">企业规模：<span>10-20亿</span></div>
+</div>
+<div class="stitle">🚀 AI升级核心方案</div>
+<div class="grid" id="solGrid"></div>
+<div class="stitle">📅 实施路径时间线</div>
+<div class="timeline" id="timeline"></div>
+<div class="stitle">📈 预期效果指标</div>
+<div class="metrics" id="metricsGrid"></div>
+<div class="nav"><a href="laduomei-report.html">👉 查看行业分析报告</a><a href="laduomei-solution.html">👉 查看升级解决方案</a></div>
+</div>
+<div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
+<script>
+const solutions=[{"title": "🏪 DMS经销商数字化管理平台（核心）", "desc": "构建覆盖1000+核心管理商、20000+核心服务商的一站式DMS平台。集成在线订货、库存实时可视、自动对账结算、经销商分级画像等功能。打通厂家-经销商-零售网点三级数据链路，消除信息孤岛，实现渠道全链条数字化透明管理。"}, {"title": "🤖 AI渠道智能运营引擎", "desc": "AI驱动的智能订货推荐（基于历史销售+季节+作物周期预测）、窜货智能预警（二维码溯源+区域异常检测模型）、返利自动结算（规则引擎+区块链存证）。将渠道管理从'经验驱动'升级为'数据+AI驱动'，降低人工差错率90%以上。"}, {"title": "📱 经销商赋能与培训AI助手", "desc": "基于拉多美200+专利和百县试验示范数据构建专属知识库，打造'拉多美AI农技顾问'。支持产品知识查询、施肥方案推荐、病虫害图片诊断、短视频/朋友圈文案自动生成。7×24h在线服务，大幅降低培训成本，提升渠道专业服务能力。"}, {"title": "🔗 上下游供应链协同平台", "desc": "连接上游腐植酸/钾肥/氮磷肥供应商与下游经销商/大耕户，实现采购需求智能匹配、原料价格AI预测、多基地智能排产与物流调度优化。通过数据贯通降低原料采购成本5-10%，缩短交付周期30%。"}, {"title": "🌾 智慧农服与大耕户CRM", "desc": "面向种植大户/合作社的AI测土配方施肥、作物病害AI诊断、种植日历智能提醒。记录种植规模、用肥历史、服务记录，AI分析增购潜力。推动拉多美从'卖肥料'升级为'卖方案+卖服务'，增强终端用户粘性与复购率。"}, {"title": "📊 数据中台与AI决策大脑", "desc": "汇聚渠道交易、终端用肥、作物长势、原料行情等多源数据，构建拉多美专属数据资产。AI辅助市场策略制定、新品研发方向判断、区域资源投放优化，实现全面数据驱动的企业管理升级。"}];
+const phases=["DMS经销商管理平台上线 + AI农技问答助手部署。解决最紧迫的渠道数据打通与效率问题，实现订货/库存/对账在线化，经销商可随时查看自身经营数据。同步上线AI知识库，赋能渠道专业能力。", "AI智能订货推荐 + 窜货预警系统 + 内容生成工具 + 经销商分级画像。深化渠道智能化运营，实现精准补货、自动窜货监控、营销内容批量生产。推动经销商从'搬货商'向'服务商'转型。", "供应链AI预测 + 智慧农服平台 + 数据中台 + AI决策大脑。向产业链上下游延伸AI赋能，实现原料采购优化、终端农户精准服务、全面数据驱动决策。完成从'传统肥料企业'到'数智化农服平台'的战略升级。"];
+const metrics=[{"value": "↓30%", "label": "渠道库存积压"}, {"value": "↑40%", "label": "订单处理效率"}, {"value": "↓90%", "label": "人工差错率"}, {"value": "↓10%", "label": "原料采购成本"}, {"value": "↑25%", "label": "经销商满意度"}, {"value": "↑20%", "label": "终端复购率"}];
+const labels=["第一阶段：筑基期（0-6个月）","第二阶段：成长期（6-18个月）","第三阶段：成熟期（18-24个月）"];
+const sg=document.getElementById("solGrid");
+solutions.forEach(s=>{const d=document.createElement("div");d.className="card";d.innerHTML=`<h3>${s.title}</h3><p>${s.desc}</p>`;sg.appendChild(d)});
+const tl=document.getElementById("timeline");
+phases.forEach((p,i)=>{const d=document.createElement("div");d.className="titem";d.innerHTML=`<h4>${labels[i]}</h4><p>${p}</p>`;tl.appendChild(d)});
+const mg=document.getElementById("metricsGrid");
+metrics.forEach(m=>{const d=document.createElement("div");d.className="metric";d.innerHTML=`<div class="v anim-num">${m.value}</div><div class="l">${m.label}</div>`;mg.appendChild(d)});
+const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.transform="scale(1.1)";setTimeout(()=>en.target.style.transform="scale(1)",300)}})},{threshold:0.5});
+document.querySelectorAll(".anim-num").forEach(el=>obs.observe(el));
+</script></body></html>
