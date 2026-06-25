@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>康顺控股集团数字化管理平台</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0f172a;color:#e2e8f0;height:100vh;display:flex;overflow:hidden}
+.sidebar{width:240px;background:#1e293b;border-right:1px solid #334155;display:flex;flex-direction:column;flex-shrink:0}
+.logo{padding:20px;font-size:18px;font-weight:700;color:#10b981;border-bottom:1px solid #334155}
+.nav{flex:1;padding:12px 0}
+.nav-item{padding:12px 20px;cursor:pointer;display:flex;align-items:center;gap:10px;color:#94a3b8;font-size:14px;transition:all .2s;border-left:3px solid transparent}
+.nav-item:hover,.nav-item.active{background:#334155;color:#f1f5f9;border-left-color:#10b981}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:56px;background:#1e293b;border-bottom:1px solid #334155;display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0}
+.search{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px 16px;color:#e2e8f0;width:320px;font-size:13px;outline:none}
+.content{flex:1;padding:24px;overflow-y:auto}
+.page{display:none}.page.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px}
+.card .label{font-size:12px;color:#94a3b8;margin-bottom:4px}
+.card .value{font-size:24px;font-weight:700;color:#10b981}
+.card .sub{font-size:11px;color:#64748b;margin-top:4px}
+.section-title{font-size:16px;font-weight:600;margin-bottom:16px;padding-left:12px;border-left:3px solid #10b981}
+table{width:100%;border-collapse:collapse;margin-bottom:24px}
+th{text-align:left;padding:12px 16px;background:#1e293b;color:#94a3b8;font-size:12px;border-bottom:1px solid #334155}
+td{padding:12px 16px;border-bottom:1px solid #1e293b;font-size:13px;color:#cbd5e1}
+tr:hover td{background:#1e293b}
+.status{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.status.ok{background:#22c55e22;color:#22c55e}.status.warn{background:#f59e0b22;color:#f59e0b}.status.err{background:#ef444422;color:#ef4444}
+.btn{padding:6px 14px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;cursor:pointer;font-size:12px}
+.btn:hover{background:#10b981;border-color:#10b981;color:#fff}
+.btn-primary{background:#10b981;border-color:#10b981;color:#fff}
+.chat-box{background:#1e293b;border:1px solid #334155;border-radius:12px;height:400px;display:flex;flex-direction:column}
+.chat-messages{flex:1;padding:16px;overflow-y:auto}
+.msg{margin-bottom:12px;max-width:80%}
+.msg.ai{margin-right:auto}.msg.user{margin-left:auto;text-align:right}
+.msg .bubble{display:inline-block;padding:10px 16px;border-radius:12px;font-size:13px;line-height:1.6}
+.msg.ai .bubble{background:#334155;color:#e2e8f0;border-bottom-left-radius:4px}
+.msg.user .bubble{background:#10b981;color:#fff;border-bottom-right-radius:4px}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid #334155}
+.chat-input input{flex:1;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 16px;color:#e2e8f0;font-size:13px;outline:none}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-label{width:100px;font-size:12px;color:#94a3b8;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:24px;background:#0f172a;border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:11px;color:#fff;font-weight:600}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;color:#94a3b8;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#e2e8f0;font-size:13px;outline:none}
+.toast{position:fixed;top:20px;right:20px;background:#22c55e;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;z-index:999;display:none}
+.tabs{display:flex;gap:4px;margin-bottom:16px}
+.tab{padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;color:#94a3b8;background:#0f172a;border:1px solid #334155}
+.tab.active{background:#10b981;color:#fff;border-color:#10b981}
+.badge{background:#ef4444;color:#fff;font-size:11px;padding:2px 6px;border-radius:10px;margin-left:4px}</style></head><body>
+<div class="sidebar">
+<div class="logo">♻️ 康顺控股数字化管理平台</div>
+<div class="nav">
+<div class="nav-item active" onclick="showPage('portal',this)">🏠 统一门户</div>
+<div class="nav-item" onclick="showPage('todo',this)">✅ 待办督办 <span class="badge">4</span></div>
+<div class="nav-item" onclick="showPage('aitable',this)">📊 AI表格中枢</div>
+<div class="nav-item" onclick="showPage('wukong',this)">🤖 悟空AI助手</div>
+<div class="nav-item" onclick="showPage('yida',this)">🏗️ 宜搭业务应用</div>
+<div class="nav-item" onclick="showPage('dashboard',this)">📈 经营驾驶舱</div>
+</div>
+<div style="padding:16px;font-size:11px;color:#475569;border-top:1px solid #334155">v2.1.0 · 钉钉底座<br>28家成员企业 · 123人</div>
+</div>
+<div class="main">
+<div class="topbar">
+<input class="search" placeholder="🔍 搜索回收订单、供应商、合同、审批..." />
+<div style="font-size:13px;color:#94a3b8">👤 管理员 · 广州黄埔总部 <span class="badge">4条待办</span></div>
+</div>
+<div class="content">
+
+<div id="portal" class="page active">
+<div class="section-title">📋 今日概览</div>
+<div class="cards">
+<div class="card"><div class="label">待办事项</div><div class="value">4</div><div class="sub">1条紧急 · 3条普通</div></div>
+<div class="card"><div class="label">今日回收订单</div><div class="value">18</div><div class="sub">废铜12 · 废铝4 · 电子废弃物2</div></div>
+<div class="card"><div class="label">本月回收量</div><div class="value">2,850吨</div><div class="sub">完成率92%</div></div>
+<div class="card"><div class="label">供应链融资</div><div class="value">¥1,280万</div><div class="sub">在途6笔 · 已放款4笔</div></div>
+<div class="card"><div class="label">园区出租率</div><div class="value">94.5%</div><div class="sub">较上月↑1.2%</div></div>
+<div class="card"><div class="label">成员企业</div><div class="value">28家</div><div class="sub">存续22 · 注销6</div></div>
+</div>
+<div class="section-title">⚡ 快捷入口</div>
+<div class="cards">
+<div class="card" style="cursor:pointer" onclick="showPage('todo',document.querySelectorAll('.nav-item')[1])"><div class="value" style="font-size:16px">📝 处理待办</div></div>
+<div class="card" style="cursor:pointer" onclick="showPage('aitable',document.querySelectorAll('.nav-item')[2])"><div class="value" style="font-size:16px">📊 查看订单</div></div>
+<div class="card" style="cursor:pointer" onclick="showPage('wukong',document.querySelectorAll('.nav-item')[3])"><div class="value" style="font-size:16px">🤖 问悟空AI</div></div>
+<div class="card" style="cursor:pointer" onclick="showPage('yida',document.querySelectorAll('.nav-item')[4])"><div class="value" style="font-size:16px">🏗️ 提交审批</div></div>
+</div>
+<div class="section-title">📢 系统公告</div>
+<div class="card"><p style="font-size:13px;color:#cbd5e1;line-height:1.8">
+<strong style="color:#10b981">[06-25]</strong> 再生资源回收全流程管理系统已上线，覆盖下单→过磅→质检→结算全链路。<br>
+<strong style="color:#10b981">[06-24]</strong> 悟空AI供应链风控Agent已上线，支持自动评估中小企业融资风险。<br>
+<strong style="color:#10b981">[06-23]</strong> 园区物业巡检系统已迁移至宜搭，移动端打卡+异常拍照上报。
+</p></div>
+</div>
+
+<div id="todo" class="page">
+<div class="section-title">✅ 待办督办中心</div>
+<div class="tabs">
+<div class="tab active" onclick="filterTodo('all',this)">全部(4)</div>
+<div class="tab" onclick="filterTodo('urgent',this)">紧急(1)</div>
+<div class="tab" onclick="filterTodo('normal',this)">普通(3)</div>
+</div>
+<table id="todoTable"><thead><tr><th>类型</th><th>标题</th><th>来源</th><th>优先级</th><th>截止</th><th>操作</th></tr></thead><tbody>
+<tr data-t="urgent"><td>融资审批</td><td>东莞鑫达金属融资申请 ¥320万</td><td>金融部</td><td><span class="status err">紧急</span></td><td>06-26 17:00</td><td><button class="btn btn-primary" onclick="done(this)">处理</button></td></tr>
+<tr data-t="normal"><td>合同审核</td><td>佛山宏远废旧铜材采购合同续签</td><td>OA</td><td><span class="status warn">普通</span></td><td>06-28</td><td><button class="btn" onclick="done(this)">处理</button></td></tr>
+<tr data-t="normal"><td>园区管理</td><td>B栋3楼租户退租交接验收</td><td>物业</td><td><span class="status warn">普通</span></td><td>06-29</td><td><button class="btn" onclick="done(this)">处理</button></td></tr>
+<tr data-t="normal"><td>环保合规</td><td>Q2危废处置台账申报确认</td><td>环保部</td><td><span class="status ok">普通</span></td><td>06-30</td><td><button class="btn" onclick="done(this)">处理</button></td></tr>
+</tbody></table>
+</div>
+
+<div id="aitable" class="page">
+<div class="section-title">📊 AI表格数据中枢</div>
+<div class="tabs">
+<div class="tab active" onclick="swTbl('rec',this)">回收订单</div>
+<div class="tab" onclick="swTbl('sup',this)">供应商管理</div>
+<div class="tab" onclick="swTbl('fin',this)">供应链融资</div>
+</div>
+<div id="t-rec"><table><thead><tr><th>订单号</th><th>客户</th><th>品类</th><th>重量(吨)</th><th>状态</th><th>AI估价</th></tr></thead><tbody>
+<tr><td>KS-0625-001</td><td>广州建业制造</td><td>废铜</td><td>15.2</td><td><span class="status ok">已过磅</span></td><td>¥68.4万</td></tr>
+<tr><td>KS-0625-003</td><td>东莞精密电子</td><td>电子废弃物</td><td>3.8</td><td><span class="status ok">质检中</span></td><td>¥12.6万</td></tr>
+<tr><td>KS-0625-005</td><td>佛山宏远金属</td><td>废铝</td><td>22.5</td><td><span class="status warn">待过磅</span></td><td>¥33.8万</td></tr>
+<tr><td>KS-0625-007</td><td>中山华通建材</td><td>废钢</td><td>45.0</td><td><span class="status ok">已结算</span></td><td>¥112.5万</td></tr>
+<tr><td>KS-0625-009</td><td>黄埔市政环卫</td><td>混合废料</td><td>8.6</td><td><span class="status err">异常</span></td><td>待评估</td></tr>
+</tbody></table><p style="font-size:12px;color:#64748b">💡 AI提示：黄埔市政环卫订单含疑似危废成分，已触发环保合规预警。</p></div>
+<div id="t-sup" style="display:none"><table><thead><tr><th>供应商/客户</th><th>类型</th><th>AI信用评分</th><th>合作年限</th><th>累计交易额</th><th>风险</th></tr></thead><tbody>
+<tr><td>广州建业制造</td><td>废铜供应</td><td><b style="color:#22c55e">91</b></td><td>5年</td><td>¥2,340万</td><td><span class="status ok">低</span></td></tr>
+<tr><td>佛山宏远金属</td><td>废铝供应</td><td><b style="color:#22c55e">87</b></td><td>3年</td><td>¥1,120万</td><td><span class="status ok">低</span></td></tr>
+<tr><td>东莞精密电子</td><td>电子废弃物</td><td><b style="color:#f59e0b">74</b></td><td>1年</td><td>¥380万</td><td><span class="status warn">中</span></td></tr>
+<tr><td>中山华通建材</td><td>废钢供应</td><td><b style="color:#22c55e">89</b></td><td>4年</td><td>¥1,860万</td><td><span class="status ok">低</span></td></tr>
+<tr><td>深圳某贸易商</td><td>化工原料</td><td><b style="color:#ef4444">58</b></td><td>0.5年</td><td>¥95万</td><td><span class="status err">高</span></td></tr>
+</tbody></table><p style="font-size:12px;color:#64748b">💡 AI提示：深圳某贸易商信用评分持续下降，建议暂停赊销并催收应收款。</p></div>
+<div id="t-fin" style="display:none"><table><thead><tr><th>融资编号</th><th>申请企业</th><th>金额(万)</th><th>用途</th><th>AI风控评分</th><th>状态</th></tr></thead><tbody>
+<tr><td>FN-2026-038</td><td>东莞鑫达金属</td><td>320</td><td>原材料采购</td><td><b style="color:#22c55e">85</b></td><td><span class="status warn">审批中</span></td></tr>
+<tr><td>FN-2026-035</td><td>佛山永利回收</td><td>180</td><td>设备更新</td><td><b style="color:#22c55e">88</b></td><td><span class="status ok">已放款</span></td></tr>
+<tr><td>FN-2026-032</td><td>广州通达贸易</td><td>250</td><td>周转资金</td><td><b style="color:#f59e0b">72</b></td><td><span class="status ok">已放款</span></td></tr>
+<tr><td>FN-2026-029</td><td>中山合盛金属</td><td>150</td><td>库存融资</td><td><b style="color:#22c55e">90</b></td><td><span class="status ok">已还款</span></td></tr>
+</tbody></table><p style="font-size:12px;color:#64748b">💡 AI提示：东莞鑫达金属近3月回款周期延长12天，建议增加担保措施。</p></div>
+</div>
+
+<div id="wukong" class="page">
+<div class="section-title">🤖 悟空AI智能助手</div>
+<div class="chat-box">
+<div class="chat-messages" id="chatMsgs">
+<div class="msg ai"><div class="bubble">你好！我是康顺控股的悟空AI助手。可以帮你查询回收订单、供应商信用评估、融资风控分析、合同审核、环保合规检查。请问有什么需要？</div></div>
+</div>
+<div class="chat-input">
+<input id="chatIn" placeholder="输入问题，如：本月废铜回收均价多少？东莞鑫达信用如何？" onkeypress="if(event.key==='Enter')sendChat()" />
+<button class="btn btn-primary" onclick="sendChat()">发送</button>
+</div></div></div>
+
+<div id="yida" class="page">
+<div class="section-title">🏗️ 宜搭业务应用</div>
+<div class="tabs">
+<div class="tab active" onclick="swYida('order',this)">回收下单</div>
+<div class="tab" onclick="swYida('inspect',this)">园区巡检</div>
+<div class="tab" onclick="swYida('finance',this)">融资申请</div>
+</div>
+<div id="y-order"><div class="card" style="max-width:600px">
+<h3 style="font-size:15px;color:#10b981;margin-bottom:16px">📋 再生资源回收下单表</h3>
+<div class="form-group"><label>回收品类</label><select><option>废铜</option><option>废铝</option><option>废钢</option><option>电子废弃物</option><option>废纸</option><option>废塑料</option></select></div>
+<div class="form-group"><label>预估重量(吨)</label><input type="number" placeholder="如：15.5" /></div>
+<div class="form-group"><label>来源地址</label><input placeholder="如：广州市黄埔区XX路XX号" /></div>
+<div class="form-group"><label>联系人/电话</label><input placeholder="张经理 / 138xxxx" /></div>
+<div class="form-group"><label>备注</label><textarea rows="2" placeholder="特殊要求或注意事项..."></textarea></div>
+<button class="btn btn-primary" onclick="toast('✅ 回收订单已提交，调度中心将安排车辆')">提交回收订单</button>
+</div></div>
+<div id="y-inspect" style="display:none"><div class="card" style="max-width:600px">
+<h3 style="font-size:15px;color:#10b981;margin-bottom:16px">📋 园区物业巡检记录</h3>
+<div class="form-group"><label>巡检区域</label><select><option>A栋厂房</option><option>B栋厂房</option><option>C栋仓库</option><option>园区公共区域</option><option>停车场</option></select></div>
+<div class="form-group"><label>巡检结果</label><select><option>正常</option><option>轻微异常</option><option>严重异常</option></select></div>
+<div class="form-group"><label>异常描述</label><textarea rows="3" placeholder="请描述异常情况..."></textarea></div>
+<button class="btn btn-primary" onclick="toast('✅ 巡检记录已提交，工单已派发至物业部')">提交巡检记录</button>
+</div></div>
+<div id="y-finance" style="display:none"><table><thead><tr><th>申请企业</th><th>金额(万)</th><th>用途</th><th>提交日期</th><th>AI评分</th><th>状态</th></tr></thead><tbody>
+<tr><td>东莞鑫达金属</td><td>320</td><td>原材料采购</td><td>06-24</td><td>85</td><td><span class="status warn">审批中</span></td></tr>
+<tr><td>佛山永利回收</td><td>180</td><td>设备更新</td><td>06-22</td><td>88</td><td><span class="status ok">已放款</span></td></tr>
+<tr><td>广州通达贸易</td><td>250</td><td>周转资金</td><td>06-20</td><td>72</td><td><span class="status ok">已放款</span></td></tr>
+<tr><td>中山合盛金属</td><td>150</td><td>库存融资</td><td>06-18</td><td>90</td><td><span class="status ok">已还款</span></td></tr>
+</tbody></table></div>
+</div>
+
+<div id="dashboard" class="page">
+<div class="section-title">📈 经营驾驶舱</div>
+<div class="cards">
+<div class="card"><div class="label">集团成员企业</div><div class="value">28家</div><div class="sub">存续22 · 注销6</div></div>
+<div class="card"><div class="label">社保人数</div><div class="value">123人</div><div class="sub">较上年↑8%</div></div>
+<div class="card"><div class="label">注册资本合计</div><div class="value">1.09亿</div><div class="sub">实缴约3,000万</div></div>
+<div class="card"><div class="label">招投标记录</div><div class="value">80条</div><div class="sub">中标率约35%</div></div>
+</div>
+<div class="section-title">四大业务板块营收占比</div>
+<div class="card">
+<div class="bar-row"><div class="bar-label">再生资源</div><div class="bar-track"><div class="bar-fill" style="width:45%;background:#10b981">45% · 核心根基</div></div></div>
+<div class="bar-row"><div class="bar-label">供应链金融</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:#3b82f6">25% · 增长引擎</div></div></div>
+<div class="bar-row"><div class="bar-label">资产运营</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:#f59e0b">20% · 稳定现金流</div></div></div>
+<div class="bar-row"><div class="bar-label">多元投资</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:#8b5cf6">10% · 战略布局</div></div></div>
+</div>
+<div class="section-title">再生资源回收指标</div>
+<div class="cards">
+<div class="card"><div class="label">月回收量</div><div class="value">2,850吨</div><div class="sub">目标3,100吨 · 完成率92%</div></div>
+<div class="card"><div class="label">合作客户</div><div class="value">86家</div><div class="sub">新增12家/月</div></div>
+<div class="card"><div class="label">园区出租率</div><div class="value">94.5%</div><div class="sub">较上月↑1.2%</div></div>
+<div class="card"><div class="label">在途融资</div><div class="value">¥1,280万</div><div class="sub">6笔 · AI均分82</div></div>
+</div>
+</div>
+
+</div></div>
+<div id="toastEl" class="toast"></div>
+
+<script>
+function showPage(id,el){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById(id).classList.add('active');if(el){document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});el.classList.add('active')}}
+function filterTodo(t,el){el.parentElement.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});el.classList.add('active');document.querySelectorAll('#todoTable tbody tr').forEach(function(r){r.style.display=(t==='all'||r.getAttribute('data-t')===t)?'':'none'})}
+function done(btn){var row=btn.closest('tr');row.style.opacity='0.4';btn.textContent='已完成';btn.disabled=true;toast('✅ 待办已标记完成')}
+function swTbl(id,el){['rec','sup','fin'].forEach(function(t){document.getElementById('t-'+t).style.display=t===id?'':'none'});el.parentElement.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});el.classList.add('active')}
+function swYida(id,el){['order','inspect','finance'].forEach(function(t){document.getElementById('y-'+t).style.display=t===id?'':'none'});el.parentElement.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});el.classList.add('active')}
+function toast(msg){var t=document.getElementById('toastEl');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},2500)}
+var aiR={'回收':'本月回收订单18笔，废铜12笔(均价¥4.5万/吨)、废铝4笔(均价¥1.5万/吨)、电子废弃物2笔。黄埔市政环卫订单含疑似危废，已触发预警。','供应商':'86家合作客户中，AI信用评分≥80的占72%。深圳某贸易商评分58(高风险)，建议暂停赊销。广州建业制造91分为最优。','融资':'在途融资6笔共¥1,280万，AI均分82。东莞鑫达金属近3月回款周期延长12天，建议增加担保。','园区':'园区出租率94.5%，较上月提升1.2%。B栋3楼租户即将退租，已启动招租流程。A栋满租。','环保':'Q2危废处置台账已完成初审，需确认3项数据。黄埔市政环卫订单触发危废预警，建议现场复核。','合同':'佛山宏远废旧铜材采购合同即将到期，续签条款已通过AI预审，价格浮动条款建议调整。'};
+function sendChat(){var inp=document.getElementById('chatIn');var txt=inp.value.trim();if(!txt)return;var msgs=document.getElementById('chatMsgs');msgs.innerHTML+='<div class="msg user"><div class="bubble">'+txt+'</div></div>';inp.value='';var reply='根据系统数据分析，该事项当前状态正常。如需详细信息，请提供具体关键词（回收/供应商/融资/园区/环保/合同）。';for(var k in aiR){if(txt.indexOf(k)>=0){reply=aiR[k];break}}setTimeout(function(){msgs.innerHTML+='<div class="msg ai"><div class="bubble">'+reply+'</div></div>';msgs.scrollTop=msgs.scrollHeight},500)}
+</script></body></html>
