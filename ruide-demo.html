@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>瑞德智能数字化管理平台</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0f172a;color:#e2e8f0;height:100vh;display:flex;overflow:hidden}
+.sidebar{width:240px;background:#1e293b;border-right:1px solid #334155;display:flex;flex-direction:column;flex-shrink:0}
+.logo{padding:20px;font-size:18px;font-weight:700;color:#3b82f6;border-bottom:1px solid #334155}
+.nav{flex:1;padding:12px 0}
+.nav-item{padding:12px 20px;cursor:pointer;display:flex;align-items:center;gap:10px;color:#94a3b8;font-size:14px;transition:all .2s;border-left:3px solid transparent}
+.nav-item:hover,.nav-item.active{background:#334155;color:#f1f5f9;border-left-color:#3b82f6}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.topbar{height:56px;background:#1e293b;border-bottom:1px solid #334155;display:flex;align-items:center;justify-content:space-between;padding:0 24px;flex-shrink:0}
+.search{background:#0f172a;border:1px solid #334155;border-radius:8px;padding:8px 16px;color:#e2e8f0;width:320px;font-size:13px;outline:none}
+.content{flex:1;padding:24px;overflow-y:auto}
+.page{display:none}.page.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:20px}
+.card .label{font-size:12px;color:#94a3b8;margin-bottom:4px}
+.card .value{font-size:24px;font-weight:700;color:#3b82f6}
+.card .sub{font-size:11px;color:#64748b;margin-top:4px}
+.section-title{font-size:16px;font-weight:600;margin-bottom:16px;padding-left:12px;border-left:3px solid #3b82f6}
+table{width:100%;border-collapse:collapse;margin-bottom:24px}
+th{text-align:left;padding:12px 16px;background:#1e293b;color:#94a3b8;font-size:12px;border-bottom:1px solid #334155}
+td{padding:12px 16px;border-bottom:1px solid #1e293b;font-size:13px;color:#cbd5e1}
+tr:hover td{background:#1e293b}
+.status{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.status.ok{background:#22c55e22;color:#22c55e}.status.warn{background:#f59e0b22;color:#f59e0b}.status.err{background:#ef444422;color:#ef4444}
+.btn{padding:6px 14px;border-radius:6px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;cursor:pointer;font-size:12px}
+.btn:hover{background:#3b82f6;border-color:#3b82f6;color:#fff}
+.btn-primary{background:#3b82f6;border-color:#3b82f6;color:#fff}
+.chat-box{background:#1e293b;border:1px solid #334155;border-radius:12px;height:400px;display:flex;flex-direction:column}
+.chat-messages{flex:1;padding:16px;overflow-y:auto}
+.msg{margin-bottom:12px;max-width:80%}
+.msg.ai{margin-right:auto}.msg.user{margin-left:auto;text-align:right}
+.msg .bubble{display:inline-block;padding:10px 16px;border-radius:12px;font-size:13px;line-height:1.6}
+.msg.ai .bubble{background:#334155;color:#e2e8f0;border-bottom-left-radius:4px}
+.msg.user .bubble{background:#3b82f6;color:#fff;border-bottom-right-radius:4px}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid #334155}
+.chat-input input{flex:1;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 16px;color:#e2e8f0;font-size:13px;outline:none}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-label{width:100px;font-size:12px;color:#94a3b8;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:24px;background:#0f172a;border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:11px;color:#fff;font-weight:600}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;color:#94a3b8;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:#0f172a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#e2e8f0;font-size:13px;outline:none}
+.toast{position:fixed;top:20px;right:20px;background:#22c55e;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;z-index:999;display:none}
+.tabs{display:flex;gap:4px;margin-bottom:16px}
+.tab{padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;color:#94a3b8;background:#0f172a;border:1px solid #334155}
+.tab.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.badge{background:#ef4444;color:#fff;font-size:11px;padding:2px 6px;border-radius:10px;margin-left:4px}</style></head><body>
+<div class="sidebar">
+<div class="logo">🏭 瑞德智能数字化管理平台</div>
+<div class="nav">
+<div class="nav-item active" onclick="showPage('portal',this)">🏠 统一门户</div>
+<div class="nav-item" onclick="showPage('todo',this)">✅ 待办督办 <span class="badge">5</span></div>
+<div class="nav-item" onclick="showPage('aitable',this)">📊 AI表格中枢</div>
+<div class="nav-item" onclick="showPage('wukong',this)">🤖 悟空AI助手</div>
+<div class="nav-item" onclick="showPage('yida',this)">🏗️ 宜搭业务应用</div>
+<div class="nav-item" onclick="showPage('dashboard',this)">📈 经营驾驶舱</div>
+</div>
+<div style="padding:16px;font-size:11px;color:#475569;border-top:1px solid #334155">v3.2.1 · 钉钉底座<br>301135.SZ · 2600+员工</div>
+</div>
+<div class="main">
+<div class="topbar">
+<input class="search" placeholder="🔍 搜索订单、供应商、文档、审批..." />
+<div style="font-size:13px;color:#94a3b8">👤 管理员 · 佛山总部 <span class="badge">5条待办</span></div>
+</div>
+<div class="content">
+
+<div id="portal" class="page active">
+<div class="section-title">📋 今日概览</div>
+<div class="cards">
+<div class="card"><div class="label">待办事项</div><div class="value">5</div><div class="sub">2条紧急 · 3条普通</div></div>
+<div class="card"><div class="label">今日订单</div><div class="value">23</div><div class="sub">家电控制器18 · 汽车电子5</div></div>
+<div class="card"><div class="label">产线OEE</div><div class="value">92.3%</div><div class="sub">较昨日↑1.2%</div></div>
+<div class="card"><div class="label">质量合格率</div><div class="value">99.7%</div><div class="sub">目标≥99.5% ✅</div></div>
+<div class="card"><div class="label">本月营收</div><div class="value">1.28亿</div><div class="sub">完成率87%</div></div>
+<div class="card"><div class="label">越南基地</div><div class="value">正常</div><div class="sub">今日产量3,200件</div></div>
+</div>
+<div class="section-title">⚡ 快捷入口</div>
+<div class="cards">
+<div class="card" style="cursor:pointer" onclick="showPage('todo',document.querySelectorAll('.nav-item')[1])"><div class="value" style="font-size:16px">📝 处理待办</div></div>
+<div class="card" style="cursor:pointer" onclick="showPage('aitable',document.querySelectorAll('.nav-item')[2])"><div class="value" style="font-size:16px">📊 查看订单</div></div>
+<div class="card" style="cursor:pointer" onclick="showPage('wukong',document.querySelectorAll('.nav-item')[3])"><div class="value" style="font-size:16px">🤖 问悟空AI</div></div>
+<div class="card" style="cursor:pointer" onclick="showPage('yida',document.querySelectorAll('.nav-item')[4])"><div class="value" style="font-size:16px">🏗️ 提交巡检</div></div>
+</div>
+<div class="section-title">📢 系统公告</div>
+<div class="card"><p style="font-size:13px;color:#cbd5e1;line-height:1.8">
+<strong style="color:#3b82f6">[06-25]</strong> 汽车电子事业部新品立项审批流程已上线宜搭。<br>
+<strong style="color:#3b82f6">[06-24]</strong> 越南基地MES已完成与总部AI表格数据对接。<br>
+<strong style="color:#3b82f6">[06-23]</strong> 悟空AI采购比价Agent已上线。
+</p></div>
+</div>
+
+<div id="todo" class="page">
+<div class="section-title">✅ 待办督办中心</div>
+<div class="tabs">
+<div class="tab active" onclick="filterTodo('all',this)">全部(5)</div>
+<div class="tab" onclick="filterTodo('urgent',this)">紧急(2)</div>
+<div class="tab" onclick="filterTodo('normal',this)">普通(3)</div>
+</div>
+<table id="todoTable"><thead><tr><th>类型</th><th>标题</th><th>来源</th><th>优先级</th><th>截止</th><th>操作</th></tr></thead><tbody>
+<tr data-t="urgent"><td>采购审批</td><td>苏泊尔Q3物料采购 ¥82万</td><td>SRM</td><td><span class="status err">紧急</span></td><td>06-26 18:00</td><td><button class="btn btn-primary" onclick="done(this)">处理</button></td></tr>
+<tr data-t="urgent"><td>质量异常</td><td>A线控制器不良率超标0.8%</td><td>MES</td><td><span class="status err">紧急</span></td><td>06-26 12:00</td><td><button class="btn btn-primary" onclick="done(this)">处理</button></td></tr>
+<tr data-t="normal"><td>新品立项</td><td>汽车电子BMS V2.0评审</td><td>PLM</td><td><span class="status warn">普通</span></td><td>06-28</td><td><button class="btn" onclick="done(this)">处理</button></td></tr>
+<tr data-t="normal"><td>合同审核</td><td>比亚迪充电桩合同续签</td><td>OA</td><td><span class="status warn">普通</span></td><td>06-29</td><td><button class="btn" onclick="done(this)">处理</button></td></tr>
+<tr data-t="normal"><td>培训确认</td><td>越南基地安全培训</td><td>HR</td><td><span class="status ok">普通</span></td><td>06-30</td><td><button class="btn" onclick="done(this)">处理</button></td></tr>
+</tbody></table>
+</div>
+
+<div id="aitable" class="page">
+<div class="section-title">📊 AI表格数据中枢</div>
+<div class="tabs">
+<div class="tab active" onclick="swTbl('sup',this)">供应商管理</div>
+<div class="tab" onclick="swTbl('ord',this)">订单追踪</div>
+<div class="tab" onclick="swTbl('qua',this)">质量分析</div>
+</div>
+<div id="t-sup"><table><thead><tr><th>供应商</th><th>品类</th><th>AI评分</th><th>交期达成</th><th>质量合格</th><th>风险</th></tr></thead><tbody>
+<tr><td>深圳华芯微</td><td>MCU芯片</td><td><b style="color:#22c55e">92</b></td><td>98.5%</td><td>99.8%</td><td><span class="status ok">低</span></td></tr>
+<tr><td>东莞精密电路</td><td>PCB板</td><td><b style="color:#22c55e">88</b></td><td>96.2%</td><td>99.5%</td><td><span class="status ok">低</span></td></tr>
+<tr><td>苏州新能源</td><td>电容电阻</td><td><b style="color:#f59e0b">75</b></td><td>89.3%</td><td>98.1%</td><td><span class="status warn">中</span></td></tr>
+<tr><td>广州连接器厂</td><td>接插件</td><td><b style="color:#ef4444">62</b></td><td>82.7%</td><td>96.8%</td><td><span class="status err">高</span></td></tr>
+<tr><td>越南VinChip</td><td>IC封装</td><td><b style="color:#22c55e">85</b></td><td>94.1%</td><td>99.2%</td><td><span class="status ok">低</span></td></tr>
+</tbody></table><p style="font-size:12px;color:#64748b">💡 AI提示：广州连接器厂交期连续3月低于85%，建议启动备选评估。</p></div>
+<div id="t-ord" style="display:none"><table><thead><tr><th>订单号</th><th>客户</th><th>产品</th><th>数量</th><th>状态</th><th>AI风险</th></tr></thead><tbody>
+<tr><td>RD-0892</td><td>苏泊尔</td><td>电饭煲控制器</td><td>50,000</td><td><span class="status ok">生产中</span></td><td><span class="status ok">正常</span></td></tr>
+<tr><td>RD-0895</td><td>美的</td><td>空调主控板</td><td>30,000</td><td><span class="status ok">生产中</span></td><td><span class="status ok">正常</span></td></tr>
+<tr><td>RD-0901</td><td>比亚迪</td><td>充电桩模块</td><td>5,000</td><td><span class="status warn">物料等待</span></td><td><span class="status warn">延期风险</span></td></tr>
+<tr><td>RD-0903</td><td>九阳</td><td>豆浆机控制器</td><td>20,000</td><td><span class="status ok">质检中</span></td><td><span class="status ok">正常</span></td></tr>
+<tr><td>RD-0907</td><td>添可</td><td>洗地机驱动板</td><td>15,000</td><td><span class="status err">异常</span></td><td><span class="status err">需关注</span></td></tr>
+</tbody></table><p style="font-size:12px;color:#64748b">💡 AI提示：比亚迪订单物料预计延迟2天，已通知采购加急。</p></div>
+<div id="t-qua" style="display:none"><table><thead><tr><th>产线</th><th>产品</th><th>检测数</th><th>不良率</th><th>AI根因</th></tr></thead><tbody>
+<tr><td>A线</td><td>电饭煲控制器</td><td>5,000</td><td><span class="status warn">0.80%</span></td><td>焊接温度偏高</td></tr>
+<tr><td>B线</td><td>空调主控板</td><td>3,000</td><td><span class="status ok">0.20%</span></td><td>正常</td></tr>
+<tr><td>C线</td><td>充电桩模块</td><td>1,000</td><td><span class="status ok">0.30%</span></td><td>正常</td></tr>
+<tr><td>D线</td><td>电机驱动板</td><td>2,000</td><td><span class="status ok">0.40%</span></td><td>正常</td></tr>
+</tbody></table><p style="font-size:12px;color:#64748b">💡 AI提示：A线不良率超阈值，已生成改善工单。</p></div>
+</div>
+
+<div id="wukong" class="page">
+<div class="section-title">🤖 悟空AI智能助手</div>
+<div class="chat-box">
+<div class="chat-messages" id="chatMsgs">
+<div class="msg ai"><div class="bubble">你好！我是瑞德智能的悟空AI助手。可以帮你查询订单、供应商比价、研发文档检索、合同审核、多语言外贸沟通。请问有什么需要？</div></div>
+</div>
+<div class="chat-input">
+<input id="chatIn" placeholder="输入问题，如：上月汽车电子订单完成率多少？" onkeypress="if(event.key==='Enter')sendChat()" />
+<button class="btn btn-primary" onclick="sendChat()">发送</button>
+</div></div></div>
+
+<div id="yida" class="page">
+<div class="section-title">🏗️ 宜搭业务应用</div>
+<div class="tabs">
+<div class="tab active" onclick="swYida('insp',this)">设备巡检</div>
+<div class="tab" onclick="swYida('proj',this)">新品立项</div>
+<div class="tab" onclick="swYida('train',this)">培训考核</div>
+</div>
+<div id="y-insp"><div class="card" style="max-width:600px">
+<h3 style="font-size:15px;color:#3b82f6;margin-bottom:16px">📋 设备巡检记录表</h3>
+<div class="form-group"><label>巡检产线</label><select><option>A线-家电控制器</option><option>B线-空调主控板</option><option>C线-充电桩模块</option><option>D线-电机驱动板</option></select></div>
+<div class="form-group"><label>设备编号</label><input placeholder="如：EQ-A-001" /></div>
+<div class="form-group"><label>巡检结果</label><select><option>正常</option><option>轻微异常</option><option>严重异常</option></select></div>
+<div class="form-group"><label>异常描述</label><textarea rows="3" placeholder="请描述异常情况..."></textarea></div>
+<button class="btn btn-primary" onclick="toast('✅ 巡检记录已提交，工单已自动派发')">提交巡检记录</button>
+</div></div>
+<div id="y-proj" style="display:none"><div class="card" style="max-width:600px">
+<h3 style="font-size:15px;color:#3b82f6;margin-bottom:16px">📋 新品立项申请表</h3>
+<div class="form-group"><label>产品名称</label><input placeholder="如：汽车电子BMS控制器V2.0" /></div>
+<div class="form-group"><label>所属赛道</label><select><option>家电控制器</option><option>汽车电子</option><option>电机电动</option><option>数智能源</option></select></div>
+<div class="form-group"><label>目标客户</label><input placeholder="如：比亚迪、宁德时代" /></div>
+<div class="form-group"><label>预计年营收(万元)</label><input type="number" placeholder="5000" /></div>
+<div class="form-group"><label>项目简述</label><textarea rows="3" placeholder="请描述项目背景和目标..."></textarea></div>
+<button class="btn btn-primary" onclick="toast('✅ 立项申请已提交，进入评审流程')">提交立项申请</button>
+</div></div>
+<div id="y-train" style="display:none"><table><thead><tr><th>培训课程</th><th>参训人员</th><th>日期</th><th>成绩</th><th>状态</th></tr></thead><tbody>
+<tr><td>安全生产教育</td><td>张伟、李明、王芳</td><td>06-24</td><td>92/88/95</td><td><span class="status ok">通过</span></td></tr>
+<tr><td>汽车电子IPC标准</td><td>陈强、赵磊</td><td>06-23</td><td>85/91</td><td><span class="status ok">通过</span></td></tr>
+<tr><td>越南基地操作规范</td><td>Nguyen Van A等</td><td>06-22</td><td>78/82</td><td><span class="status warn">补考</span></td></tr>
+<tr><td>SMT设备认证</td><td>刘洋、周婷</td><td>06-20</td><td>96/94</td><td><span class="status ok">通过</span></td></tr>
+</tbody></table></div>
+</div>
+
+<div id="dashboard" class="page">
+<div class="section-title">📈 经营驾驶舱</div>
+<div class="cards">
+<div class="card"><div class="label">2025年营收</div><div class="value">14.34亿</div><div class="sub">同比+13.6%</div></div>
+<div class="card"><div class="label">净利润</div><div class="value">2,724万</div><div class="sub">同比-28.7% ⚠️</div></div>
+<div class="card"><div class="label">汽车电子增速</div><div class="value">+503%</div><div class="sub">约1亿元</div></div>
+<div class="card"><div class="label">知识产权</div><div class="value">364项</div><div class="sub">发明专利48项</div></div>
+</div>
+<div class="section-title">各业务线营收占比</div>
+<div class="card">
+<div class="bar-row"><div class="bar-label">家电控制器</div><div class="bar-track"><div class="bar-fill" style="width:65%;background:#3b82f6">65% · 9.32亿</div></div></div>
+<div class="bar-row"><div class="bar-label">汽车电子</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:#22c55e">18% · 2.58亿</div></div></div>
+<div class="bar-row"><div class="bar-label">电机电动</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:#f59e0b">10% · 1.43亿</div></div></div>
+<div class="bar-row"><div class="bar-label">数智能源</div><div class="bar-track"><div class="bar-fill" style="width:7%;background:#8b5cf6">7% · 1.01亿</div></div></div>
+</div>
+<div class="section-title">生产效能指标</div>
+<div class="cards">
+<div class="card"><div class="label">产线OEE</div><div class="value">92.3%</div><div class="sub">目标≥90% ✅</div></div>
+<div class="card"><div class="label">交付达成率</div><div class="value">96.8%</div><div class="sub">目标≥95% ✅</div></div>
+<div class="card"><div class="label">库存周转</div><div class="value">28天</div><div class="sub">较上月↓3天</div></div>
+<div class="card"><div class="label">越南产量</div><div class="value">3,200件/日</div><div class="sub">利用率78%</div></div>
+</div>
+</div>
+
+</div></div>
+<div id="toastEl" class="toast"></div>
+
+<script>
+function showPage(id,el){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.getElementById(id).classList.add('active');if(el){document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active')});el.classList.add('active')}}
+function filterTodo(t,el){el.parentElement.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});el.classList.add('active');document.querySelectorAll('#todoTable tbody tr').forEach(function(r){r.style.display=(t==='all'||r.getAttribute('data-t')===t)?'':'none'})}
+function done(btn){var row=btn.closest('tr');row.style.opacity='0.4';btn.textContent='已完成';btn.disabled=true;toast('✅ 待办已标记完成')}
+function swTbl(id,el){['sup','ord','qua'].forEach(function(t){document.getElementById('t-'+t).style.display=t===id?'':'none'});el.parentElement.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});el.classList.add('active')}
+function swYida(id,el){['insp','proj','train'].forEach(function(t){document.getElementById('y-'+t).style.display=t===id?'':'none'});el.parentElement.querySelectorAll('.tab').forEach(function(x){x.classList.remove('active')});el.classList.add('active')}
+function toast(msg){var t=document.getElementById('toastEl');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},2500)}
+var aiR={'订单':'当前23笔在途订单。苏泊尔电饭煲控制器5万件生产中，预计7月5日交付；比亚迪充电桩模块5千件物料等待中，存在延期风险。','供应商':'5家核心供应商中，广州连接器厂AI评分62分（高风险），交期仅82.7%。深圳华芯微92分为最优。','汽车电子':'2024年汽车电子营收约1亿元，同比增长503%。2026年目标2.58亿元，当前进度正常。','越南':'越南基地日产量3,200件，产能利用率78%。MES已与总部AI表格对接，数据实时同步。','质量':'A线不良率0.8%超阈值，AI分析根因为焊接温度偏高，已生成改善工单。其余产线正常。','比价':'MCU芯片STM32F103报价：华芯微¥12.5(2周)、芯源达¥13.2(1周)、联创科¥11.8(3周)。推荐华芯微。'};
+function sendChat(){var inp=document.getElementById('chatIn');var txt=inp.value.trim();if(!txt)return;var msgs=document.getElementById('chatMsgs');msgs.innerHTML+='<div class="msg user"><div class="bubble">'+txt+'</div></div>';inp.value='';var reply='根据系统数据分析，该事项当前状态正常。如需详细信息，请提供具体关键词（订单/供应商/汽车电子/越南/质量/比价）。';for(var k in aiR){if(txt.indexOf(k)>=0){reply=aiR[k];break}}setTimeout(function(){msgs.innerHTML+='<div class="msg ai"><div class="bubble">'+reply+'</div></div>';msgs.scrollTop=msgs.scrollHeight},500)}
+</script></body></html>
