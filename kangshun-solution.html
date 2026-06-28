@@ -1,45 +1,557 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>康顺控股集团 - 钉钉AI表格+悟空+宜搭数字化升级解决方案</title>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>康顺控股集团 - 钉钉AI表格+悟空+宜搭数字化升级解决方案（增强版）</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.8}
-.header{background:linear-gradient(135deg,#05966922,#05966944);border-bottom:1px solid #05966944;padding:60px 40px;text-align:center}
-.header h1{font-size:32px;margin-bottom:12px;background:linear-gradient(135deg,#059669,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.header .sub{color:#94a3b8;font-size:16px}.container{max-width:900px;margin:0 auto;padding:40px 20px}
-.section{margin-bottom:40px}.section h2{font-size:22px;margin-bottom:16px;padding-left:16px;border-left:4px solid #059669;color:#f1f5f9}
-.sc{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;margin-bottom:16px;position:relative;overflow:hidden}
+@media print {
+  body { background: #fff !important; color: #1e293b !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sidebar, .topbar, .nav-links, .toast { display: none !important; }
+  .main { margin-left: 0 !important; }
+  .page { display: block !important; page-break-after: always; }
+  .page:last-child { page-break-after: avoid; }
+  .card, .sc, .product-detail { border: 1px solid #e2e8f0 !important; background: #fff !important; box-shadow: none !important; }
+  .section-title { color: #065f46 !important; border-left-color: #059669 !important; }
+  .card .value, .mv { color: #059669 !important; }
+  table th { background: #f0fdf4 !important; color: #334155 !important; }
+  table td { color: #1e293b !important; border-bottom-color: #e2e8f0 !important; }
+  .status.ok { background: #dcfce7 !important; color: #15803d !important; }
+  .status.warn { background: #fef3c7 !important; color: #b45309 !important; }
+  .status.err { background: #fee2e2 !important; color: #dc2626 !important; }
+  .btn { border: 1px solid #d1d5db !important; background: #f9fafb !important; color: #374151 !important; }
+  .chat-box { border: 1px solid #e2e8f0 !important; background: #fff !important; }
+  .msg.ai .bubble { background: #f0fdf4 !important; color: #1e293b !important; }
+  .msg.user .bubble { background: #059669 !important; color: #fff !important; }
+  .arch { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+  .arch-box { border: 1px solid #059669 !important; background: #f0fdf4 !important; color: #1e293b !important; }
+  .highlight { background: #f0fdf4 !important; border: 1px solid #059669 !important; }
+  .bar-track { background: #f1f5f9 !important; }
+  .form-group input, .form-group select, .form-group textarea { border: 1px solid #d1d5db !important; background: #fff !important; color: #1e293b !important; }
+  .tab { border: 1px solid #d1d5db !important; background: #f9fafb !important; color: #374151 !important; }
+  .tab.active { background: #059669 !important; color: #fff !important; border-color: #059669 !important; }
+  .footer { border-top: 1px solid #e2e8f0 !important; color: #94a3b8 !important; }
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.8}
+.header{background:linear-gradient(135deg,#064e3b,#065f46);padding:48px 40px;text-align:center;border-bottom:3px solid #059669}
+.header h1{font-size:34px;margin-bottom:8px;color:#34d399}
+.header .sub{color:#a7f3d0;font-size:16px}
+.container{max-width:1000px;margin:0 auto;padding:32px 24px}
+.section{margin-bottom:48px}
+.section-title{font-size:24px;font-weight:700;margin-bottom:20px;padding-left:16px;border-left:4px solid #059669;color:#f1f5f9}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.card{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#059669,#34d399)}
+.card .label{font-size:12px;color:#94a3b8;margin-bottom:4px}
+.card .value{font-size:28px;font-weight:700;color:#059669}
+.card .sub{font-size:11px;color:#64748b;margin-top:4px}
+.sc{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;margin-bottom:20px;position:relative;overflow:hidden}
 .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#059669,#34d399)}
-.sc h3{font-size:18px;margin-bottom:8px;color:#059669}.sc p{color:#cbd5e1;font-size:14px}
-.tl{position:relative;padding-left:30px;margin:20px 0}.tl::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#059669,#34d399,#f59e0b)}
-.ti{position:relative;margin-bottom:24px}.ti::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #059669;background:#0a0e1a}
-.ti:nth-child(2)::before{border-color:#34d399}.ti:nth-child(3)::before{border-color:#f59e0b}
-.ti h4{font-size:15px;margin-bottom:4px;color:#f1f5f9}.ti p{font-size:13px;color:#94a3b8}
-.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:20px 0}
-.m{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
-.mv{font-size:26px;font-weight:700;color:#059669}.ml{font-size:12px;color:#94a3b8;margin-top:4px}
-.nav{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.nav a{padding:8px 16px;border-radius:8px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:13px;transition:all .3s}
-.nav a:hover{border-color:#059669;color:#059669}
-.footer{text-align:center;padding:30px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:40px}
+.sc h3{font-size:18px;margin-bottom:10px;color:#34d399}
+.sc p{color:#cbd5e1;font-size:14px;line-height:1.9}
+.product-detail{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:28px;margin-bottom:24px}
+.product-detail h3{font-size:20px;color:#34d399;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.product-detail .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0}
+.product-detail .feat{background:#0a0e1a;border:1px solid #1e293b;border-radius:8px;padding:16px}
+.product-detail .feat h4{font-size:14px;color:#34d399;margin-bottom:6px}
+.product-detail .feat p{font-size:13px;color:#94a3b8;line-height:1.7}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th{text-align:left;padding:12px 16px;background:#064e3b33;color:#a7f3d0;font-size:12px;border-bottom:2px solid #05966944}
+td{padding:12px 16px;border-bottom:1px solid #1e293b;font-size:13px;color:#cbd5e1}
+tr:hover td{background:#131829}
+.status{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.status.ok{background:#22c55e22;color:#22c55e}
+.status.warn{background:#f59e0b22;color:#f59e0b}
+.status.err{background:#ef444422;color:#ef4444}
+.btn{padding:8px 16px;border-radius:8px;border:1px solid #334155;background:#1e293b;color:#e2e8f0;cursor:pointer;font-size:13px;transition:all .2s}
+.btn:hover{background:#059669;border-color:#059669;color:#fff}
+.btn-primary{background:#059669;border-color:#059669;color:#fff}
+.btn-primary:hover{background:#047857}
 .highlight{background:linear-gradient(135deg,#05966911,#05966922);border:1px solid #05966933;border-radius:12px;padding:24px;margin-bottom:24px}
-.highlight h3{color:#059669;font-size:20px;margin-bottom:12px}.highlight p{color:#e2e8f0;font-size:15px}
-.arch{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:24px;margin:20px 0;text-align:center}
+.highlight h3{color:#34d399;font-size:20px;margin-bottom:12px}
+.highlight p{color:#e2e8f0;font-size:15px;line-height:1.9}
+.arch{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:28px;margin:24px 0;text-align:center}
+.arch-title{font-size:20px;font-weight:700;color:#34d399;margin-bottom:20px}
 .arch-row{display:flex;justify-content:center;gap:16px;margin:12px 0;flex-wrap:wrap}
-.arch-box{background:#05966915;border:1px solid #05966944;border-radius:8px;padding:12px 20px;font-size:13px;color:#e2e8f0;min-width:140px}
-.arch-box strong{color:#059669;display:block;margin-bottom:4px;font-size:14px}
-.arch-base{background:#1e293b;border-radius:8px;padding:12px 20px;font-size:13px;color:#94a3b8;margin-top:12px}
-</style></head><body>
-<div class="header"><h1>康顺控股集团</h1><div class="sub">广东康顺控股集团有限公司 · 再生资源与供应链服务 · 钉钉AI表格+悟空+宜搭数字化升级解决方案</div></div>
+.arch-box{background:#05966915;border:1px solid #05966944;border-radius:10px;padding:16px 24px;font-size:13px;color:#e2e8f0;min-width:180px;text-align:center}
+.arch-box strong{color:#34d399;display:block;margin-bottom:6px;font-size:15px}
+.arch-base{background:#1e293b;border-radius:10px;padding:14px 24px;font-size:13px;color:#94a3b8;margin-top:16px}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-label{width:120px;font-size:12px;color:#94a3b8;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:24px;background:#0a0e1a;border-radius:6px;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:10px;font-size:11px;color:#fff;font-weight:600}
+.chat-box{background:#131829;border:1px solid #1e293b;border-radius:12px;height:360px;display:flex;flex-direction:column;margin:16px 0}
+.chat-messages{flex:1;padding:16px;overflow-y:auto}
+.msg{margin-bottom:12px;max-width:80%}
+.msg.ai{margin-right:auto}
+.msg.user{margin-left:auto;text-align:right}
+.msg .bubble{display:inline-block;padding:10px 16px;border-radius:12px;font-size:13px;line-height:1.6}
+.msg.ai .bubble{background:#1e293b;color:#e2e8f0;border-bottom-left-radius:4px}
+.msg.user .bubble{background:#059669;color:#fff;border-bottom-right-radius:4px}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid #1e293b}
+.chat-input input{flex:1;background:#0a0e1a;border:1px solid #334155;border-radius:8px;padding:10px 16px;color:#e2e8f0;font-size:13px;outline:none}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;color:#94a3b8;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:#0a0e1a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#e2e8f0;font-size:13px;outline:none}
+.toast{position:fixed;top:20px;right:20px;background:#059669;color:#fff;padding:14px 24px;border-radius:10px;font-size:14px;z-index:999;display:none;box-shadow:0 4px 12px rgba(5,150,105,.4)}
+.tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;color:#94a3b8;background:#0a0e1a;border:1px solid #334155;transition:all .2s}
+.tab.active{background:#059669;color:#fff;border-color:#059669}
+.tab:hover:not(.active){border-color:#059669;color:#34d399}
+.tl{position:relative;padding-left:30px;margin:24px 0}
+.tl::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#059669,#34d399,#f59e0b)}
+.ti{position:relative;margin-bottom:28px}
+.ti::before{content:'';position:absolute;left:-23px;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid #059669;background:#0a0e1a}
+.ti:nth-child(2)::before{border-color:#34d399}
+.ti:nth-child(3)::before{border-color:#f59e0b}
+.ti h4{font-size:16px;margin-bottom:6px;color:#f1f5f9}
+.ti p{font-size:13px;color:#94a3b8;line-height:1.8}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:24px 0}
+.m{background:#131829;border:1px solid #1e293b;border-radius:12px;padding:20px;text-align:center}
+.mv{font-size:28px;font-weight:700;color:#059669}
+.ml{font-size:12px;color:#94a3b8;margin-top:4px}
+.demo-section{background:#0f1729;border:1px solid #1e293b;border-radius:12px;padding:24px;margin:20px 0}
+.demo-section h4{font-size:16px;color:#34d399;margin-bottom:12px}
+.nav-links{text-align:center;margin:30px 0;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nav-links a{padding:10px 20px;border-radius:10px;background:#131829;border:1px solid #1e293b;color:#94a3b8;text-decoration:none;font-size:14px;transition:all .3s}
+.nav-links a:hover{border-color:#059669;color:#34d399}
+.footer{text-align:center;padding:32px;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:48px}
+.print-hint{text-align:center;padding:12px;background:#05966922;border-radius:8px;margin-bottom:20px;font-size:13px;color:#34d399}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+<div class="header">
+  <h1>🏭 康顺控股集团</h1>
+  <div class="sub">广东康顺控股集团有限公司 · 再生资源与供应链服务 · 钉钉AI表格+悟空+宜搭数字化升级解决方案</div>
+</div>
 <div class="container">
-<div class="nav"><a href="../index.html">🏠 总导航</a><a href="kangshun-report.html">📈 行业洞察报告</a><a href="kangshun-demo.html">🎮 交互演示</a></div>
-<div class="highlight"><h3>🎯 核心聚焦：钉钉AI表格+悟空+宜搭三产品协同，零IT团队快速数字化</h3><p>针对康顺控股28家成员企业数据孤岛、再生资源业务手工化、供应链金融风控薄弱三大核心痛点，以钉钉AI表格（数据中枢）+悟空AI Agent（智能助手）+宜搭低代码（业务系统）三产品协同为主线，实现从数据采集→AI分析→业务执行的完整闭环。零IT团队、零开发成本、3个月完成基础数字化。目标：报价响应速度提升80%，人工客服工作量降低40%，审批周期缩短60%。</p></div>
-<div class="arch"><h3 style="color:#059669;margin-bottom:16px">🏗️ 三产品协同架构</h3>
-<div class="arch-row"><div class="arch-box"><strong>📊 钉钉AI表格</strong>价格追踪·客户CRM<br>库存看板·财务报表·招标追踪</div>
-<div class="arch-box"><strong>🤖 悟空AI Agent</strong>智能客服·合同审核<br>采购比价·政策解读·数据分析</div>
-<div class="arch-box"><strong>🏗️ 宜搭低代码</strong>回收管理·审批流程<br>物业管理·物流调度·安全巡检</div></div>
-<div class="arch-base">🔗 钉钉统一协作底座：IM · 文档 · 会议 · 审批 · 待办 · 通讯录</div></div>
-<div class="section"><h2>🚀 AI升级核心方案</h2><div class="sc"><h3>📊 钉钉AI表格：再生资源经营数据中枢</h3><p>用钉钉AI表格搭建集团级轻量数据管理平台，零代码零IT团队即可上线：①再生资源价格追踪表——AI自动抓取废铜/废铝/废钢等大宗商品实时价格，生成趋势图表和涨跌预警，替代人工询价，报价响应速度提升80%；②客户/供应商CRM表——AI自动标签分类、信用评分、合作频次分析，风险客户自动预警；③库存智能看板——实时汇总各仓库/网点库存数据，AI预测补货需求，减少积压和缺货；④财务报表自动生成——自动汇总各子公司财务数据，AI辅助异常检测，月报编制从数天缩短至小时级；⑤招投标信息管理——AI匹配筛选相关招标公告，提高中标率。所有表格支持自然语言查询（如'上周废铜均价多少''哪个客户欠款最多'）。</p></div><div class="sc"><h3>🤖 悟空AI Agent：7×24小时智能业务助手</h3><p>部署悟空AI Agent覆盖高频业务场景，让123人团队拥有AI数字员工：①智能客服Agent——7×24小时处理客户询价、订单查询、投诉反馈，人工客服工作量降低40-50%；②合同审核Agent——自动审阅供应链合同条款，标记风险点和不合规内容，法务审核效率提升3倍；③采购比价Agent——自动搜索多家供应商报价，生成比价分析报告，采购成本优化有据可依；④政策解读Agent——实时监控环保/税务/补贴政策变化，自动生成解读摘要，政策红利不错过；⑤数据分析Agent——自然语言提问即可获取经营数据分析结果（如'上季度哪个子公司利润最高'），管理层决策效率大幅提升；⑥多语言外贸Agent——处理英文/东南亚语言询盘邮件单据，拓展国际市场无需额外人力。</p></div><div class="sc"><h3>🏗️ 宜搭低代码：核心业务系统零代码搭建</h3><p>用宜搭低代码平台搭建覆盖全业务的数字化管理系统，无需编程、业务人员即可搭建：①再生资源回收管理系统——从回收→过磅→分拣→入库→销售全流程数字化，替代手工台账，数据实时可视；②供应链金融审批流程——在线提交融资申请→多级审批→放款跟踪→还款管理，审批周期缩短60%，全程可追溯；③园区物业管理系统——租户管理、租金收缴、报修工单、能耗监测，物业运营效率提升；④车辆调度与物流管理——运输车辆排班、路线规划、GPS轨迹集成，物流成本优化；⑤安全环保巡检——移动端巡检打卡、隐患拍照上报、整改闭环跟踪，安全合规有保障；⑥员工考勤与绩效——多网点/多子公司统一考勤、绩效考核、薪资核算，HR管理标准化。</p></div><div class="sc"><h3>🔗 三产品协同：数据-AI-执行完整闭环</h3><p>钉钉AI表格+悟空+宜搭三产品深度协同，形成完整的数字化闭环：①AI表格采集数据→悟空AI分析洞察→宜搭执行业务动作（如：价格表检测到废铜涨价→悟空自动生成调价建议→宜搭触发客户报价审批流程）；②宜搭业务系统产生的数据自动回流AI表格→悟空AI持续学习优化→形成越用越智能的正向循环；③统一钉钉底座——IM/文档/会议/审批/待办一站式协同，28家成员企业在同一个平台上沟通协作，告别微信群+Excel的割裂状态。零IT团队、零开发成本、3个月完成基础数字化。</p></div><div class="sc"><h3>💼 集团统一门户：28家企业一体化协同</h3><p>以钉钉为统一工作入口，解决多子公司管理割裂痛点：①统一通讯录——28家成员企业组织架构在线化，找人/找部门秒级完成；②待办督办中心——跨公司待办事项统一汇聚，逾期自动升级提醒；③审批流程引擎——基于宜搭搭建50+审批模板（采购/报销/合同/用印/融资等），全部线上流转；④知识库沉淀——行业经验/操作规范/项目案例结构化存储，AI语义搜索秒级定位，新人上手周期缩短50%；⑤会议闭环管理——经营分析会/项目周会纪要AI自动生成，行动项自动转待办跟踪。</p></div><div class="sc"><h3>📈 经营驾驶舱：集团管理层AI决策支持</h3><p>基于钉钉AI表格构建集团级经营数据驾驶舱：①营收利润看板——按子公司/业务线/区域维度实时可视化，AI异常预警；②再生资源看板——各品类回收量/价格趋势/库存周转/毛利率动态监控；③供应链金融看板——在贷余额/逾期率/客户集中度/风控指标一屏掌握；④物业运营看板——出租率/租金收缴率/报修响应时长/租户满意度趋势分析；⑤招投标看板——在投项目/中标率/金额趋势/竞品分析。支持自然语言查询（如'大江环保上月营收多少''哪个园区出租率最低'）。</p></div></div>
-<div class="section"><h2>📅 实施路径</h2><div class="tl"><div class="ti"><h4>第一阶段：速赢期（第1-4周）</h4><p>钉钉全员激活+AI表格搭建价格追踪/客户CRM/库存看板+宜搭搭建回收管理系统/核心审批流程+悟空AI客服Agent上线。4周内完成基础设施搭建，零IT团队即可落地，解决28家企业协同痛点和再生资源业务手工化问题。</p></div><div class="ti"><h4>第二阶段：深化期（第5-12周）</h4><p>悟空AI合同审核/采购比价/数据分析Agent全面上线+宜搭搭建供应链金融审批/物业管理/物流调度系统+AI表格搭建财务报表/招标追踪+集团经营驾驶舱MVP。8周内覆盖再生资源/供应链金融/物业运营三大核心业务域，经营效率和风控能力开始显现改善。</p></div><div class="ti"><h4>第三阶段：扩展期（第13-24周）</h4><p>全系统深度优化+AI模型持续迭代+产业链协同平台预研+ESG合规管理模块上线。将成功实践固化为集团数字资产，支撑业务规模扩张和合规能力提升。探索将AI能力封装为产业链增值服务，开辟新收入来源。</p></div></div></div>
-<div class="section"><h2>📈 预期效果指标</h2><div class="mg"><div class="m"><div class="mv">↑80%</div><div class="ml">报价响应速度</div></div><div class="m"><div class="mv">↓40%</div><div class="ml">人工客服工作量</div></div><div class="m"><div class="mv">↓60%</div><div class="ml">审批周期缩短</div></div><div class="m"><div class="mv">3个月</div><div class="ml">基础数字化完成</div></div><div class="m"><div class="mv">28家</div><div class="ml">成员企业全覆盖</div></div><div class="m"><div class="mv">0人</div><div class="ml">IT团队需求</div></div></div></div>
-<div class="nav"><a href="kangshun-report.html">👉 查看行业洞察报告</a><a href="kangshun-demo.html">👉 体验交互演示</a></div>
-</div><div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div></body></html>
+<div class="print-hint">💡 提示：按 Ctrl+P (Mac: Cmd+P) 可将本页面打印为PDF，交互模块自动隐藏</div>
+<div class="nav-links">
+  <a href="../index.html">🏠 总导航</a>
+  <a href="kangshun-report.html">📈 行业洞察报告</a>
+  <a href="kangshun-demo.html">🎮 交互演示</a>
+</div>
+
+<div class="section">
+  <div class="section-title">🏢 企业概况</div>
+  <div class="highlight">
+    <h3>🎯 核心聚焦：三产品协同，零IT团队快速数字化</h3>
+    <p>针对康顺控股28家成员企业数据孤岛、再生资源业务手工化、供应链金融风控薄弱三大核心痛点，以<strong>钉钉AI表格（数据中枢）+悟空AI Agent（智能助手）+宜搭低代码（业务系统）</strong>三产品协同为主线，实现从数据采集→AI分析→业务执行的完整闭环。</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="label">成立年份</div><div class="value">2016</div><div class="sub">母公司安顺发展1992年创立</div></div>
+    <div class="card"><div class="label">注册资本</div><div class="value">1,000万</div><div class="sub">实缴资本到位</div></div>
+    <div class="card"><div class="label">成员企业</div><div class="value">28家</div><div class="sub">含分支机构7家</div></div>
+    <div class="card"><div class="label">员工规模</div><div class="value">123人</div><div class="sub">社保缴纳人数</div></div>
+    <div class="card"><div class="label">业务板块</div><div class="value">4大</div><div class="sub">再生资源·供应链金融·资产运营·多元投资</div></div>
+    <div class="card"><div class="label">招投标记录</div><div class="value">80条</div><div class="sub">行政许可141项</div></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🏗️ 三产品协同架构</div>
+  <div class="arch">
+    <div class="arch-title">数据 → AI → 执行 完整闭环</div>
+    <div class="arch-row">
+      <div class="arch-box"><strong>📊 钉钉AI表格</strong>价格追踪·客户CRM<br>库存看板·财务报表·招标追踪</div>
+      <div class="arch-box"><strong>🤖 悟空AI Agent</strong>智能客服·合同审核<br>采购比价·政策解读·数据分析</div>
+      <div class="arch-box"><strong>🏗️ 宜搭低代码</strong>回收管理·审批流程<br>物业管理·物流调度·安全巡检</div>
+    </div>
+    <div class="arch-base">🔗 钉钉统一协作底座：IM · 文档 · 会议 · 审批 · 待办 · 通讯录</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📊 产品一：钉钉AI表格 — 再生资源经营数据中枢</div>
+  <div class="product-detail">
+    <h3>📊 钉钉AI表格</h3>
+    <p style="color:#cbd5e1;margin-bottom:16px">零代码搭建集团级轻量数据管理平台。所有表格支持自然语言查询，AI自动生成图表和预警。</p>
+    <div class="features">
+      <div class="feat"><h4>🔄 再生资源价格追踪表</h4><p>AI自动抓取废铜/废铝/废钢实时价格，生成趋势图表和涨跌预警。报价响应速度提升80%。</p></div>
+      <div class="feat"><h4>👥 客户/供应商CRM表</h4><p>AI自动标签分类、信用评分、合作频次分析。风险客户自动预警，应收账款账龄分析。</p></div>
+      <div class="feat"><h4>📦 库存智能看板</h4><p>实时汇总各仓库库存数据，AI预测补货需求。库存周转率提升30%，减少积压和缺货。</p></div>
+      <div class="feat"><h4>💰 财务报表自动生成</h4><p>自动汇总各子公司财务数据，AI辅助异常检测。月报编制从数天缩短至小时级。</p></div>
+      <div class="feat"><h4>📋 招投标信息管理</h4><p>AI匹配筛选招标公告，历史中标数据分析。80条招投标记录全量数字化管理。</p></div>
+      <div class="feat"><h4>🌍 ESG合规数据表</h4><p>碳排放核算、环保指标追踪、合规证照到期提醒。满足再生资源行业监管要求。</p></div>
+    </div>
+    <div class="demo-section">
+      <h4>🖥️ 模拟体验：再生资源价格追踪表</h4>
+      <div class="tabs" id="priceTabs">
+        <div class="tab active" onclick="switchPriceTab('copper')">废铜价格</div>
+        <div class="tab" onclick="switchPriceTab('aluminum')">废铝价格</div>
+        <div class="tab" onclick="switchPriceTab('steel')">废钢价格</div>
+      </div>
+      <table id="priceTable"><thead><tr><th>日期</th><th>品类</th><th>价格(元/吨)</th><th>日涨跌</th><th>周趋势</th><th>AI预警</th></tr></thead><tbody id="priceBody"></tbody></table>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <input type="text" id="aiQueryInput" placeholder='试试问AI："上周废铜均价多少？"' style="flex:1;background:#0a0e1a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#e2e8f0;font-size:13px;outline:none">
+        <button class="btn btn-primary" onclick="handleAiQuery()">🤖 AI查询</button>
+      </div>
+      <div id="aiQueryResult" style="margin-top:10px;padding:12px;background:#05966915;border-radius:8px;font-size:13px;color:#34d399;display:none"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🤖 产品二：悟空AI Agent — 7×24小时智能业务助手</div>
+  <div class="product-detail">
+    <h3>🤖 悟空AI Agent</h3>
+    <p style="color:#cbd5e1;margin-bottom:16px">让123人团队拥有AI数字员工。每个Agent专注一个业务领域，7×24小时不间断工作。</p>
+    <div class="features">
+      <div class="feat"><h4>💬 智能客服Agent</h4><p>7×24处理询价、订单查询、投诉反馈。人工客服工作量降低40-50%。支持多轮对话、自动转人工。</p></div>
+      <div class="feat"><h4>📝 合同审核Agent</h4><p>自动审阅供应链合同条款，标记风险点。法务审核效率提升3倍。内置行业标准合同模板库。</p></div>
+      <div class="feat"><h4>💲 采购比价Agent</h4><p>自动搜索多家供应商报价，生成比价分析报告。历史价格对比，最优供应商推荐。</p></div>
+      <div class="feat"><h4>📜 政策解读Agent</h4><p>实时监控环保/税务/补贴政策变化，自动生成解读摘要。政策红利不错过，合规风险早预警。</p></div>
+      <div class="feat"><h4>📊 数据分析Agent</h4><p>自然语言提问获取经营分析结果。如"上季度哪个子公司利润最高"。管理层决策效率大幅提升。</p></div>
+      <div class="feat"><h4>🌐 多语言外贸Agent</h4><p>处理英文/东南亚语言询盘邮件单据。拓展国际市场无需额外人力。自动翻译+商务礼仪适配。</p></div>
+    </div>
+    <div class="demo-section">
+      <h4>🖥️ 模拟体验：悟空AI Agent对话</h4>
+      <div class="chat-box">
+        <div class="chat-messages" id="chatMessages">
+          <div class="msg ai"><div class="bubble">👋 您好！我是康顺控股的悟空AI助手。我可以帮您查询再生资源价格、审核合同、分析经营数据、解读最新政策。请问有什么可以帮您？</div></div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="输入您的问题..." onkeypress="if(event.key==='Enter')sendChat()">
+          <button class="btn btn-primary" onclick="sendChat()">发送</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🏗️ 产品三：宜搭低代码 — 核心业务系统零代码搭建</div>
+  <div class="product-detail">
+    <h3>🏗️ 宜搭低代码平台</h3>
+    <p style="color:#cbd5e1;margin-bottom:16px">无需编程、业务人员即可搭建。拖拽式表单设计、可视化流程编排、移动端自适应，3天上线一个业务系统。</p>
+    <div class="features">
+      <div class="feat"><h4>♻️ 再生资源回收管理系统</h4><p>回收→过磅→分拣→入库→销售全流程数字化。替代手工台账，支持移动端扫码录入。</p></div>
+      <div class="feat"><h4>💳 供应链金融审批流程</h4><p>融资申请→多级审批→放款跟踪→还款管理。审批周期缩短60%，风控规则自动校验。</p></div>
+      <div class="feat"><h4>🏘️ 园区物业管理系统</h4><p>租户管理、租金收缴、报修工单、能耗监测。租户自助报修，工单自动派发。</p></div>
+      <div class="feat"><h4>🚛 车辆调度与物流管理</h4><p>运输车辆排班、路线规划、GPS轨迹集成。司机端APP实时上报位置和状态。</p></div>
+      <div class="feat"><h4>🔒 安全环保巡检</h4><p>移动端巡检打卡、隐患拍照上报、整改闭环跟踪。巡检报告自动生成。</p></div>
+      <div class="feat"><h4>👥 员工考勤与绩效</h4><p>多网点统一考勤、绩效考核、薪资核算。支持外勤打卡和排班管理。</p></div>
+    </div>
+    <div class="demo-section">
+      <h4>🖥️ 模拟体验：再生资源回收登记（宜搭表单）</h4>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="form-group"><label>回收品类</label><select id="recycleType"><option>废铜-光亮铜</option><option>废铜-紫铜</option><option>废铝-生铝</option><option>废铝-熟铝</option><option>废钢-重废</option><option>废钢-轻废</option><option>废纸-黄板纸</option><option>废塑料-PET</option></select></div>
+        <div class="form-group"><label>重量(kg)</label><input type="number" id="recycleWeight" value="2500"></div>
+        <div class="form-group"><label>供应商</label><select id="recycleSupplier"><option>广州市大江环保科技有限公司</option><option>黄埔区再生资源回收站A</option><option>增城区废旧物资回收点B</option><option>番禺区金属回收有限公司</option></select></div>
+        <div class="form-group"><label>单价(元/kg)</label><input type="number" id="recyclePrice" value="52.5" step="0.1"></div>
+        <div class="form-group"><label>验收人</label><input type="text" id="recycleInspector" value="张伟"></div>
+        <div class="form-group"><label>备注</label><input type="text" id="recycleNote" placeholder="可选备注"></div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <button class="btn btn-primary" onclick="submitRecycle()">✅ 提交回收登记</button>
+        <button class="btn" onclick="resetRecycle()">🔄 重置</button>
+      </div>
+      <div id="recycleResult" style="margin-top:12px;display:none"></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🏠 集团统一门户：28家企业一体化协同</div>
+  <div class="product-detail">
+    <h3>🏠 统一工作门户</h3>
+    <p style="color:#cbd5e1;margin-bottom:16px">以钉钉为统一工作入口，解决多子公司管理割裂痛点。统一通讯录、待办督办中心、审批流程引擎、知识库沉淀、会议闭环管理。</p>
+    <div class="demo-section">
+      <h4>🖥️ 模拟体验：集团统一门户</h4>
+      <div class="tabs" id="portalTabs">
+        <div class="tab active" onclick="switchPortal('todo')">📋 待办督办</div>
+        <div class="tab" onclick="switchPortal('approval')">✅ 审批中心</div>
+        <div class="tab" onclick="switchPortal('knowledge')">📚 知识库</div>
+        <div class="tab" onclick="switchPortal('meeting')">🎙️ 会议纪要</div>
+      </div>
+      <div id="portal-todo">
+        <table><thead><tr><th>事项</th><th>来源</th><th>负责人</th><th>截止日期</th><th>状态</th><th>操作</th></tr></thead><tbody>
+          <tr><td>大江环保Q2财务报告审核</td><td>财务部</td><td>李明</td><td>2026-07-02</td><td><span class="status warn">即将到期</span></td><td><button class="btn" onclick="markDone(this)">完成</button></td></tr>
+          <tr><td>黄埔园区B栋租户续约审批</td><td>物业管理部</td><td>王芳</td><td>2026-07-05</td><td><span class="status ok">进行中</span></td><td><button class="btn" onclick="markDone(this)">完成</button></td></tr>
+          <tr><td>供应链金融客户信用评估更新</td><td>风控部</td><td>陈强</td><td>2026-06-30</td><td><span class="status err">已逾期</span></td><td><button class="btn" onclick="markDone(this)">完成</button></td></tr>
+          <tr><td>废铜采购合同条款审核</td><td>法务部</td><td>赵丽</td><td>2026-07-03</td><td><span class="status ok">进行中</span></td><td><button class="btn" onclick="markDone(this)">完成</button></td></tr>
+          <tr><td>新员工入职培训安排</td><td>人力资源部</td><td>刘洋</td><td>2026-07-08</td><td><span class="status ok">待处理</span></td><td><button class="btn" onclick="markDone(this)">完成</button></td></tr>
+        </tbody></table>
+      </div>
+      <div id="portal-approval" style="display:none">
+        <table><thead><tr><th>审批类型</th><th>申请人</th><th>金额/内容</th><th>提交时间</th><th>当前节点</th><th>操作</th></tr></thead><tbody>
+          <tr><td>采购审批</td><td>张伟(大江环保)</td><td>废铜采购 ¥380,000</td><td>2026-06-28 09:30</td><td>部门经理审批</td><td><button class="btn btn-primary" onclick="approveItem(this,'同意')">同意</button> <button class="btn" onclick="approveItem(this,'驳回')">驳回</button></td></tr>
+          <tr><td>报销审批</td><td>王芳(物业管理)</td><td>差旅报销 ¥4,200</td><td>2026-06-28 10:15</td><td>财务审核</td><td><button class="btn btn-primary" onclick="approveItem(this,'同意')">同意</button> <button class="btn" onclick="approveItem(this,'驳回')">驳回</button></td></tr>
+          <tr><td>合同审批</td><td>陈强(供应链金融)</td><td>融资服务协议</td><td>2026-06-27 16:40</td><td>法务审核</td><td><button class="btn btn-primary" onclick="approveItem(this,'同意')">同意</button> <button class="btn" onclick="approveItem(this,'驳回')">驳回</button></td></tr>
+          <tr><td>用印审批</td><td>赵丽(行政部)</td><td>投标文件盖章</td><td>2026-06-28 11:00</td><td>总经理审批</td><td><button class="btn btn-primary" onclick="approveItem(this,'同意')">同意</button> <button class="btn" onclick="approveItem(this,'驳回')">驳回</button></td></tr>
+        </tbody></table>
+      </div>
+      <div id="portal-knowledge" style="display:none">
+        <div style="margin-bottom:12px;display:flex;gap:8px">
+          <input type="text" placeholder="搜索知识库..." style="flex:1;background:#0a0e1a;border:1px solid #334155;border-radius:8px;padding:10px 14px;color:#e2e8f0;font-size:13px;outline:none">
+          <button class="btn btn-primary" onclick="showToast('🔍 AI语义搜索已启动')">🔍 搜索</button>
+        </div>
+        <table><thead><tr><th>文档名称</th><th>分类</th><th>更新时间</th><th>阅读量</th><th>操作</th></tr></thead><tbody>
+          <tr><td>再生资源回收操作规范V3.0</td><td>操作手册</td><td>2026-06-15</td><td>328</td><td><button class="btn" onclick="showToast('📄 文档已打开')">查看</button></td></tr>
+          <tr><td>供应链金融风控指引2026版</td><td>制度文件</td><td>2026-06-20</td><td>156</td><td><button class="btn" onclick="showToast('📄 文档已打开')">查看</button></td></tr>
+          <tr><td>废铜品质检验标准</td><td>技术标准</td><td>2026-05-28</td><td>412</td><td><button class="btn" onclick="showToast('📄 文档已打开')">查看</button></td></tr>
+          <tr><td>园区物业管理SOP</td><td>操作手册</td><td>2026-06-10</td><td>203</td><td><button class="btn" onclick="showToast('📄 文档已打开')">查看</button></td></tr>
+          <tr><td>2026年环保补贴政策汇编</td><td>政策法规</td><td>2026-06-25</td><td>89</td><td><button class="btn" onclick="showToast('📄 文档已打开')">查看</button></td></tr>
+        </tbody></table>
+      </div>
+      <div id="portal-meeting" style="display:none">
+        <table><thead><tr><th>会议名称</th><th>时间</th><th>参会人</th><th>AI摘要</th><th>行动项</th></tr></thead><tbody>
+          <tr><td>集团月度经营分析会</td><td>2026-06-25 14:00</td><td>12人</td><td><button class="btn" onclick="showToast('📝 本月营收同比增长12%，再生资源板块贡献68%...')">查看摘要</button></td><td>5项</td></tr>
+          <tr><td>供应链金融风控周会</td><td>2026-06-27 10:00</td><td>6人</td><td><button class="btn" onclick="showToast('📝 本周新增授信3笔，逾期率维持0.8%...')">查看摘要</button></td><td>3项</td></tr>
+          <tr><td>园区物业月度例会</td><td>2026-06-26 15:30</td><td>8人</td><td><button class="btn" onclick="showToast('📝 出租率96.5%，本月报修完成率98%...')">查看摘要</button></td><td>4项</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">💼 业务管理系统：核心业务数字化</div>
+  <div class="product-detail">
+    <h3>💼 业务管理模拟</h3>
+    <p style="color:#cbd5e1;margin-bottom:16px">以下模拟展示康顺控股三大核心业务板块的数字化管理效果。</p>
+    <div class="tabs" id="bizTabs">
+      <div class="tab active" onclick="switchBiz('recycle')">♻️ 回收订单管理</div>
+      <div class="tab" onclick="switchBiz('finance')">💳 供应链金融</div>
+      <div class="tab" onclick="switchBiz('property')">🏘️ 园区物业</div>
+    </div>
+    <div id="biz-recycle">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span style="font-size:13px;color:#94a3b8">共 128 条回收记录 | 本月新增 23 条</span>
+        <button class="btn btn-primary" onclick="showToast('➕ 新建回收登记表单已打开')">+ 新建回收单</button>
+      </div>
+      <table><thead><tr><th>单号</th><th>品类</th><th>重量(吨)</th><th>金额(万元)</th><th>供应商</th><th>日期</th><th>状态</th></tr></thead><tbody>
+        <tr><td>HS-2026-0628-001</td><td>废铜-光亮铜</td><td>12.5</td><td>65.6</td><td>大江环保</td><td>2026-06-28</td><td><span class="status ok">已入库</span></td></tr>
+        <tr><td>HS-2026-0628-002</td><td>废铝-生铝</td><td>8.2</td><td>12.3</td><td>黄埔回收站A</td><td>2026-06-28</td><td><span class="status warn">质检中</span></td></tr>
+        <tr><td>HS-2026-0627-003</td><td>废钢-重废</td><td>25.0</td><td>62.5</td><td>增城回收点B</td><td>2026-06-27</td><td><span class="status ok">已结算</span></td></tr>
+        <tr><td>HS-2026-0627-004</td><td>废纸-黄板纸</td><td>15.8</td><td>3.2</td><td>番禺金属回收</td><td>2026-06-27</td><td><span class="status ok">已入库</span></td></tr>
+        <tr><td>HS-2026-0626-005</td><td>废铜-紫铜</td><td>6.3</td><td>33.1</td><td>大江环保</td><td>2026-06-26</td><td><span class="status ok">已结算</span></td></tr>
+      </tbody></table>
+    </div>
+    <div id="biz-finance" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span style="font-size:13px;color:#94a3b8">在贷余额 ¥2,860万 | 逾期率 0.8% | 活跃客户 42家</span>
+        <button class="btn btn-primary" onclick="showToast('➕ 新建融资申请已打开')">+ 新建融资申请</button>
+      </div>
+      <table><thead><tr><th>客户名称</th><th>融资金额(万)</th><th>期限</th><th>利率</th><th>放款日</th><th>到期日</th><th>状态</th></tr></thead><tbody>
+        <tr><td>广州市大绿贸易有限公司</td><td>200</td><td>90天</td><td>6.5%</td><td>2026-05-15</td><td>2026-08-13</td><td><span class="status ok">正常</span></td></tr>
+        <tr><td>广州康顺建材有限公司</td><td>150</td><td>60天</td><td>7.0%</td><td>2026-06-01</td><td>2026-07-31</td><td><span class="status ok">正常</span></td></tr>
+        <tr><td>康顺驱动科技(广东)</td><td>300</td><td>180天</td><td>6.0%</td><td>2026-04-20</td><td>2026-10-17</td><td><span class="status ok">正常</span></td></tr>
+        <tr><td>某再生资源回收站</td><td>80</td><td>30天</td><td>8.5%</td><td>2026-05-20</td><td>2026-06-19</td><td><span class="status err">逾期3天</span></td></tr>
+        <tr><td>Guangzhou KANGSHUN Trading</td><td>500</td><td>120天</td><td>5.8%</td><td>2026-06-10</td><td>2026-10-08</td><td><span class="status warn">审批中</span></td></tr>
+      </tbody></table>
+    </div>
+    <div id="biz-property" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span style="font-size:13px;color:#94a3b8">管理面积 3.2万㎡ | 出租率 96.5% | 本月租金收缴率 98.2%</span>
+        <button class="btn btn-primary" onclick="showToast('➕ 新建报修工单已打开')">+ 新建报修工单</button>
+      </div>
+      <table><thead><tr><th>租户名称</th><th>楼栋/房号</th><th>面积(㎡)</th><th>月租(元)</th><th>合同到期</th><th>最近报修</th><th>状态</th></tr></thead><tbody>
+        <tr><td>广州大海环保材料科技</td><td>A栋301</td><td>580</td><td>23,200</td><td>2027-03-31</td><td>空调维修(已完成)</td><td><span class="status ok">正常</span></td></tr>
+        <tr><td>三希堂文化艺术品公司</td><td>B栋102</td><td>320</td><td>12,800</td><td>2026-12-31</td><td>无</td><td><span class="status ok">正常</span></td></tr>
+        <tr><td>广州康顺网络科技</td><td>A栋205</td><td>180</td><td>7,200</td><td>2026-09-30</td><td>漏水(处理中)</td><td><span class="status warn">维修中</span></td></tr>
+        <tr><td>广东康顺物业管理</td><td>C栋整层</td><td>1,200</td><td>48,000</td><td>2027-06-30</td><td>电梯维保(已完成)</td><td><span class="status ok">正常</span></td></tr>
+        <tr><td>(空置)</td><td>B栋203</td><td>250</td><td>-</td><td>-</td><td>-</td><td><span class="status err">空置</span></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🔗 三产品协同：数据-AI-执行完整闭环</div>
+  <div class="sc"><h3>🔄 协同场景示例</h3>
+    <p><strong>场景1：价格波动响应</strong><br>AI表格检测到废铜价格上涨5% → 悟空AI自动生成调价建议并推送给采购部 → 宜搭触发客户报价审批流程 → 审批通过后自动更新CRM中的报价记录。全程自动化，响应时间从2天缩短至2小时。</p>
+    <p style="margin-top:12px"><strong>场景2：供应链金融风控</strong><br>宜搭收到融资申请 → 悟空AI自动调取AI表格中的客户历史交易数据和信用评分 → AI生成风控评估报告 → 审批人基于AI报告快速决策。审批周期从5天缩短至1天。</p>
+    <p style="margin-top:12px"><strong>场景3：园区物业智能运维</strong><br>租户通过钉钉提交报修工单(宜搭) → 悟空AI自动分类并匹配维修人员 → 维修完成后数据回流AI表格 → AI分析报修频次预测设备更换周期。物业运营效率提升40%。</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📅 实施路径</div>
+  <div class="tl">
+    <div class="ti"><h4>第一阶段：速赢期（第1-4周）</h4><p>钉钉全员激活+AI表格搭建价格追踪/客户CRM/库存看板+宜搭搭建回收管理系统/核心审批流程+悟空AI客服Agent上线。4周内完成基础设施搭建，零IT团队即可落地。</p></div>
+    <div class="ti"><h4>第二阶段：深化期（第5-12周）</h4><p>悟空AI合同审核/采购比价/数据分析Agent全面上线+宜搭搭建供应链金融审批/物业管理/物流调度系统+AI表格搭建财务报表/招标追踪+集团经营驾驶舱MVP。</p></div>
+    <div class="ti"><h4>第三阶段：扩展期（第13-24周）</h4><p>全系统深度优化+AI模型持续迭代+产业链协同平台预研+ESG合规管理模块上线。将成功实践固化为集团数字资产，探索AI能力封装为产业链增值服务。</p></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">📈 预期效果指标</div>
+  <div class="mg">
+    <div class="m"><div class="mv">↑80%</div><div class="ml">报价响应速度</div></div>
+    <div class="m"><div class="mv">↓40%</div><div class="ml">人工客服工作量</div></div>
+    <div class="m"><div class="mv">↓60%</div><div class="ml">审批周期缩短</div></div>
+    <div class="m"><div class="mv">3个月</div><div class="ml">基础数字化完成</div></div>
+    <div class="m"><div class="mv">28家</div><div class="ml">成员企业全覆盖</div></div>
+    <div class="m"><div class="mv">0人</div><div class="ml">IT团队需求</div></div>
+  </div>
+  <div style="margin-top:20px">
+    <div class="bar-row"><div class="bar-label">报价响应</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,#059669,#34d399)">提升80%</div></div></div>
+    <div class="bar-row"><div class="bar-label">客服效率</div><div class="bar-track"><div class="bar-fill" style="width:75%;background:linear-gradient(90deg,#059669,#34d399)">降低40%人力</div></div></div>
+    <div class="bar-row"><div class="bar-label">审批周期</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:linear-gradient(90deg,#059669,#34d399)">缩短60%</div></div></div>
+    <div class="bar-row"><div class="bar-label">月报编制</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:linear-gradient(90deg,#059669,#34d399)">从天级到小时级</div></div></div>
+    <div class="bar-row"><div class="bar-label">库存周转</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#059669,#34d399)">提升30%</div></div></div>
+  </div>
+</div>
+
+<div class="nav-links">
+  <a href="kangshun-report.html">👉 查看行业洞察报告</a>
+  <a href="kangshun-demo.html">👉 体验交互演示</a>
+</div>
+</div>
+<div class="footer">© 2026 AI科技园区 · 由钉钉悟空AI生成 · 数据截至2026年6月</div>
+
+<script>
+// Toast
+function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(function(){t.style.display='none'},2500)}
+
+// Price data
+var priceData={
+  copper:[
+    {d:'2026-06-28',type:'光亮铜',p:52800,chg:'+1.2%',trend:'↑',alert:''},
+    {d:'2026-06-27',type:'光亮铜',p:52200,chg:'+0.8%',trend:'↑',alert:''},
+    {d:'2026-06-26',type:'光亮铜',p:51800,chg:'-0.3%',trend:'→',alert:''},
+    {d:'2026-06-25',type:'光亮铜',p:52000,chg:'+1.5%',trend:'↑',alert:'⚠️ 涨幅超阈值'},
+    {d:'2026-06-24',type:'光亮铜',p:51200,chg:'+0.5%',trend:'↑',alert:''}
+  ],
+  aluminum:[
+    {d:'2026-06-28',type:'生铝',p:15200,chg:'+0.6%',trend:'↑',alert:''},
+    {d:'2026-06-27',type:'生铝',p:15100,chg:'-0.2%',trend:'→',alert:''},
+    {d:'2026-06-26',type:'生铝',p:15150,chg:'+0.9%',trend:'↑',alert:''},
+    {d:'2026-06-25',type:'生铝',p:15000,chg:'+0.3%',trend:'↑',alert:''},
+    {d:'2026-06-24',type:'生铝',p:14950,chg:'-0.5%',trend:'↓',alert:''}
+  ],
+  steel:[
+    {d:'2026-06-28',type:'重废',p:2580,chg:'+0.4%',trend:'↑',alert:''},
+    {d:'2026-06-27',type:'重废',p:2570,chg:'-0.1%',trend:'→',alert:''},
+    {d:'2026-06-26',type:'重废',p:2575,chg:'+0.7%',trend:'↑',alert:''},
+    {d:'2026-06-25',type:'重废',p:2560,chg:'+0.2%',trend:'↑',alert:''},
+    {d:'2026-06-24',type:'重废',p:2555,chg:'-0.3%',trend:'↓',alert:''}
+  ]
+};
+function switchPriceTab(type){
+  document.querySelectorAll('#priceTabs .tab').forEach(function(t){t.classList.remove('active')});
+  event.target.classList.add('active');
+  renderPriceTable(type);
+}
+function renderPriceTable(type){
+  var tbody=document.getElementById('priceBody');
+  var rows='';
+  priceData[type].forEach(function(r){
+    var chgClass=r.chg.startsWith('+')?'color:#22c55e':r.chg.startsWith('-')?'color:#ef4444':'color:#94a3b8';
+    rows+='<tr><td>'+r.d+'</td><td>'+r.type+'</td><td style="font-weight:700;color:#34d399">'+r.p.toLocaleString()+'</td><td style="'+chgClass+'">'+r.chg+'</td><td>'+r.trend+'</td><td>'+(r.alert||'<span style="color:#64748b">-</span>')+'</td></tr>';
+  });
+  tbody.innerHTML=rows;
+}
+renderPriceTable('copper');
+
+// AI Query
+function handleAiQuery(){
+  var q=document.getElementById('aiQueryInput').value.trim();
+  if(!q)return;
+  var res=document.getElementById('aiQueryResult');
+  res.style.display='block';
+  res.innerHTML='🤖 正在分析...';
+  setTimeout(function(){
+    if(q.indexOf('均价')>=0||q.indexOf('平均')>=0){
+      res.innerHTML='📊 <strong>AI分析结果：</strong>上周废铜(光亮铜)均价为 <strong>52,040元/吨</strong>，环比上涨1.8%。近30日均价51,520元/吨，当前价格处于近30日高位。建议关注下游需求变化。';
+    }else if(q.indexOf('欠款')>=0||q.indexOf('应收')>=0){
+      res.innerHTML='💰 <strong>AI分析结果：</strong>当前应收账款TOP3客户：<br>1. 广州康顺建材有限公司 - ¥82.5万 (逾期15天)<br>2. 某再生资源回收站 - ¥45.0万 (逾期3天)<br>3. 番禺区金属回收有限公司 - ¥28.3万 (未到期)<br>建议优先跟进前两位客户。';
+    }else{
+      res.innerHTML='📊 <strong>AI分析结果：</strong>根据您的问题"'+q+'"，已为您检索到相关数据。废铜(光亮铜)今日报价52,800元/吨，较昨日上涨1.2%。如需更详细的分析，请使用数据分析Agent。';
+    }
+  },800);
+}
+
+// Chat
+var chatReplies={
+  '价格':'📊 今日废铜(光亮铜)报价52,800元/吨(+1.2%)，废铝(生铝)15,200元/吨(+0.6%)，废钢(重废)2,580元/吨(+0.4%)。整体市场偏强运行。',
+  '合同':'📝 请上传需要审核的合同文件。我将自动检查以下要点：<br>• 付款条款是否合规<br>• 违约责任是否对等<br>• 知识产权归属<br>• 环保合规条款<br>审核完成后会生成风险报告。',
+  '利润':'📊 上季度各子公司利润排名：<br>1. 大江环保 - ¥380万<br>2. 大绿贸易 - ¥215万<br>3. 三希堂文化 - ¥128万<br>集团合计净利润¥856万，同比增长12.3%。',
+  '政策':'📜 最新政策动态：<br>• 2026年再生资源增值税即征即退政策延续，退税比例50%<br>• 广东省废旧物资循环利用体系建设补贴申报截止7月15日<br>• 黄埔区新增再生资源企业落户奖励最高20万元',
+  '客户':'👥 当前活跃客户186家，本月新增12家。信用评分A级以上客户占比78%。建议重点关注3家信用评级下降的客户。',
+  '库存':'📦 当前库存概况：<br>• 废铜：186吨（安全库存200吨，建议补货）<br>• 废铝：320吨（充足）<br>• 废钢：450吨（充足）<br>• 废纸：85吨（偏低，建议采购）'
+};
+function sendChat(){
+  var input=document.getElementById('chatInput');
+  var msg=input.value.trim();
+  if(!msg)return;
+  var box=document.getElementById('chatMessages');
+  box.innerHTML+='<div class="msg user"><div class="bubble">'+msg+'</div></div>';
+  input.value='';
+  box.scrollTop=box.scrollHeight;
+  setTimeout(function(){
+    var reply='🤖 感谢您的提问。我正在为您查询相关信息...';
+    for(var k in chatReplies){if(msg.indexOf(k)>=0){reply=chatReplies[k];break}}
+    box.innerHTML+='<div class="msg ai"><div class="bubble">'+reply+'</div></div>';
+    box.scrollTop=box.scrollHeight;
+  },600);
+}
+
+// Recycle form
+function submitRecycle(){
+  var type=document.getElementById('recycleType').value;
+  var weight=document.getElementById('recycleWeight').value;
+  var supplier=document.getElementById('recycleSupplier').value;
+  var price=document.getElementById('recyclePrice').value;
+  var total=(weight*price/1000).toFixed(2);
+  var no='HS-2026-0628-'+String(Math.floor(Math.random()*900)+100);
+  var res=document.getElementById('recycleResult');
+  res.style.display='block';
+  res.innerHTML='<div style="background:#05966922;border:1px solid #05966944;border-radius:8px;padding:16px;color:#34d399"><strong>✅ 提交成功！</strong><br>单号：'+no+'<br>品类：'+type+' | 重量：'+weight+'kg | 单价：'+price+'元/kg<br>总金额：¥'+total+'万<br>供应商：'+supplier+'<br><br>📋 已进入质检流程，预计30分钟内完成验收。</div>';
+  showToast('✅ 回收登记提交成功');
+}
+function resetRecycle(){
+  document.getElementById('recycleWeight').value='2500';
+  document.getElementById('recyclePrice').value='52.5';
+  document.getElementById('recycleNote').value='';
+  document.getElementById('recycleResult').style.display='none';
+}
+
+// Portal tabs
+function switchPortal(tab){
+  document.querySelectorAll('#portalTabs .tab').forEach(function(t){t.classList.remove('active')});
+  event.target.classList.add('active');
+  ['todo','approval','knowledge','meeting'].forEach(function(id){
+    document.getElementById('portal-'+id).style.display=id===tab?'block':'none';
+  });
+}
+
+// Biz tabs
+function switchBiz(tab){
+  document.querySelectorAll('#bizTabs .tab').forEach(function(t){t.classList.remove('active')});
+  event.target.classList.add('active');
+  ['recycle','finance','property'].forEach(function(id){
+    document.getElementById('biz-'+id).style.display=id===tab?'block':'none';
+  });
+}
+
+// Mark done
+function markDone(btn){
+  var row=btn.closest('tr');
+  row.querySelector('.status').className='status ok';
+  row.querySelector('.status').textContent='已完成';
+  btn.disabled=true;btn.textContent='✓';
+  showToast('✅ 待办事项已完成');
+}
+
+// Approve
+function approveItem(btn,action){
+  var row=btn.closest('tr');
+  var statusCell=row.querySelector('.status');
+  if(!statusCell){
+    var td=row.querySelector('td:last-child');
+    td.innerHTML='<span class="status '+(action==='同意'?'ok':'err')+'">'+action+'</span>';
+  }
+  showToast(action==='同意'?'✅ 审批已通过':'❌ 审批已驳回');
+}
+
+// KB search
+function searchKb(){showToast('🔍 AI语义搜索已启动，正在匹配...')}
+</script>
+
+</body>
+</html>
